@@ -1,0 +1,330 @@
+\ifglsentryexists{JSON}{}%
+{%
+\gls@defglossaryentry{JSON}%
+{%
+name={JSON},%
+sort={JSON},%
+type={main},%
+first={JSON},%
+firstplural={JSONs},%
+text={JSON},%
+plural={JSONs},%
+description={JSON or JavaScript Object Notation, is an open standard format that uses human-readable text to transmit data objects consisting of attribute–value pairs. It is used primarily to transmit data between a server and web application, as an alternative to XML},%
+descriptionplural={JSON or JavaScript Object Notation, is an open standard format that uses human-readable text to transmit data objects consisting of attribute–value pairs. It is used primarily to transmit data between a server and web application, as an alternative to XML},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{XML}{}%
+{%
+\gls@defglossaryentry{XML}%
+{%
+name={XML},%
+sort={XML},%
+type={main},%
+first={XML},%
+firstplural={XMLs},%
+text={XML},%
+plural={XMLs},%
+description={Extensible Markup Language (XML) is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. It is defined in the XML 1.0 Specification produced by the W3C, and several other related specifications, all free open standards},%
+descriptionplural={Extensible Markup Language (XML) is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. It is defined in the XML 1.0 Specification produced by the W3C, and several other related specifications, all free open standards},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{JS}{}%
+{%
+\gls@defglossaryentry{JS}%
+{%
+name={JavaScript},%
+sort={JavaScript},%
+type={main},%
+first={JavaScript},%
+firstplural={JavaScripts},%
+text={JavaScript},%
+plural={JavaScripts},%
+description={Web programmign language. Main language used during my internship},%
+descriptionplural={Web programmign language. Main language used during my internship},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{HTML}{}%
+{%
+\gls@defglossaryentry{HTML}%
+{%
+name={HTML},%
+sort={HTML},%
+type={main},%
+first={HTML},%
+firstplural={HTMLs},%
+text={HTML},%
+plural={HTMLs},%
+description={HTML or HyperText Markup Language is the standard markup language used to create web pages},%
+descriptionplural={HTML or HyperText Markup Language is the standard markup language used to create web pages},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{DOM}{}%
+{%
+\gls@defglossaryentry{DOM}%
+{%
+name={DOM},%
+sort={DOM},%
+type={main},%
+first={DOM},%
+firstplural={DOMs},%
+text={DOM},%
+plural={DOMs},%
+description={The Document Object Model (DOM) is a cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML and XML documents},%
+descriptionplural={The Document Object Model (DOM) is a cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML and XML documents},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Object Dictionary}{}%
+{%
+\gls@defglossaryentry{Object Dictionary}%
+{%
+name={Object Dictionary},%
+sort={Object Dictionary},%
+type={main},%
+first={Object Dictionary},%
+firstplural={Object Dictionarys},%
+text={Object Dictionary},%
+plural={Object Dictionarys},%
+description={Application to configure technical services. The graphical plugins are displayed by this application},%
+descriptionplural={Application to configure technical services. The graphical plugins are displayed by this application},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{view}{}%
+{%
+\gls@defglossaryentry{view}%
+{%
+name={View},%
+sort={View},%
+type={main},%
+first={View},%
+firstplural={Views},%
+text={View},%
+plural={Views},%
+description={Web page sub page that displays some elements but hides others},%
+descriptionplural={Web page sub page that displays some elements but hides others},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CSS}{}%
+{%
+\gls@defglossaryentry{CSS}%
+{%
+name={CSS},%
+sort={CSS},%
+type={main},%
+first={CSS},%
+firstplural={CSSs},%
+text={CSS},%
+plural={CSSs},%
+description={Cascading Style Sheets (CSS) is a style sheet language used for describing the look and formatting of a document written in a markup language},%
+descriptionplural={Cascading Style Sheets (CSS) is a style sheet language used for describing the look and formatting of a document written in a markup language},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{A6 Bus}{}%
+{%
+\gls@defglossaryentry{A6 Bus}%
+{%
+name={A6 Bus},%
+sort={A6 Bus},%
+type={main},%
+first={A6 Bus},%
+firstplural={A6 Buss},%
+text={A6 Bus},%
+plural={A6 Buss},%
+description={Bus where you can connect A6 compatible modules. They must be connected one into the other.},%
+descriptionplural={Bus where you can connect A6 compatible modules. They must be connected one into the other.},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{GEG}{}%
+{%
+\gls@defglossaryentry{GEG}%
+{%
+name={GEG},%
+sort={GEG},%
+type={main},%
+first={GEG},%
+firstplural={GEGs},%
+text={GEG},%
+plural={GEGs},%
+description={Gaz et Electricite de Grenoble. One of the partners of iDeviceCloud},%
+descriptionplural={Gaz et Electricite de Grenoble. One of the partners of iDeviceCloud},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SCADA}{}%
+{%
+\gls@defglossaryentry{SCADA}%
+{%
+name={SCADA},%
+sort={SCADA},%
+type={main},%
+first={SCADA},%
+firstplural={SCADAs},%
+text={SCADA},%
+plural={SCADAs},%
+description={SCADA (supervisory control and data acquisition) is a system operating with coded signals over communication channels so as to provide control of remote equipment (using typically one communication channel per remote station). The supervisory system may be combined with a data acquisition system by adding the use of coded signals over communication channels to acquire information about the status of the remote equipment for display or for recording functions. It is a type of industrial control system (ICS)},%
+descriptionplural={SCADA (supervisory control and data acquisition) is a system operating with coded signals over communication channels so as to provide control of remote equipment (using typically one communication channel per remote station). The supervisory system may be combined with a data acquisition system by adding the use of coded signals over communication channels to acquire information about the status of the remote equipment for display or for recording functions. It is a type of industrial control system (ICS)},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%

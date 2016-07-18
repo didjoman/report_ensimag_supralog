@@ -1,0 +1,464 @@
+\newpage
+\section{Solutions techniques} % (10 pages) Solutions techniques mises en oeuvre
+
+%synthèse de l'existant (couverture fonctionnelle existante (architecture logicielle par ex.), contraintes inhérentes au projet (outils, librairies, …), s'appuyant sur une bibliographie précise
+
+%description de la (ou des) solution(s) envisagée(s) et des outils qui seront utilisés
+
+%protocole d'évaluation envisagé pour valider votre solution ou mesurer son efficacité
+
+\subsection{Synthèse de l'existant} % (objectif perso : 4 pages)
+\subsubsection{Architecture logicielle}
+\paragraph*{Architecture 3-tiers\\}
+Topaze web est bâti selon une architecture 3-tiers : 
+\begin{sitemize}
+\item la \textit{couche présentation} qui sert à l'affichage des informations et qui tourne sur le navigateur du client.
+\item la \textit{couche métier} qui contient la logique applicative.
+\item la \textit{couche d'accés aux données} qui garantie la persistance des données (base(s) de données). 
+\end{sitemize}
+
+\paragraph*{Les utilisateurs\\}
+Le projet Topaze Web aura deux types d'utilisateurs : 
+\begin{sitemize}
+\item \textit{Les infirmiers, kinésithérapeutes et autres professionnels de la santé} qui utiliseront Topaze au quotidien pour la gestion des feuilles de soins, de la facturation, des dossiers patients etc. 
+\item \textit{Le service technique d'IDEA} (la société soeur de Supralog qui commercialise Topaze) : qu’il s’agisse des personnes
+chargées d’administrer les comptes utilisateurs et cabinets ou les personnes étant au SAV, ils
+utiliseront l’application pour gérer les abonnements et répondre aux problèmes techniques des
+clients finaux.
+\end{sitemize}
+
+Pour résumer, voici une schéma de l'architecture 3-tiers de Topaze Web :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{./img/architecture1}
+  \caption{\label{fig:mb_va_ast} Schéma de l'architecture 3-tiers (créé par Tom Veniat, utilisé avec son accord)}
+\end{figure}
+
+Afin de satisfaire les besoins de ces deux types d'utilisateurs, deux applications qui accèdent aux mêmes données ont été crées: 
+
+\begin{sitemize}
+\item \textit{Topaze} : l'application utilisée par les professionnels de la santé. 
+\item \textit{Opale} : l'application utilisée par les administrateurs.
+\end{sitemize}
+
+\paragraph*{L'application Topaze\\}
+L'application Topaze a été scindée en deux parties : \textit{Topaze REST} et \textit{Topaze Webapp}.\\
+\textit{Topaze Rest} est un serveur REST, à accès sécurisé par token. Il réalise les opérations liées à la logique métier et il fait persister les données en base.\\
+Topaze Webapp gère la mise en forme des données avant affichage. Son accès est sécurisé via une authentification par sessions. Elle contacte topaze REST afin de rapatrier les données, puis elle les met en forme avant de les envoyer au client (le navigateur).
+
+\paragraph*{L'application Opale\\}
+Opale et Topaze ont une base de données en commun. De cette manière, un administrateur d'Opale peut ajouter un utilisateur qui sera ensuite utilisable dans Topaze. \\
+Les deux applications sont séparées car elles sont utilisées par des utilisateurs différents, mais également parce qu'elles effectuent des tâches de nature différente. En effet, les tâches réalisées par les administrateurs, dans Opale, se résument à des opérations CRUD \footnote{CRUD: Create, Read, Update, Delete} sur la base de données. Dans Opale, il n'y a donc pas ou peu de logique métier. 
+De ce fait, le code de l'application Opale est presque entièrement générée au moyen du \textit{Skeleton Generator}.\\ \\
+Le \textit{Skeleton Generator} est un projet open-source, développé par le chef de projet, qui permet de faire du M2C \footnote{M2C: Modèle To Code}. Dans opale, on décrit donc les modèles de données via un fichier XML (cf annexe \ref{fig:xml}), puis le générateur est utilisé pour créer les entités en base de données, générer le code des DAO \footnote{DAO: Data Access Object} qui serviront pour Opale et Topaze et générer tout le code d'Opale (les composants-métier, les objets métiers, les services, l'api rest, ainsi que l'application web). 
+
+\paragraph*{L'application Sesame\\}
+
+La manipulation des Feuilles de Soins Electroniques (FSE) et la facturation nécessitent la lecture d'informations présentes sur la carte vitale du patient. D'autre part, les logiciels utilisant les FSE sont soumis à l’obtention d’un agrément délivré
+par les représentants des organismes d’Assurance Maladie. Cet agrément est obtenu après de
+nombreux tests vérifiant que le logiciel en question respecte un cahier des charges très précis.\\
+La gestion de la facturation et des FSE étant nécessaire à l’application, mais pouvant
+être externalisée, c’est une troisième application qui en a la responsabilité. \\
+Cette troisième application nommée \textit{Sesame} répond à trois problématiques : 
+\begin{sitemize}
+\item La communication avec le lecteur de cartes vitales.
+\item La facturation des actes réalisés par les praticiens, en fonction des informations du patient présentes sur la carte vitale.
+\item La communication avec Topaze et la restriction des accés à la carte vitale.
+\end{sitemize}
+
+Afin de pouvoir communiquer avec la carte vitale un driver doit être installé sur la machine de l'utilisateur. Par la suite, le serveur Sesame communique avec le driver via des websockets afin d'avoir accès aux informations de la carte vitale.
+
+\paragraph*{Schéma d'architecture global\\}
+Voici le schéma d'architecture globale représentant l'architecture 3-Tiers et la communication entre les différentes applications :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=18cm]{./img/architecture2}
+  \caption{\label{fig:mb_va_ast} Schéma d'architecture global (créé par Tom Veniat, utilisé avec son accord)}
+\end{figure}
+
+\subsubsection{Technologies utilisées}
+Les technologies utilisées par le projet sont :
+\begin{sitemize}
+\item Bases de données : PostgreSQL pour les modèles de données, MongoDB et GridFS pour les fichiers.
+\item ORM : Hibernate
+\item Serveur : Tomcat
+\item Backend : Java et Spring
+\item Front-End : JSF et Primefaces
+\end{sitemize} 
+
+\subsection{Solution envisagée}
+\subsubsection{Conception et implémentation du dossier médical}
+
+%\item Analyse de l'existant (fonctionnalités et comportements de Topaze Maestro) 
+%\item Etude de la faisabilité des différentes fonctionnalités.
+%\item Discussion du besoin avec le chef de projet et/ou la maitrise d'ouvrage.
+%\item Proposition d'une solution qui réponde fonctionnellement au besoin.
+%\item Spécification  du model métier (entités de la base de données) qui réponde au besoin.
+%\item Spécification de l'API Rest.
+%\item Spécification des interfaces graphiques si besoin.
+%\item Implémentation de la solution (backend + frontend) dans Topaze Web.
+\paragraph{Analyse de l'existant\\}
+Le dossier médical de Topaze Web doit, si possible, apporter les mêmes fonctionnalités que celui présent dans Topaze Maestro.
+La première étape de conception a donc consisté à faire une analyse de l’existant et à lister les fonctionnalités présentes (il s’agit de la liste décrite dans la section Problématique).
+
+\paragraph{Etude de la faisabilité\\}
+Ensuite, j'ai étudié la faisabilité des différentes fonctionnalités et les ai triées en fonction de leur difficulté à être implémentées en web. La plupart des fonctionnalités peuvent être créées sans difficulté, cependant certaines ont soulevé des questions :
+
+\subparagraph*{Le cas des objets OLE} est particulier, car il s'agit là d'un protocole de Microsoft à destination de Windows. 
+Il ne peut donc pas être utilisé dans une solution web. À ce niveau, il était donc nécessaire de savoir quels types d'objets devaient être supportés et si la fonctionnalité était vraiment importante. En effet, chaque objet à supporter nécessite de batir une solution sur mesure.\\
+Après discussion avec le chef de projet, il a été décidé que l'utilisation des objets OLE ne serait pas géré à proprement parlé dans l'application. Cependant, l'utilisateur peut, s'il le désire, télécharger différents types de fichiers sur l'application et les récupérer ensuite pour les éditer avec ses propres logiciels.
+
+\subparagraph*{Le cas des documents RichText} a lui aussi demandé un traitement spécifique. Dans Topaze Maestro, les documents au format richtext peuvent être téléchargés puis édités directement depuis l'application. En web, l'édition de documents au format richtext n'est pas habituelle. En revanche, de nombreux éditeurs \gls{WYSIWYG} existent et permettent d'éditer du Markdown, du BBCode ou du HTML. J'ai donc choisi d'intégrer un composant extérieur afin de remplir cette tâche. Afin que les utilisateurs de Topaze Maestro puissent réutiliser leurs données dans Topaze Web, il a été décidé que les fichiers au format RTF seraient transformés en HTML au moyen d'un traitement batch en cas de migration de donnée. \\
+Les choix techniques et l'intégration du composant seront décrits dans la section \ref{editeur_section}.
+
+\subparagraph*{Le cas des sons} est particulier. Pendant longtemps, cette fonctionnalité a été implémentée en web en utilisant du flash. Aujourd'hui, la balise audio d'HTML5 permet de lire des sons de façon native dans les navigateurs. Cette fonctionnalité d'HTML5 est supporté par quasiment tous les navigateurs, sauf IE8 \footnote{Support de la balise audio : http://caniuse.com/\#feat=audio}. \\
+En ce qui concerne l'enregistrement des sons (possible dans Topaze Maestro via un objet OLE), HTML5 offre l'API getUserMedia qui permet d'accéder au flux audio ou vidéo d'un périphérique externe. Cependant, le support de cette fonctionnalité n'est pas encore assuré par tous les navigateurs \footnote{Support de l'API getUserMedia : http://caniuse.com/\#feat=stream}. Afin de résoudre la question du support des navigateurs, des bibliothèques open-source telles que \textit{getUserMedia.js}\footnote{getUserMedia.js : https://github.com/addyosmani/getUserMedia.js} ont été développées. Ces bibliothèques utilisent la getUserMedia API si elle est disponible et utilisent Flash si ce n'est pas le cas.
+
+\paragraph{Elaboration d'une solution\\}
+Afin d'élaborer une solution, j'ai commencé par réaliser un diagramme de classe d'analyse modélisant les différents objets qui interviennent dans le dossier médical:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=11cm]{./img/class}
+  \caption{\label{fig:mb_va_ast} Diagramme de classe d'analyse du dossier médical.}
+\end{figure}
+
+Dans ce diagramme d'analyse, on peut voir que le dossier médical est constitué de deux types de documents : ceux que j'ai appelé les "Documents MIME" qui correspondent à des fichiers binaires (sons, images, textes) et les autres, qui sont des objets métiers manipulés dans l'application.\\
+
+Une fois ce diagramme réalisé s'est posée la question de la persistance des données. Avant toute chose, j'ai regardé le contenu de la base de données afin de savoir quelles entités étaient déjà présentes.\\
+Voici le modèle conceptuel de la base de données au départ (seules les entités concernant le cas étudié ont été représentées)  :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=15cm]{./img/existing_model}
+  \caption{\label{fig:mb_va_ast} Modèle UML conceptuel de la base de donnée, au départ.}
+\end{figure}
+
+Dans la base de donnée, les prescriptions étaient déja présentes. Il restait donc à ajouter les documents issus de fichiers. \\
+Voici donc l'ajout que j'ai réalisé au modèle de donnée : 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=13cm]{./img/created_model}
+  \caption{\label{fig:mb_va_ast} Modèle UML illustrant les ajouts à la base de données.}
+\end{figure}
+
+Ensuite, s'est posée la question du stockage du contenu des fichiers. Deux choix étaient possibles : les stocker en base, ou directement dans un système de fichier. Cette question s'était déjà présentée plus tôt dans le projet, et l'équipe avait décidé de stocker les données binaires dans une base de données Mongo DB munie de GridFS. Ce choix a été fait pour les caractéristiques de disponibilité et de scalabilité propre à MongoDB.\\
+La base de données PostgreSQL est donc utilisée pour stocker les méta données liées au fichier et leur contenu est stocké dans MongoDB. Lorsqu'on a besoin du contenu d'un fichier, on récupère son id dans Postgre et l'on fait une requête dans MongoDB pour obtenir son contenu. La convention choisie est que le filename dans Mongo correspond à l'id du document dans Postgre. \\
+
+Dans MongoDB, deux collections sont utilisées, par défaut, par GridFS pour stocker les fichiers :  
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{./img/gridfs}
+  \caption{\label{fig:mb_va_ast} Collections utilisées par GridFS pour le stockage des fichiers.}
+\end{figure}
+La collection \textit{Chuncks} sert à stocker les données du fichier et la collection \textit{Files} sert à stocker les méta-données du fichier.
+
+\paragraph{Phase d'implémentation\\}
+Une fois le modèle de données mis en place, il ne reste plus qu'à réaliser l'implémentation dans Topaze Rest et \textit{Topaze Webapp}. 
+À ce niveau, différentes classes sont à implémenter dans la \textit{Topaze Webapp} et dans \textit{Topaze Rest}. Afin de comprendre quelles classes sont à implémenter, voici un schéma illustrant la requête permettant d'obtenir le dossier médical (le diagramme est également fourni en plus grand, en annexe \ref{fig:diag_seq}, pour les lecteurs sur papier):
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=17cm]{./img/diag_seq}
+  \caption{\label{fig:mb_va_ast} Diagramme de séquence modélisant la requête du dossier médical.}
+\end{figure}
+
+Comme on peut le voir, l'architecture de la \textit{webapp} suit un modèle MVC. Du côté de \textit{Topaze Rest}, il y a plusieurs packages : 
+\begin{itemize} 
+\item \textit{API} qui définit les services et les modèles (qui correspondent à des vues simplifiés des objets tirés de la base)
+\item \textit{REST} qui définit les les contrôleurs (qui font le mapping entre une url et un service)
+\item \textit{REST Client} qui définit des services clients utilisés par la web-app pour contacter les contrôleurs.
+\item \textit{Business components} qui définit les objets tels que les mappers qui permettent de créer des vues ad-hocs à partir des modèles issus de la base de données.
+\end{itemize}
+
+Enfin, on utilise également les DAO \footnote{DAO: Data Access Object} définis dans Opale qui permettent d'obtenir les informations de la base de données.\\
+
+Une capture d'écran du dossier médical de Topaze Web est disponible en annexe \ref{fig:dossier_web}.
+
+\subsubsection{Choix et intégration de l'éditeur de texte}\label{editeur_section}
+% Choix editeur + licence permissive et non contaminante
+% Problème Richtext et données existantes
+
+L’édition de texte est une fonctionnalité importante de Topaze Maestro. Il fallait donc qu’un éditeur soit implémenté ou intégré. De nombreux éditeurs de texte de qualité ont déjà étés développés et il en existe sous toutes les licences. Il a donc été choisi d’intégrer un composant existant. Cela permet d’avoir un composant robuste, bien documenté, éprouvé par toute une communauté et en continuelle évolution.\\
+
+Les critères que j’ai pris en compte lors du choix étaient la notoriété du projet, le nombre de contributeurs et d’utilisateurs, son ancienneté, le support proposé, le nombre de fonctionnalités offertes, les possibilités de configuration, la possibilité de greffer de nouveaux plugins et enfin, la licence.\\
+
+La licence était une question importante car Topaze Web est destiné à être commercialisé. Il n’était donc pas possible de choisir un éditeur distribué sous une licence à fort copyleft (par exemple la GPL). Un tel choix aurait contraint Topaze Web à être lui-même distribué sous licence GPL.\\
+
+Pour finir, l’éditeur CKEditor a été choisi car il propose une licence LGPL, dispose d’une bonne communauté, de nombreux plugins et de la possibilité d’ajouter facilement ses propres plugins.
+
+\subparagraph*{Intégration de l’éditeur\\}
+L’intégration se fait très facilement en ajoutant la librairie de l’éditeur. Il ne reste plus ensuite qu’à gérer le flot de données qui circulent entre l’éditeur et l’application. Du javascript est utilisé pour gérer la sauvegarde lors du click sur le bouton ou périodiquement si l’utilisateur ne sauvegarde pas.\\
+
+Par la suite d’autres modifications seront apportées (vue réaliste faisant apparaître les pages telles qu’elles seront imprimées, galerie d’image, import d’images).\\
+
+Une capture d'écran de l'éditeur de texte de Topaze Web est disponible en annexe \ref{fig:editeur_web}.
+
+\subsubsection{La bibliothèque d'images}
+Dans Topaze Maestro, la bibliothèque d'images contient uniquement des images prédéfinies. Dans la version web, il a été décidé qu'elle puisse également contenir des images importées par l'utilisateur.\\
+De manière à ce que la bibliothèque soit simple à gérer, nous avons décidé (le chef de projet et moi) de créer un gestionnaire de fichiers avec une arborescence de dossiers.\\
+
+\paragraph*{Elaboration du modèle de données}
+Lors de la conception du modèle, la contrainte suivante devait être prise en compte : \\
+Lorsqu'un utilisateur supprime une image de sa bibliothèque, si celle-ci a été insérée dans un document, elle doit continuer d'y appraître. \\
+Ainsi, il était nécessaire de séparer en base, l'apparition d'une image dans la bibliothèque de son stockage pour utilisation dans les documents texte. \\
+J'ai donc créé le modèle suivant : 
+
+%TODO : MCD des directory, userImageAddress, UserImage
+
+\paragraph*{Spécification de l'API REST}
+En ce qui concerne l'API REST, elle contient les opérations de CRUD\footnote{CRUD: Create Read Update Delete} sur les dossiers et leur contenu.
+L'API expose donc les urls suivantes concernant les dossiers : 
+%TODO : à vérifier.
+\begin{itemize}
+\item GET /account/models/directory/{directoryId}
+\item DELETE /account/models/directory/{directoryId}
+\item POST /account/models/directory
+\end{itemize}
+
+Concernant les images contenues, ont trouve :
+\begin{itemize}
+\item GET /account/models/directory/{directoryId}/picutre/{pictureId}/content
+\item DELETE /account/models/directory/{directoryId}/picutre/{pictureId}
+\item POST /account/models/directory/picutre
+\end{itemize}
+
+\paragraph*{Modèle de l'API}
+L'API REST récupère les donneés de la base au moyen de DAOs\footnote{DAO: Data Access Object} et peuple des objets métiers qu'elle va ensuite retourner.\\
+
+Pour la base de donnée, il était plus simple de stocker l'arborescence de façon ascendante (chaque fichier contient l'id du dossier parent). Mais, concernant les objets métiers (qui eux seront exposés), on souhaite que l'arborescence soit stockée de façon descendante, pour que leur usage soit naturel.
+En effet, les objets métiers sont ensuite utilisés pour générer les vues en HTML. Dans ce cas, on a donc en général accés à un dossier et on souhaite obtenir la liste de ses fils. \\
+
+Pour représenter ce type de modèle, on pense naturellement au design pattern composite : \\
+%TODO : inclure design pattern du truc
+
+Cependant, les objets retournés par l'API REST seront transmis par le réseau et devront donc être sérialisés. Hors, l'outil utilisé pour la sérialisation (Jackson), ne gère pas nativement le polymorphisme de java. \\
+Le moyen utilisé pour pouvoir le faire quand même consiste à utiliser des annotations Jacksons, ou à inclure un champ "type" dans le json retourné par l'API. Cependant, ce choix est couteux car il impose des contraintes fortes sur le client utilisant l'API: l'usage de Jackson ou l'ajout d'un mécanisme particulier pour parser les objets reçus.
+
+N'ayant que deux types d'objets, j'ai donc préféré briser l'héritage :
+
+%TODO : schéma du nouveau modèle.
+
+\paragraph*{Implémentation de la partie WebApp}
+La webapp effectue des traitements assez standards. Elle effectue des appels aux services REST pour obtenir les dossiers et leur contenu et expose un certain nombre de méthodes utilisables par les vues JSF grâce un controlleur.
+Le modèle utilisé par la webapp est rudimentaire car il ne fait qu'encapsuler les objets métiers obtenus de l'API REST et stocke en plus quelques variables d'états pour la vue.
+
+\paragraph*{Spécification de l'interface graphique}
+Avant d'implémenter la vue en JSF dans l'application, j'ai réalisé un prototype en HTML et javascript dans plunker.
+Plunker est un éditeur en ligne pour le front-end. Il permet de faciliter la programmation fron-end en proposant un aperçu en temps réel, une inclusion de librairie simple, une gestion de version, un stockage privé du code et un partage simple et rapide du résultat avec un tiers.
+
+Une fois que le résultat était satisfaisant, il a suffit de convertir une partie du HTML en JSF pour l'intégrer au code.
+
+\paragraph*{Création d'un composant réutilisable}
+Le gestionnaire de fichier utilisé pour la bibliothèque d'image a vocation à pouvoir être réutilisé à d'autres fin.
+J'ai donc créé un composant réutilisable.
+
+En JSF, trois choix sont possibles pour créer des composants réutilisables : 
+%TODO : à compléter
+\begin{itemize}
+\item Les \textit{Custom Tags} : il s'agit de la solution la plus légère proposée par JSF. Elle permet d'externaliser dans un fichier une portion de code JSF afin de pouvoir la réutiliser ensuite. Un tag peut accepter des paramètres afin de personnaliser le comportement du composant. Les tags peuvent enuite être utilisés en JSF au moyen d'une balise.
+\item Les \textit{Composite Components} : cette solution est trés semblable aux tags, mais elle est plus coûteuse en temps de traitement. Elle a l'intérêt de présenter un passage de paramêtres plus propre que les tags.
+\item Les \textit{Custom Components} : ce sont des composants définis en java (et non plus en JSF). Pour en créer, il faut définir une classe qui assurera le rendering du composant et une autre .... %TODO
+\end{itemize}
+
+Pour le gestionnaire de fichiers, mon choix s'est porté sur les tags, car la solution est performante et s'avère suffisante pour traiter le besoin.\\
+Ici, l'usage d'un custom components aurait été disproportionné car coûteux et non nécessaire (un rendering en Java n'est pas nécessaire si il peut être fait en JSF).\\
+Les composite components n'étaient pas non plus nécessaires et auraient apporté plus de lourdeur.
+
+\subsubsection{Les "placeholders"}
+Dans l'éditeur de texte de Topaze Maestro, une fonctionnalité permet d'utiliser des emplacements paramétrés (placeholders) qui sont remplacés à la sauvegarde par leur valeur réelle (en base de donnée). \\
+Cette fonctionnalité est trés puissante car elle permet à l'utilisateur d'utiliser directement une partie des données présentes en base, dans ses documents textes. \\
+
+\paragraph*{Faisabilité}
+%TODO voir si on garde
+La faisabilité de la foncionnalité reposait sur trois éléments :
+La possiblité d'insérer des balises html complexes dans ckeditor. 
+La possibilité de créer un lien entre une balise du texte et une donnée en base. 
+La possibilité de faire le remplacement de la balise par sa valeur.
+
+\paragraph*{La solution mise en place}
+\subparagraph*{L'insertion de placeholders dans l'éditeur}
+Le premier pas pour réaliser la fonctionnalité était d'ajouter un plugin à l'éditeur pour insérer les placeholders.\\
+Dans l'éditeur, les placeholders doivent avoir un formattage spécifique pour être reconnaissables, ne pas pouvoir être éditables et le html doit éventuellement pouvoir encapsuler des données (attributs \textit{data-*} de HTML).\\
+
+Le plugin a été réalisé de la même manière que pour la bibliothèque d'image : en ajoutant un fichier \textit{plugin.js} et en utilisant une modale bootstrap.\\
+En ce qui concerne les balises : le CSS permet de leur donner l'allure souhaitée, l'API de CKEditor permet d'insérer du HTML dans le texte à l'endroit du curseur et la liste blanche des éléments acceptés par l'éditeur est modifiable via un fichier de configuration.
+
+\subparagraph*{Le lien entre les données vues par l'utilisateur et les données en base}
+
+Lorsque l'utilisateur souhaite insérer un placeholder, il doit d'abord le sélectionner dans une arborescence. 
+Lors du click sur une feuille de l'arborescence, le placeholder est inséré.  \\
+
+Lors de la manipulation, l'utilisateur voit donc deux types d'informations : 
+\begin{itemize}
+\item les noeuds de l'arborescence.
+\item les placeholders.
+\end{itemize}
+
+Pour pouvoir construire l'arborescence et effectuer le remplacement des placeholders par leur valeur, les informations visibles par l'utilisateur doivent être reliées à des objets métiers de l'API.
+Dans ce but, deux solutions étaient disponibles : 
+\begin{itemize}
+\item utiliser des tables en base de données.
+\item socker l'information dans les classes java. % annotations spring + introspection java
+\end{itemize}
+
+En JSF, on est déjà capable d'insérer dans les vues des informations provenant du modèle grâce aux EL \footnote{EL: Expression Language}. Par exemple, l'expression \textit{\#$\{$prescriptionView.date$\}$} sera remplacée par sa valeur par JSF, lors de la génération du HTML. Lors du remplacement d'un placeholder par sa valeur, on doit donc faire le lien entre cette notation pointée et le nom du placeholder.\\
+
+\textbf{La première approche} conciste à ré-utiliser la table directory \footnote{la table directory est celle introduite pour gérer l'arborescence du gestionnaire de fichier} pour les dossiers de l'arborescence et à ajouter une nouvelle table pour les feuilles. Cette deuxième table sert à faire le lien entre les noms des placeholders, la notation pointée de java et le libellé à utiliser dans l'arborescence:\\
+
+%TODO schéma
+%Directory            Placeholder
+%id                   nom
+%title                libellé
+%parent               dotNotation
+%creator              parent
+
+\textbf{La deuxième approche} vise à utiliser les capacités de Java pour stocker l'information nécessaire directement dans le code.\\
+Pour créer l'arborescence, il est possible d'utiliser la fonctionnalité d'introspection de java. L'introspection permet de prendre une classe et de parcourir ses propriétés et méthodes. Avec cette technique, on peut parcourir les objets métiers à exposer par les placeholders pour remplir un arbre (qui sera utilisé pour construire l'arborescence dans la vue). \\
+Pour faire le lien entre les propriétés des objets métiers, les libellés de l'arbre et le nom des placeholders, on ajoute des annotations sur les propriétés des classes.\\
+
+\textbf{Pour comparer les deux solutions :} en terme de cout, dans la première approche on a un accés direct à l'information, mais celle-ci requiert un accés à la base de données et la reconstruction de l'arbre. Dans la deuxième approche, l'accés à l'information n'est pas direct, il faut parcourir les classes (couteux) et également reconstruire l'arborescence, mais on évite un accés à la base de données.\\
+En ce qui concerne la maintenabilité, la deuxième solution est meilleure, surtout pour le lien entre le placeholder et la notation pointée.\\
+Finalement, c'est donc la deuxième solution qui a été retenue et que j'ai implémentée.
+
+
+\subparagraph*{Le remplacement des placeholders par leur valeur}
+Le remplacement des placeholders par leur valeur a lieu lors de la sauvegarde du document, ou lorsque l'utilisateur demande une prévisualisation.\\
+
+Trouver des expressions tokenisées dans un texte et les remplacer par leur valeur est une opération courante et de nombreuses bibliothèques permettent de le faire (velocity, ..... %TODO ).
+Ayant déjà la bibliothèque Velocity sur le projet, c'est la librairie qui a été utilisée.\\
+
+Le remplacement des placeholders se fait en 3 phases : \\
+
+\textbf{La phase 1 :} elle sert à remplacer les noms des placeholders par la notation pointée.\\
+Cette phase se déroule en deux étapes : \\
+D'abord, les classes java correspondant aux placeholders utilisés dans le texte sont parcourues pour remplir un contexte. Le contexte consiste en un dictionnaire de clés-valeurs, avec en clé le nom du placeholder et en valeur, la notation pointée.\\
+Ensuite, Velocity se sert du contexte pour remplacer les noms des placeholders par leur valeur.\\
+
+%TODO schéma représentant la classe et ses annotations 
+
+\textbf{La phase 2 :} elle sert à remplacer les notations pointées par leur valeur réelle.\\
+Durant cette phase, on fait appel à l'API REST pour récupérer les objets métiers nécessaires, remplis avec les informations de la base de données.\\
+Avec les objets métiers on remplit un nouveau contexte clé-valeur, avec en clé le nom de l'objet (première partie de la notation pointée) et en valeur l'objet lui même.\\
+Ensuite, on refait appel à Velocity pour remplacer les notations objet par leur valeur.\\
+
+\textbf{La phase 3 :} elle sert à remplacer les valeurs non trouvées par des points d'interrogation.\\
+En effet, lorsque Velocity ne trouve pas une valeur, ou que la valeur est "null", il ne remplasse pas la notation pointée.\\
+Dans un soucis de propreté et également pour signifier à l'utilisateur que le remplacement n'a pas fonctionné, on insert une série de points d'interrogation.\\
+
+%TODO schéma récapitulatif : automate ?
+
+\subsubsection{Les modèles de texte}
+La fonctionnalité des modèles de texte consiste à pouvoir sauvegarder dans une hiérarchie de dossiers, des documents RTF pouvant contenir des emplacements paramétrés.\\
+Cette fonctionnalité se base sur la réutilisation de plusieurs autres :
+\begin{itemize}
+\item Le gestionnaire de fichiers et les hiérarchies de dossiers/fichiers.
+\item Les documents texte.
+\item Les placeholders.
+\end{itemize}
+
+\subsubsection{Documents audio}
+		\paragraph*{Web RTC}
+		\paragraph*{Choix librairie front-end}
+		\paragraph*{Intégration}
+		
+\subsubsection{Les scans d'ordonnances}
+
+\paragraph*{Apport au driver (devices/postes utilisateurs)}
+
+Au départ, le driver était uniquement conçu pour interragir avec le lecteur Sésam-Vitale.\\ Il avait alors été décidé que les websockets utilisées entre le serveur \textit{Sésame} et le driver aient pour identifiant le numéro de carte CPS\footnote{CPS: Carte de Professionnel de Santé} et la clé de licence.\\
+Néanmoins, il arrive que le logiciel soit utilisé par des auxiliaires médicales qui doivent effectuer des opérations pour plusieurs médecins. Dans ce cas de figure, il est peut judicieux de leur imposer de posséder les cartes de tous les praticiens. \\
+En plus de cela, le driver devait être étendu pour supporter les opérations liées au scanner. Hors, pour cette fonctionnalité, il n'est pas nécessaire de disposer d'une CPS.\\
+Pour ces raisons, nous avons décidé (avec mon chef de projet), de prendre pour nouvel identifiant de la websocket, le poste utilisateur (device) et la clé de licence. \\
+
+L'introduction du concept de poste utilisateur a nécessité des modifications sur de nombreuses couches du logiciel.\\
+En effet, les modifications impactent la connexion de l'utilisateur à Topaze Web, et la communication entre le driver et le     
+serveur \textit{Sésame}. \\
+La modification a donc affecté l'interface utilisateur et l'API de Topaze, mais aussi l'API de Sésame et le driver:
+%TODO schéma d'une requête de scan par exemple ? avec connexion puis scan.
+
+De ce choix, il résulte une utilisation plus souple du logiciel (plus nécessairement besoin d'une CPS) et la possibilité de monayer plus facilement le logiciel (ex: possibilité de limiter le nombre de postes utilisateurs par licence).
+
+\paragraph*{Fonctionnalité de numérisation}
+Dans le dossier médical, l'utilisateur doit pouvoir ajouter des scans d'ordonnance (appelés SCOR\footnote{SCOR: SCannérisation des ORdonnances}).\\
+
+\subparagraph*{Faisabilité}
+Pour cette fonctionnalité, j'ai évalué qu'il était faisable de reproduire intégralement la fonctionnalité de Topaze Maestro.\\
+
+La faisabilité de la fonctionnalité repose sur plusieurs éléments :\\
+Dans un premier temps, il faut être capable de communiquer avec des scanners de différentes marques. Ceci est faisable grâce à l'interface de programmation et protocole de communication \textit{"TWAIN"}. Ce protocole permet de communiquer avec les drivers des différents scanners à condition qu'ils implémentent l'API.\\
+TWAIN a été créé en 1992, et la plupart des constructeurs font aujourd'hui partie du TWAIN groupe (HP, Adobe, Epson, Kodak, Fujitsu, Logitech etc.).\\
+En python (langage du driver de Topaze Web), le module Pytwain permet d'interragir avec les scanners.\\
+
+Ensuite, la fonction de scan de Topaze Maestro propose des fonctions rudimentaires de traitement de l'image (cropping, redimensionnement, rotation). 
+Pour réaliser ces fonctionnalités, il existe de nombreuses possibilités. On peut par exemple le faire entièrement coté navigateur, au moyen d'une bibliothèque javascript (il en existe plusieurs). Soit opter pour une solution hybride. Dans ce cas, il est par exemple possible de faire une prévisualisation en javascript, et le traitement en Python avec Pillow. 
+Enfin, le dernier choix consiste à faire la prévisualisation en javascript coté client et le traitement en java, coté serveur. \\
+
+Enfin, il est nécessaire de faire communiquer le driver avec le serveur Sésame. Ce problème a déja été entièrement résolu avant mon arrivée.
+
+\paragraph*{Traitement d'image (cropping/rotation/zoom)}
+%TODO
+
+\paragraph*{Génération d'un pdf}
+%TODO
+		
+\subsubsection{Installeur Windows pour le driver}
+Ayant travaillé sur le driver python et dans l'objectif d'une commercialisation qui approche, il m'a été demandé de réaliser un installateur windows pour le driver.\\
+
+\paragraph*{Fonctionnalités de l'installateur}
+Tout d'abord, l'installateur doit déplacer les fichiers du driver dans le bon dossier sur windows. Puis, il doit installer les dépendances et les .msi nécessaires.\\ 
+Il doit également compléter le fichier de configuration du driver. \\
+Ensuite, il doit contacter le serveur \textit{Sésame} afin de vérifier la clé de licence et d'enregistrer le nouveau poste utilisateur. \\
+Enfin, il doit installer le logiciel Pyxvital qui est utilisé pour les opérations de facturation.
+
+
+\paragraph*{Choix de la solution technique}
+Pour le choix de l'installateur, la solution d'\textit{Inno Setup} m'a été fortement recommandé par le directeur de l'entreprise. En effet, il s'agit de la solution qui est utilisée dans les dernières versions de Topaze Maestro.\\
+Avant d'opter définitivement pour Inno Setup, j'ai vérifié que l'installateur recommandé satisfasse les exigences du projet.\\ Lors de l'installation, il fallait par exemple que je puisse installer des .msi\footnote{MSI: Microsoft Installer} en mode silencieux. Il fallait aussi que je puisse ajouter des écrans supplémentaires lors de l'installation. Enfin, je devais pouvoir effectuer des requêtes HTTP vers notre serveur Sésame.
+
+\paragraph*{Implémentation}
+Inno Setup est un outil qui permet de réaliser simplement des installateurs. L'outil prend en charge la création des interfaces graphiques et d'une partie des opérations standards (ex: déplacements de fichiers). Pour l'utiliser, on remplit un fichier \textit{.iss}\footnote{.ISS: Inno Setup Script} qui permet de configurer l'installateur et d'étendre ses fonctionnalités. Le fichier .iss est structuré en sections et chaque section permet de décrire de façon déclarative la façon dont l'installateur doit se comporter. Les sections principales sont : 
+\begin{itemize}
+\item Setup : section qui décrit le nom du programme, sa version, son dossier d'installation etc.
+\item Dirs : les dossiers à créer.
+\item Files : les fichiers à déplacer (avec leur source et leur destination).
+\item Icons : les raccourcis à créer dans le menu démarrer ou sur le bureau.
+\item Ini : les variables à initialiser dans le fichier \textit{.ini} de l'application.
+\item Run : le programme à lancer lorsque l'installation est finie.
+\item Code : la partie qui permet d'étendre inno setup au moyen de code pascal.
+\item d'autres sections moins importantes : types (les types d'installations), components (des groupes de tâches), tasks, languages, installDelete, uninstallDelete, uninstallRun, registry etc.
+\end{itemize}  
+
+Dans l'installateur, la partie la plus importante est la section \textit{"Code"} car elle permet d'ajouter des écrans à l'installateur et de créer de nouvelles fonctionnalités. Sur le projet, je l'ai utilisé pour créer une page de validation de clé de licence, et une page servant à définir le nom du nouveau poste utilisateur.\\
+Dans ces deux cas, l'installateur réalise une requête HTTP vers le serveur Sésame, puis traite la réponse obtenue. 
+
+\paragraph*{L'intégration de pyxvital}
+Pyxvital est un logiciel qui sert à créer des FSE\footnote{FSE: Feuille de Soins Electroniques} et à assurer la transmission avec le lecteur Sésam-Vitale. Il est utilisé temporairement afin de faciliter la certification de Topaze Web et accélerer ainsi sa mise sur le marché.
+%TODO : Hors sujet. ^
+
+Le driver de Topaze Web utilise Pyxvital et il est donc nécessaire que celui-ci soit installé en même temps que les autres dépendances. Le problème de Pyxvital est qu'il ne peut être installé qu'au moyen d'un \textit{.exe}. Hors, nous souhaitons que son installation soit transparante pour l'utilisateur. Il a donc été nécessaire de comprendre les différentes opérations réalisées lors de l'installation, afin de les inclure dans notre installateur.\\
+Pour ce faire, j'ai donc du lancer l'installateur de Pyxvital et regarder si des registres étaient modifiés, quels fichiers étaient installés et quels fichiers de configuration étaient complétés. Ensuite, j'ai dû ajouter ces opérations à la phase finale d'installation dans Inno Setup.
+
+
+\subsection{Protocole d'évaluation}
+\subsubsection{Evaluation de la qualité du code}
+\paragraph*{Tests unitaires\\}
+Pour s'assurer de la qualité du logiciel, nous effectuons des tests unitaires JUnit sur les services réalisés, les composants métiers et tout ce qui contient de la logique métier. Ces tests permettent également de garantir la non-régression du code.
+
+\paragraph*{Le développement dirigé par les tests\\}
+Les tests unitaires sont la plupart du temps réalisés en respectant la méthodologie du Test Driven Development.
+La méthode de développement dirigé par les tests a été progressivement mise en place lors du sprint 2 et permet de garantir une meilleure qualité du code. En effet, par l'utilisation de cette méthode, on est certain que chaque fonctionnalité a été testée. D'autre part, chaque test sert en quelques sortes de spécification pour le morceau de code testé.
+
+\paragraph*{L'intégration continue et l'inspecteur de qualité de code\\} 
+Durant le sprint 2, un serveur d'intégration continue a été mis en place. Pour ce faire, un membre de l'équipe a déployé un serveur Jenkins. De ce fait, les tests unitaires sont désormais lancés à chaque build. \\
+Par la suite, SonarQube a également été installé. Il s'agit d'un outil réalisant l'inspection de la qualité de code. Il fournit une estimation de la dette technique et pointe les problèmes rencontrés. Il fournit également une explication détaillée pour chaque problème rencontré.
+
+\paragraph{Revues de code\\}
+Fréquemment, le chef de projet effectue des revues de code et peut demander à ce que certaines parties soient refactorées ou que l'architecture soit revue.
+
+\subsubsection{Evaluation fonctionnelle du logiciel}
+\paragraph*{Les réunions avec le client en fin de sprint\\}
+À la fin de chaque sprint, une réunion de démonstration est organisée avec le client. C'est alors le moment d'avoir son retour sur les fonctionnalités développées. Cette réunion peut donner lieu à des rectifications à réaliser si le besoin a été mal compris ou si des évolutions sont souhaitées. \\
+%Le client étant la société soeur de Supralog, nous disposons d'un lien étroit avec elle. En effet, un membre d'IDEA est chargé de faire la liaison entre le projet Topaze Web et IDEA. Nous pouvons donc le consulter en cas de doûte sur les besoins ou sur la compréhension de l'attendu.
+
+% Tests unitaires
+% Satisfaction client

@@ -1,0 +1,73 @@
+Mise en contexte
+
+Le stage s'ancre dans la réalisation du logiciel d'e-santé Topaze Web qui a pour but de remplacer l'actuel logiciel Topaze Maestro.
+Topaze Maestro était un logiciel au départ commercialisé en tant que produit (SAB: Software As Bytes), alors que Topaze Web a vocation a être vendu en tant que service (SAAS: Software as a service).
+Cette nouvelle version est donc une refonte totale de topaze Maestro : un nouveau projet commence de zéro.
+
+Le stage débute alors que le projet a déjà un an et demi d'existance et qu'une mise en commercialisation est envisagée peu de temps après la fin du stage (Septembre - Octobre). Le but de la commercialisation sera de fournir une version du logiciel contenant le fonctionnalités les plus essentielles de Topaze Maestro. 
+
+Dans ce contexte temporel précis, le but du stage est d'apporter à Topaze Web la fonctionnalité "Dossier Médical du Patient" et de préparer la mise en production.
+Le dossier médical d'un patient est une fonctionnalité "composite" qui est constituée de plusieurs modules. La liste des fonctionnalités qui s'y rattachent est détaillée dans la section **********.
+
+
+
+Dossier médical : 
+	- Liste des documents
+	- Voir document
+		- Accés aux documents (aspect sécu = token documents)
+	- Documents textes
+		- Modèles de document
+		- Placeholders
+		- Gestionnaire de fichiers / Librairie d'images
+	- Documents audio
+		- Web RTC
+		- Choix librairie front-end
+		- Intégration
+	- Ajout scans d'ordonnance
+		- Apport au driver (devices/postes utilisateurs)
+		- Fonctionnalité de numérisation
+		- Traitement d'image (cropping/rotation/zoom)
+	- Installeur Windows pour le driver		
+
+
+
+
+\subsubsection{La bibliothèque d'images}
+Dans les documents rich-text, l'utilisateur doit pouvoir insérer une image provenant de son ordinateur et également pouvoir l'enreg
+
+
+\subsubsection{Les "placeholders"}
+Dans l'éditeur de texte de Topaze Maestro, une fonctionnalité permet d'utiliser des emplacements paramétrés (placeholders) qui sont remplacés à la sauvegarde par leur valeur réelle (en base de donnée). \\
+
+Pour utiliser la fonctionnalité, l'utilisateur sélectionne dans une arborescence l'information dont il a besoin (par exemple: le numéro de sécurité sociale du patient) et le logiciel insère dans le texte la balise correspondante (dans notre cas : \textit{[patient.numero_securité_sociale]}). Ensuite, lorsque l'utilisateur clique sur "prévisualiser" ou "sauvegarder", l'emplacement est remplacé par sa valeur réelle.
+
+Cette fonctionnalité permet donc à l'utilisateur d'utiliser dirèctement une partie des données présentes en base de données. 
+
+
+\subsubsection{Les modèles de texte}
+La fonctionnalité des modèles de texte repose sur le fait de pouvoir sauvegarder dans une hiérarchie de dossiers, des documents RTF pouvant contenir des emplacements paramétrés.
+
+
+
+	
+
+\\
+
+
+
+
+Plusieurs niveaux séparent le nom d'une balise et l'information de la base 
+
+%TODO 
+%BDD                ORM                       Objet Métier           nom du placeholder 
+%																	  vu par l'utilisateur
+%							   <- mappers ->
+%Prescription
+%date          -- Prescription.date -- PrescriptionBasicView.date -- ordonnance_dates
+
+La base de données a été insérée dans le schéma dans un souci de complétude, mais elle peut être omise car c'est Hibernate (l'ORM) qui fait le lien avec elle. \\
+Ensuite il y a le lien entre les objets métiers et les objets hibernate. En général, il est assuré manuellement et des mappers permettent de remplir les objets métiers.
+Enfin, il y a le lien entre les objets métiers et les placeholders affichés à l'utilisateur. Pour aire ce lien, différentes options étaient possibles : 
+\begin{itemize}
+\item Créer une table qui associe chaque placeholder à 
+\end{itemize}

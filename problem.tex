@@ -1,0 +1,108 @@
+\newpage
+\section{Problématique} % (5 pages) problématique de votre projet 
+% (contexte du projet (workflow) + travail à réaliser + objectifs attendus)
+
+\subsection{Contexte du projet}
+Le développement du projet s'effectue en sprints, selon la méthode Kanban. Le contenu de chaque sprint est décidé d'un commun accord entre le chef de projet et le client. Le but est de réaliser en premier lieu les fonctionnalités les plus importantes fonctionnellement. 
+
+\subsubsection{Mise en place du projet}
+Durant cette première étape, il a fallu mettre en place l'architecture du projet, avec notamment les différents serveurs \textit{J2EE/Spring}, la base de données \textit{Postgre Sql}, l'\gls{ORM} Hibernate, la partie webapp avec \textit{JSF} et \textit{primefaces}.
+Cette partie est abordée plus en détails, dans la section Architecture.
+
+\subsubsection{Sprint 1}
+Le sprint 1, qui a eu lieu avant mon arrivée, avait pour but la création des fonctionnalités de base permettant la gestion d'un cabinet.\\
+
+La première fonctionnalité développée durant ce sprint permet la création d'un cabinet médical avec l'ajout de praticiens (kinésithérapeute, infirmiers etc.) et l'ajout de patients au cabinet.
+La deuxième fonctionnalité porte sur la gestion des ordonnances pour les professions de type kinésithérapeute et infirmiers. Enfin, il y a la gestion des séances, avec la création d'un planning.
+
+
+\subsubsection{Sprint 2}
+Le second sprint du projet a commencé en début mars, peu de temps après mon arrivée. Il a été dimensionné pour tenir sur 6 semaines.
+Les objectifs de ce sprint portent sur la création des fonctionnalités suivantes : 
+\begin{itemize}
+\item \textit{Les Feuilles de Soins Electroniques} : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale du patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
+\item \textit{Le contexte de facturation} : Il comprend la gestion des tarifications, des types de couverture et des types de prise en charge. Cette fonctionnalité nécessite la lecture des cartes SESAM Vitale.
+\item \textit{Le dossier médical du patient} : Il contient une liste des documents associés au patient (ordonnances, factures, prescriptions, scans, images etc.)
+\item \textit{Les cas métiers de la gestion des séances} : La gestion de base des séances faisait partie du sprint 1. Dans ce sprint ce sont les cas particuliers (i.e. les cas de figure issus du terrain) qui sont traités. Ces cas de figure couvrent par exemple l'annulation ou le décalage d'une séance par le praticien ou le client.
+\item \textit{L'intégration continue et le TDD} : Ce n'est pas une fonctionnalité à proprement parlé, mais plus une amélioration des méthodes de production. L'intégration continue doit permettre une industrialisation de la production (tests lancés automatiquement lors du build et obtention de rapports portants sur la qualité du code). La méthodologie de TDD\footnote{TDD: Test-Driven Development (Développement dirigé par les tests).} porte sur la façon de développer et tester le logiciel. Elle doit permettre d'augmenter la qualité du code développé.
+\end{itemize}
+
+\subsubsection{Sprint 3}
+Ce troisième sprint doit commencer à partir du 11 Avril. Les détails le concernant n'ont pour l'instant pas été abordés avec précision. Cependant, il est prévu que durant cette période, nous travaillions en collaboration avec des ergonomes et des designers afin d'améliorer l'expérience utilisateur.
+
+
+\subsection{Travail à réaliser}
+
+La partie qui m'a été attribuée durant le sprint 2 est la mise en place du dossier médical du patient. Il s'agit d'une fonctionnalité du logiciel qui dépend des autres parties déjà développées (cabinets, praticiens, patients), mais qui est relativement indépendante. \\
+
+Il s'agit d'une fonctionnalité présente dans \textit{Topaze Maestro}, qu'il faut créer dans \textit{Topaze Web}.
+Une capture d'écran de la fonctionnalité du dossier médical de Topaze Maestro est visible en annexe \ref{fig:dossier_medical}.
+
+
+\subsubsection{Les fonctionnalités du dossier médical dans Topaze Maestro}
+\paragraph*{La liste des documents associés au patient\\}
+La fonctionnalité principale est la liste des documents du patient. Cette liste contient différents types de documents : les ordonnances, factures, paiements, suivis, scans, courriers (textes), images, sons, objets \gls{OLE}. La liste peut être ordonnée selon le type de documents ou selon la date. Elle peut également être filtrée sur le type de documents.
+
+\paragraph*{Le récapitulatif de chaque document\\}
+Un panneau latéral permet à l'utilisateur d'avoir accès rapide aux informations du document qui est sélectionné dans la liste.
+
+\paragraph*{La lecture ou la suppression de documents\\}
+Chaque document de la liste doit pouvoir être ouvert ou supprimé.
+L'ouverture d'un document est différente selon le type de celui-ci. Si c'est une ordonnance ou un document issu d'un regroupement d'information, l'ouverture provoquera l'affichage d'un nouvel écran. Si c'est une image, un pdf, ou un objet OLE, c'est un logiciel Windows qui s'ouvre. Enfin, si c'est un document \textit{richtext} (cas des courriers et prescriptions), un éditeur propre à Topaze permet l'édition. 
+
+\paragraph*{Les modèles d'images\\}
+Un onglet du menu latéral permet l'insertion d'une image à partir d'une librairie de modèles prédéfinis.
+
+\paragraph*{Les documents textuels (\gls{RTF})\\}
+L'utilisateur peut ajouter et éditer des documents textuels grâce à l'éditeur de texte intégré à Topaze. 
+L'éditeur proposé est agrémenté de différentes fonctionnalités, telles que l'ajout d'images à partir d'une bibliothèque, l'utilisation de modèles de document et l'emploi d'emplacements paramétrés (placeholders).
+Une capture d'écran de l'éditeur de texte de Topaze Maestro est disponible en annexe \ref{fig:editeur_texte}.
+
+\subparagraph*{La bibliothèque d'images}
+L'utilisateur peut insérer dans le document texte une image provenant de son ordinateur ou de la bibliothèque d'images.
+La bibliothèque d'image présente plusieurs onglets thématiques et chaque onglet contient une liste d'images prédéfinies.
+
+\subparagraph*{Les "placeholders"}
+Les emplacements paramétrés (placeholders) sont des balises génériques qui peuvent être introduites dans un document texte et qui seront remplacées à la sauvegarde par leur valeur réelle (valeur en base de donnée).\\
+
+Le mécanisme fonctionne en plusieurs temps : \\
+D'abord, l'utilisateur sélectionne dans une arborescence l'information dont il a besoin (par exemple: la date d'une ordonnance) et le logiciel insère dans le texte la balise correspondante (dans notre cas : \textit{$[$ordonnance.numero$\_$securité$\_$sociale$]$}). \\
+Ensuite, l'utilisateur remplit un contexte. Dans notre cas, le praticien aurait à choisir l'ordonnance ciblée.\\
+Enfin, lorsque l'utilisateur clique sur "prévisualiser" ou "sauvegarder", l'emplacement est remplacé par sa valeur réelle.
+
+\subparagraph*{Les modèles de texte}
+Les modèles de texte sont des document RTF contenant des placeholders, qui ont vocation à être réutilisés.\\
+Ces modèles sont accessibles via une bibliothèque similaire à celle des images. 
+Lorsque l'utilisateur ouvre un modèle, il peut le modifier et l'enregistrer comme un document normal. 
+
+\paragraph*{L'ajout de scans \\}
+L'utilisateur a la possibilité de numériser un document dirèctement en cliquant sur un bouton du menu latéral. Il peut également insérer un document déja scanné, via le même bouton.
+
+\paragraph*{L'ajout d'objets OLE\\}
+Le protocole OLE (Object Linking and Embedding) est un protocole mis au point par microsoft permettant la liaison et l'incorporation d'objets. Cela permet à différents logiciels de se transmettre des objets. \\
+Dans topaze, l'utilisateur peut donc insérer tout objet/document qui implémente l'interface \textit{IOleObject}. Concrètement, il peut donc insérer un document word, une image paint, une vidéo etc. et lorsqu'il cliquera sur "voir", le logiciel approprié de windows s'ouvrira pour lui permettre de visualiser et/ou éditer le document.
+Cette fonctionnalité est trés puissante car elle permet le support d'un trés grand nombre de documents. 
+
+\paragraph*{L'enregistrement de sons\\}
+L'utilisateur peut enregistrer un son en cliquant sur un bouton du menu. Cela lui ouvre un logiciel d'enregistrement de sons de Windows.
+ 
+
+\subsection{Les objectifs précis attendus}
+Les objectifs attendus lors du sprint 2 : 
+\begin{itemize}
+\item L'accès au dossier médical du patient.
+\item L'édition de documents texte (sans modèle).
+\item L'ajout de documents numériques au dossier d'un patient.
+\end{itemize}
+
+Pour chaque objectif, les tâches suivantes sont à réaliser :
+\begin{itemize}
+\item Analyse de l'existant (fonctionnalités et comportements de Topaze Maestro) 
+\item Etude de la faisabilité des différentes fonctionnalités.
+\item Discussion du besoin avec le chef de projet et/ou la maîtrise d'ouvrage.
+\item Proposition d'une solution qui réponde fonctionnellement au besoin.
+\item Spécification  du modèle métier (entités de la base de données) qui réponde au besoin.
+\item Spécification de l'API Rest.
+\item Spécification des interfaces graphiques si besoin.
+\item Implémentation de la solution (backend + frontend) dans Topaze Web.
+\end{itemize}

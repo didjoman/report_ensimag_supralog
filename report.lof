@@ -1,0 +1,17 @@
+\select@language {english}
+\contentsline {figure}{\numberline {1}{\ignorespaces Supralog}}{7}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Sch\IeC {\'e}ma de l'architecture 3-tiers (cr\IeC {\'e}\IeC {\'e} par Tom Veniat, utilis\IeC {\'e} avec son accord)}}{13}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Sch\IeC {\'e}ma d'architecture global (cr\IeC {\'e}\IeC {\'e} par Tom Veniat, utilis\IeC {\'e} avec son accord)}}{15}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Diagramme de classe d'analyse du dossier m\IeC {\'e}dical.}}{17}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Mod\IeC {\`e}le UML conceptuel de la base de donn\IeC {\'e}e, au d\IeC {\'e}part.}}{18}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Mod\IeC {\`e}le UML illustrant les ajouts \IeC {\`a} la base de donn\IeC {\'e}es.}}{18}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Collections utilis\IeC {\'e}es par GridFS pour le stockage des fichiers.}}{19}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{19}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Gantt pr\IeC {\'e}visionnel.}}{29}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Gantt r\IeC {\'e}el.}}{29}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Dossier m\IeC {\'e}dical tel qu'il est pr\IeC {\'e}sent dans Topaze Maestro.}}{31}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces L'\IeC {\'e}diteur de texte pr\IeC {\'e}sent dans Topaze Maestro.}}{32}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Exemple de mod\IeC {\`e}le d\IeC {\'e}crit en XML \IeC {\`a} destination du g\IeC {\'e}n\IeC {\'e}rateur.}}{33}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{34}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Le dossier m\IeC {\'e}dical impl\IeC {\'e}ment\IeC {\'e} dans Topaze Web.}}{35}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces L'\IeC {\'e}diteur de texte (CKEditor) int\IeC {\'e}gr\IeC {\'e} dans Topaze Web .}}{36}{figure.16}

@@ -1,0 +1,384 @@
+%------------------------------------------------------------------------------%
+%                                                                              %
+%                                                                              %
+%   EnsiRapport Template                                                       %
+%                                                                              %
+%   Version : 1.0                                                              %
+%                                                                              %
+%------------------------------------------------------------------------------%
+
+
+
+\documentclass[liens,entete-ensimag,margeCorrection,onecolumn,12pt]{ensirapport}
+% options possibles:
+% -  ('10pt', '11pt' and '12pt') taille de police.
+% -  ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') taille de papier.
+% -  ('sans' and 'roman') famille de police.
+% -- ('liens') ajoute les liens dans le sommaire.
+% -- ('entete,entete-ensimag') ajoute des belles entetes avec logo ensimag ou pas.
+% -- ('margeCorrection') diminue les enormes marges de latex.
+% -- ('minted') inclus minted pour colorer les codes sources, ne fonctionne pas à l'ensimag.
+% -  ('onecolumn','twocolumn') une ou deux colonnes
+% -  ('fleqn','leqno') formules mathématique alignées a gauche ou a droite.
+% -  ('notitlepage','titlepage') sans ou avec page de garde pour le titre
+
+
+\usepackage{titling} % Allows custom title configuration
+\usepackage{dirtree}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage[title,titletoc,toc,page]{appendix}
+\usepackage[toc,section=section]{glossaries}
+
+\usepackage{color}
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{editorOcher}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+\definecolor{editorGreen}{rgb}{0, 0.5, 0} % #007C00 -> rgb(0, 124, 0)
+\usepackage{upquote}
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{fancybox}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{titlesec}
+
+\usepackage{float}
+%\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+%\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+%\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+%\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+%\titlespacing\paragraph{0pt}{0pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} % titlesec
+%\titlespacing\subparagraph{0pt}{0pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} % titlesec
+
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+\titlespacing{\subparagraph}{20pt}{3.5ex plus 1ex minus .2ex}{0ex plus .0ex}
+\titleformat{\subparagraph}  {\normalfont\fontsize{0.85em}{0.7em}\bfseries}  {\thesubparagraph}{1em}{}
+
+
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+%\usepackage{paralist}
+%\renewenvironment{itemize}[1]{\begin{compactitem}#1}{\end{compactitem}}
+%\renewenvironment{enumerate}[1]{\begin{compactenum}#1}{\end{compactenum}}
+%\renewenvironment{description}[0]{\begin{compactdesc}}{\end{compactdesc}}
+%\setlist[enumerate]{itemsep=0mm}
+
+%    \makeatletter
+%    \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+%                                         {-3.25ex\@plus -1ex \@minus -.2ex}%
+%                                         {0.0001pt \@plus .2ex}%
+%                                         {\normalfont\normalsize\bfseries}}
+%    \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+%                                         {-3.25ex\@plus -1ex \@minus -.2ex}%
+%                                         {0.0001pt \@plus .2ex}%
+%                                         {\normalfont\normalsize\bfseries}}
+%    \makeatother
+
+\newenvironment{sitemize}
+{ \begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}     }
+{ \end{itemize}                  } 
+
+\lstdefinelanguage{JavaScript}{
+  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{HTML5}{
+        language=html,
+        sensitive=true,
+        alsoletter={<>=-},
+        otherkeywords={
+        % HTML tags
+        <html>, <head>, <title>, </title>, <meta, />, </head>, <body>,
+        <canvas, \/canvas>, <script>, </script>, </body>, </html>, <!, html>, <style>, </style>, ><
+        },
+        ndkeywords={
+        % General
+        =,
+        % HTML attributes
+        charset=, id=, width=, height=,
+        % CSS properties
+        border:, transform:, -moz-transform:, transition-duration:, transition-property:, transition-timing-function:
+        },
+        morecomment=[s]{<!--}{-->},
+        tag=[s]
+}
+
+\lstset{%
+    % Basic design
+    backgroundcolor=\color{editorGray},
+    basicstyle={\small\ttfamily},
+    frame=l,
+    % Line numbers
+    xleftmargin={0.75cm},
+    numbers=left,
+    stepnumber=1,
+    firstnumber=1,
+    numberfirstline=true,
+    % Code design
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{darkgray}\ttfamily,
+    ndkeywordstyle=\color{editorGreen}\bfseries,
+    stringstyle=\color{editorOcher},
+    % Code
+    language=HTML5,
+    alsolanguage=JavaScript,
+    alsodigit={.:;},
+    tabsize=2,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    % Support for German umlauts
+    literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+}
+
+% Correct the default ugly font of the lstlistings 
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+% ``\Listing{...}'' command typesets its argument as a code block -
+% with monospace font and whitespace preserved.  It is an
+% environment-like command accepting multiple paragraphs.
+\def\Listing{\bigskip\begingroup%
+\setlength{\parskip}{0pc}\addtolength{\parindent}{1pc}%
+\tt\scriptsize\obeylines\obeyspaces\PreserveWhitespace\ListingBody}
+
+% ``\ListingBody'' is an auxillary command need to make Listing work.
+% It inserts the argument and closes the group opened by Listing.
+\long\def\ListingBody#1{#1\endgroup\smallskip}
+
+% \PreserveWhitespace makes leading spaces appear as-is.  To make
+% leading spaces appear, we have to set space to be an active
+% character that exands to a non-breakable space.  The command for
+% this is ``\let =\ ``, but unfortunately lifting this command to a
+% macro does not quite work because space is not active during the
+% definition of the macro - it needs to be made active using
+% ``\catcode''.  Therefore we define our macro in a little block of
+% code where space is made active:
+\begingroup
+\catcode32=\active
+\gdef\PreserveWhitespace{\catcode32=\active\let =\ }
+\endgroup
+
+\newcommand{\HorRule}{ \rule{\linewidth}{0pt}} % Defines the gold horizontal rule around the title
+
+\pretitle{
+  \vspace{-2cm}
+  \hspace{-1cm}
+  \includegraphics[height=70pt]{img/supralog.jpg}
+  \hfill
+  \includegraphics[height=85pt]{ensilogo.png}
+  \vfill
+
+  \begin{center}\fontsize{14}{14} \usefont{OT1}{cmr}{}{n}
+  Grenoble INP - ENSIMAG \\
+École nationale supérieure d'informatique et de mathématiques appliquées de Grenoble
+  \end{center}
+\vspace{2cm}
+
+\begin{center}\HorRule \fontsize{25}{25} \usefont{OT1}{cmr}{}{n}  \selectfont
+
+  
+
+} % Horizontal rule before the title
+
+\posttitle{\par\end{center}
+  \begin{center}\fontsize{14}{14} \usefont{OT1}{cmr}{}{n}
+  Effectué chez Supralog
+  \end{center}
+  
+  \vspace{1.5cm}
+
+  \begin{center}
+    \shadowbox{
+	\begin{minipage}{0.9\textwidth}
+	\vspace{0.3cm}
+	\begin{center}\fontsize{12}{12} \usefont{OT1}{cmr}{}{n}
+	{\Huge Architecture et Développement Java Backend pour une Solution E-Santé}\\~
+	\end{center}
+	\end{minipage}
+	}
+  \end{center}
+
+
+%  \begin{flushright}
+%    \small $22^{rd}$ June -- $4^{th}$ September.
+%  \end{flushright}
+
+\vskip 2cm
+} % Whitespace under the title
+
+\preauthor{
+  %\begin{center}
+  %\includegraphics[height=2cm]{img/logo_idevicecloud}\\
+  %\vspace{0.2cm}
+  %\bf
+  %Design and development of a 3D graphical interfaces representing a calculation scheme
+  %deployed on the nodes of the mesh iDeviceCloud
+  %\vspace{0.2cm}
+  %\end{center}
+
+
+
+  \begin{center}\fontsize{13}{13} \lineskip 0.5em \usefont{OT1}{cmr}{}{sl}
+  } % Author font configuration
+
+
+  \postauthor{\footnotesize  % Configuration for the institution name
+  \begin{center}\fontsize{13}{13} \usefont{OT1}{cmr}{}{n}
+  	$3A$ $-$ Filière Ingénierie des systèmes d'information\% Your institution
+    
+    \vspace{0.5cm}
+	29 Février 2016 - 26 Août 2016
+  \end{center}
+    \date{} % Add a date here if you would like one to appear underneath the title block
+
+	\vskip 1.5cm
+	\begin{center}\fontsize{13}{13} \usefont{OT1}{cmr}{}{n}
+    \begin{tabular*}{\textwidth }{@{\extracolsep{\fill}} l l}
+      \textbf{Supralog}                & \textbf{Responsable de stage}\\
+      {\footnotesize Immeuble Le Chorus} & ~~~Nicolas \textsc{THIBAULT}\\
+      {\footnotesize 2203, Chemin de Saint-Claude} & \textbf{Tuteur de l'école}\\
+      {\footnotesize 06600 ANTIBES}                 & ~~~Sylvain \textsc{BOUVERET}\\
+    \end{tabular*}
+	\end{center}
+\par\end{center}\HorRule} % Horizontal rule after the title
+
+
+\makenoidxglossaries
+\defglsentryfmt[main]{\glsgenentryfmt{}{}{*}}
+
+\newglossaryentry{Sesam Vitale}{
+  name=Sesam Vitale,
+  description={Le programme SESAM-Vitale est un programme de dématérialisation des feuilles de soins pour l'assurance maladie en France, qui repose sur la carte Vitale.}
+}
+
+\newglossaryentry{Topaze Maestro}{
+  name=Topaze Maestro,
+  description={est l'une des versions rescente du progiciel d'e-santé actuellement commercialisé par Supralog. Le logiciel fonctionne comme une application de bureau pour Windows.}
+}
+
+\newglossaryentry{Topaze Web}{
+  name=Topaze Web,
+  description={est la refonte web de Topaze Maestro.}
+}
+
+\newglossaryentry{SAAS}{
+  name=SAAS,
+  description={"Software As A Service" ou logiciel en tant que service. Il s'agit d'un business modèle visant à vendre des accés à une application qui tourne sur un serveur, plutôt que de vendre le logiciel comme un produit.}
+}
+
+\newglossaryentry{IDLOG}{
+  name=IDLOG,
+  description={est un groupe familial créé en 2002 afin de regouper les sociétés SUPRALOG et IDEA}
+}
+
+\newglossaryentry{IDEA}{
+  name=IDEA,
+  description={est la société créée en 1987 qui est responsable de la commercialisation de Topaze.}
+}
+
+\newglossaryentry{SUPRALOG}{
+  name=SUPRALOG,
+  description={est la société fondée en 1997 qui a créé le progiciel d'e-santé Topaze.}
+}
+
+
+\newglossaryentry{OLE}{
+  name=OLE,
+  description={est l'accronyme de "Object Linking and Embedding". Il s'agit d'un protocole développé par Microsoft permettant de faire de la liaison dynamique d'objets dans Windows.}
+}
+
+\newglossaryentry{RTF}{
+  name=RTF,
+  description={est l'accronyme de "Rich Text Format". Il s'agit d'un format de fichier développé par Microsoft et utilisable dans la plupart des éditeurs de textes.}
+}
+
+\newglossaryentry{FSE}{
+  name=FSE,
+  description={est l'accronyme de "Feuille de Soins Electronique".}
+}
+
+\newglossaryentry{ORM}{
+  name=ORM,
+  description={est l'accronyme de "Object-relational mapping". Il s'agit d'une technique permettant de manipuler les données de la base de données comme s'il s'agissait d'objets.}
+}
+
+\newglossaryentry{WYSIWYG}{
+  name=WYSIWYG,
+  description={est l'accronyme de "What You See Is What You Get". Cela désigne le plus souvent un éditeur graphique qui produit le code de ce qui est affiché à l'écran.}
+}
+
+
+\begin{document}
+
+\title{Pré-Rapport de Projet de Fin d'Etudes}
+\author{Alexandre Rupp}
+\date{}
+
+% Page de garde
+ \pagenumbering{gobble} 
+\maketitle
+ \thispagestyle{empty}
+ 
+ 
+\newpage
+\thispagestyle{fancy}
+\pagenumbering{arabic}  
+
+% Coordonnées TODO
+\input{coordinates.tex}  
+
+% Table des matières 
+\newpage
+\tableofcontents
+
+
+% Table des figures 
+\newpage
+\listoffigures
+
+% Résumé (1 page) TODO
+\input{summary.tex}
+
+% Glossaire
+\newpage
+\printnoidxglossary
+
+  
+
+\newcommand{\lc}{\cellcolor{blue!60}}
+\renewcommand{\arraystretch}{1.3}
+
+% Content :
+
+\input{introduction.tex} %(2-3 ¶) done : 0
+\input{context.tex} % (2 pages)  done: 2
+\input{problem.tex} % (5 pages)  done: 3.2
+\input{solution.tex} % (10 pages) done: 3
+\input{progress.tex} % (2 page) done: 0
+\input{feeling.tex} % (1 page) done: 0
+
+\input{appendices.tex} % (0 pages)
+
+
+\end{document}
