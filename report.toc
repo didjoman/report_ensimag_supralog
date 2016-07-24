@@ -35,15 +35,15 @@
 \contentsline {paragraph}{Phase d'impl\IeC {\'e}mentation\\}{19}{figure.7}
 \contentsline {subsubsection}{\numberline {4.2.2}Choix et int\IeC {\'e}gration de l'\IeC {\'e}diteur de texte}{20}{subsubsection.4.2.2}
 \contentsline {subsubsection}{\numberline {4.2.3}La biblioth\IeC {\`e}que d'images}{21}{subsubsection.4.2.3}
-\contentsline {subsubsection}{\numberline {4.2.4}Les "placeholders"}{23}{subsubsection.4.2.4}
-\contentsline {subsubsection}{\numberline {4.2.5}Les mod\IeC {\`e}les de texte}{25}{subsubsection.4.2.5}
-\contentsline {subsubsection}{\numberline {4.2.6}Documents audio}{25}{subsubsection.4.2.6}
-\contentsline {subsubsection}{\numberline {4.2.7}Les scans d'ordonnances}{26}{subsubsection.4.2.7}
-\contentsline {subsubsection}{\numberline {4.2.8}Installeur Windows pour le driver}{26}{subsubsection.4.2.8}
-\contentsline {subsection}{\numberline {4.3}Protocole d'\IeC {\'e}valuation}{27}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Evaluation de la qualit\IeC {\'e} du code}{27}{subsubsection.4.3.1}
-\contentsline {paragraph}{Revues de code\\}{28}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Evaluation fonctionnelle du logiciel}{28}{subsubsection.4.3.2}
-\contentsline {subsection}{\numberline {4.4}Journ\IeC {\'e}e type et \IeC {\'e}v\IeC {\`e}nements.}{30}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Difficult\IeC {\'e}s rencontr\IeC {\'e}es}{30}{subsection.4.5}
-\contentsline {section}{Annexes}{31}{section*.2}
+\contentsline {subsubsection}{\numberline {4.2.4}Les "placeholders"}{24}{subsubsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.5}Les mod\IeC {\`e}les de texte}{27}{subsubsection.4.2.5}
+\contentsline {subsubsection}{\numberline {4.2.6}Introduction du concept de poste utilisateur dans le driver Pyvital}{27}{subsubsection.4.2.6}
+\contentsline {subsubsection}{\numberline {4.2.7}Les scans d'ordonnances}{28}{subsubsection.4.2.7}
+\contentsline {subsubsection}{\numberline {4.2.8}Installateur Windows pour le driver}{31}{subsubsection.4.2.8}
+\contentsline {subsection}{\numberline {4.3}Protocole d'\IeC {\'e}valuation}{33}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Evaluation de la qualit\IeC {\'e} du code}{33}{subsubsection.4.3.1}
+\contentsline {paragraph}{Revues de code\\}{33}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Evaluation fonctionnelle du logiciel}{33}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}Journ\IeC {\'e}e type et \IeC {\'e}v\IeC {\`e}nements.}{35}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Difficult\IeC {\'e}s rencontr\IeC {\'e}es}{35}{subsection.4.5}
+\contentsline {section}{Annexes}{36}{section*.2}

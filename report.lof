@@ -7,11 +7,22 @@
 \contentsline {figure}{\numberline {6}{\ignorespaces Mod\IeC {\`e}le UML illustrant les ajouts \IeC {\`a} la base de donn\IeC {\'e}es.}}{18}{figure.6}
 \contentsline {figure}{\numberline {7}{\ignorespaces Collections utilis\IeC {\'e}es par GridFS pour le stockage des fichiers.}}{19}{figure.7}
 \contentsline {figure}{\numberline {8}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{19}{figure.8}
-\contentsline {figure}{\numberline {9}{\ignorespaces Gantt pr\IeC {\'e}visionnel.}}{29}{figure.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Gantt r\IeC {\'e}el.}}{29}{figure.10}
-\contentsline {figure}{\numberline {11}{\ignorespaces Dossier m\IeC {\'e}dical tel qu'il est pr\IeC {\'e}sent dans Topaze Maestro.}}{31}{figure.11}
-\contentsline {figure}{\numberline {12}{\ignorespaces L'\IeC {\'e}diteur de texte pr\IeC {\'e}sent dans Topaze Maestro.}}{32}{figure.12}
-\contentsline {figure}{\numberline {13}{\ignorespaces Exemple de mod\IeC {\`e}le d\IeC {\'e}crit en XML \IeC {\`a} destination du g\IeC {\'e}n\IeC {\'e}rateur.}}{33}{figure.13}
-\contentsline {figure}{\numberline {14}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{34}{figure.14}
-\contentsline {figure}{\numberline {15}{\ignorespaces Le dossier m\IeC {\'e}dical impl\IeC {\'e}ment\IeC {\'e} dans Topaze Web.}}{35}{figure.15}
-\contentsline {figure}{\numberline {16}{\ignorespaces L'\IeC {\'e}diteur de texte (CKEditor) int\IeC {\'e}gr\IeC {\'e} dans Topaze Web .}}{36}{figure.16}
+\contentsline {figure}{\numberline {9}{\ignorespaces Mod\IeC {\`e}le UML conceptuel du syst\IeC {\`e}me de gestion de fichiers.}}{21}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Mod\IeC {\`e}le UML de classes du syst\IeC {\`e}me de fichiers, suivant le patron de conception composite.}}{22}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Mod\IeC {\`e}le UML conceptuel de base de donn\IeC {\'e}es pour l'arorescence des placeholders.}}{25}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces La classe PatientAnnotationView a \IeC {\'e}t\IeC {\'e} annot\IeC {\'e}e avec 2 annotations (RtfPlaceholderContainer et RtfPlaceholder) afin de pouvoir \IeC {\^e}tre ensuite introspect\IeC {\'e}e et servir \IeC {\`a} cr\IeC {\'e}er l'arborescence de placeholders.}}{26}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces \color {black} La phase 1 remplace le code du placeholder par la notation point\IeC {\'e}e qui y est associ\IeC {\'e}e.}}{27}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces \color {black} La phase 2 remplace la notation point\IeC {\'e}e par la valeur en base. Si la valeur en base est "null", la notation point\IeC {\'e}e n'est pas remplac\IeC {\'e}e.}}{27}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces \color {black} La phase 3 remplace les notations point\IeC {\'e}es restantes par des points d'interrogation.}}{27}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Diagrame UML de d\IeC {\'e}ploiement repr\IeC {\'e}sentant les diff\IeC {\'e}rents composants qui interviennent lors d'une requ\IeC {\^e}te au scanner.}}{29}{figure.16}
+\contentsline {figure}{\numberline {17}{\ignorespaces Diagrame de s\IeC {\'e}quence illustrant la communication entre Sesame et Pyvital.}}{30}{figure.17}
+\contentsline {figure}{\numberline {18}{\ignorespaces Diagrame d'activit\IeC {\'e}s UML repr\IeC {\'e}sentant les diff\IeC {\'e}rentes \IeC {\'e}tapes effectu\IeC {\'e}es par Pyvital, lors d'une demande de num\IeC {\'e}risation.}}{30}{figure.18}
+\contentsline {figure}{\numberline {19}{\ignorespaces Diagrame d'activit\IeC {\'e}s UML repr\IeC {\'e}sentant les deux modes de l'installateur..}}{31}{figure.19}
+\contentsline {figure}{\numberline {20}{\ignorespaces Gantt pr\IeC {\'e}visionnel.}}{34}{figure.20}
+\contentsline {figure}{\numberline {21}{\ignorespaces Gantt r\IeC {\'e}el.}}{34}{figure.21}
+\contentsline {figure}{\numberline {22}{\ignorespaces Dossier m\IeC {\'e}dical tel qu'il est pr\IeC {\'e}sent dans Topaze Maestro.}}{36}{figure.22}
+\contentsline {figure}{\numberline {23}{\ignorespaces L'\IeC {\'e}diteur de texte pr\IeC {\'e}sent dans Topaze Maestro.}}{37}{figure.23}
+\contentsline {figure}{\numberline {24}{\ignorespaces Exemple de mod\IeC {\`e}le d\IeC {\'e}crit en XML \IeC {\`a} destination du g\IeC {\'e}n\IeC {\'e}rateur.}}{38}{figure.24}
+\contentsline {figure}{\numberline {25}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{39}{figure.25}
+\contentsline {figure}{\numberline {26}{\ignorespaces Le dossier m\IeC {\'e}dical impl\IeC {\'e}ment\IeC {\'e} dans Topaze Web.}}{40}{figure.26}
+\contentsline {figure}{\numberline {27}{\ignorespaces L'\IeC {\'e}diteur de texte (CKEditor) int\IeC {\'e}gr\IeC {\'e} dans Topaze Web .}}{41}{figure.27}

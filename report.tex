@@ -55,6 +55,9 @@
 %\titlespacing\subparagraph{0pt}{0pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} % titlesec
 
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+
+%\titlespacing{\paragraph}{0pt}{10pt}{10pt} % titlesec
+
 \titlespacing{\subparagraph}{20pt}{3.5ex plus 1ex minus .2ex}{0ex plus .0ex}
 \titleformat{\subparagraph}  {\normalfont\fontsize{0.85em}{0.7em}\bfseries}  {\thesubparagraph}{1em}{}
 
@@ -245,7 +248,7 @@
 
   \postauthor{\footnotesize  % Configuration for the institution name
   \begin{center}\fontsize{13}{13} \usefont{OT1}{cmr}{}{n}
-  	$3A$ $-$ Filière Ingénierie des systèmes d'information\% Your institution
+  	$3A$ $-$ Filière Ingénierie des systèmes d'information\
     
     \vspace{0.5cm}
 	29 Février 2016 - 26 Août 2016
@@ -337,7 +340,7 @@
 
 % Page de garde
  \pagenumbering{gobble} 
-\maketitle
+	\maketitle
  \thispagestyle{empty}
  
  

@@ -197,15 +197,20 @@ Une capture d'écran de l'éditeur de texte de Topaze Web est disponible en anne
 Dans Topaze Maestro, la bibliothèque d'images contient uniquement des images prédéfinies. Dans la version web, il a été décidé qu'elle puisse également contenir des images importées par l'utilisateur.\\
 De manière à ce que la bibliothèque soit simple à gérer, nous avons décidé (le chef de projet et moi) de créer un gestionnaire de fichiers avec une arborescence de dossiers.\\
 
-\paragraph*{Elaboration du modèle de données}
+\paragraph*{Elaboration du modèle de données\\}
 Lors de la conception du modèle, la contrainte suivante devait être prise en compte : \\
 Lorsqu'un utilisateur supprime une image de sa bibliothèque, si celle-ci a été insérée dans un document, elle doit continuer d'y appraître. \\
 Ainsi, il était nécessaire de séparer en base, l'apparition d'une image dans la bibliothèque de son stockage pour utilisation dans les documents texte. \\
 J'ai donc créé le modèle suivant : 
 
-%TODO : MCD des directory, userImageAddress, UserImage
+%TODO : MCD des directory, userImageAddress, UserImage : vérifier si on met les ID ou pas ...
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{./img/directory_entities_concept}
+  \caption{\label{fig:mb_va_ast} Modèle UML conceptuel du système de gestion de fichiers.}
+\end{figure}
 
-\paragraph*{Spécification de l'API REST}
+\paragraph*{Spécification de l'API REST\\}
 En ce qui concerne l'API REST, elle contient les opérations de CRUD\footnote{CRUD: Create Read Update Delete} sur les dossiers et leur contenu.
 L'API expose donc les urls suivantes concernant les dossiers : 
 %TODO : à vérifier.
@@ -222,58 +227,65 @@ Concernant les images contenues, ont trouve :
 \item POST /account/models/directory/picutre
 \end{itemize}
 
-\paragraph*{Modèle de l'API}
+\paragraph*{Modèle de l'API\\}
 L'API REST récupère les donneés de la base au moyen de DAOs\footnote{DAO: Data Access Object} et peuple des objets métiers qu'elle va ensuite retourner.\\
 
 Pour la base de donnée, il était plus simple de stocker l'arborescence de façon ascendante (chaque fichier contient l'id du dossier parent). Mais, concernant les objets métiers (qui eux seront exposés), on souhaite que l'arborescence soit stockée de façon descendante, pour que leur usage soit naturel.
 En effet, les objets métiers sont ensuite utilisés pour générer les vues en HTML. Dans ce cas, on a donc en général accés à un dossier et on souhaite obtenir la liste de ses fils. \\
 
 Pour représenter ce type de modèle, on pense naturellement au design pattern composite : \\
-%TODO : inclure design pattern du truc
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{./img/directory_entities_concept}
+  \caption{\label{fig:mb_va_ast} Modèle UML de classes du système de fichiers, suivant le patron de conception composite.}
+\end{figure}
 
 Cependant, les objets retournés par l'API REST seront transmis par le réseau et devront donc être sérialisés. Hors, l'outil utilisé pour la sérialisation (Jackson), ne gère pas nativement le polymorphisme de java. \\
-Le moyen utilisé pour pouvoir le faire quand même consiste à utiliser des annotations Jacksons, ou à inclure un champ "type" dans le json retourné par l'API. Cependant, ce choix est couteux car il impose des contraintes fortes sur le client utilisant l'API: l'usage de Jackson ou l'ajout d'un mécanisme particulier pour parser les objets reçus.
+Le moyen utilisé pour pouvoir le faire quand même consiste à utiliser des annotations Jacksons, ou à inclure un champ "type" dans le json retourné par l'API. Cependant, ce choix est couteux car il impose des contraintes fortes sur le client utilisant l'API: l'usage de Jackson ou l'ajout d'un mécanisme particulier pour parser les objets reçus.\\
 
-N'ayant que deux types d'objets, j'ai donc préféré briser l'héritage :
+N'ayant que deux types d'objets, j'ai donc préféré briser l'héritage.
 
-%TODO : schéma du nouveau modèle.
+%TODO  OK: schéma du nouveau modèle. => NON c'est hiddeux ...
 
-\paragraph*{Implémentation de la partie WebApp}
+\paragraph*{Implémentation de la partie WebApp\\}
 La webapp effectue des traitements assez standards. Elle effectue des appels aux services REST pour obtenir les dossiers et leur contenu et expose un certain nombre de méthodes utilisables par les vues JSF grâce un controlleur.
 Le modèle utilisé par la webapp est rudimentaire car il ne fait qu'encapsuler les objets métiers obtenus de l'API REST et stocke en plus quelques variables d'états pour la vue.
 
-\paragraph*{Spécification de l'interface graphique}
+\paragraph*{Spécification de l'interface graphique\\}
 Avant d'implémenter la vue en JSF dans l'application, j'ai réalisé un prototype en HTML et javascript dans plunker.
 Plunker est un éditeur en ligne pour le front-end. Il permet de faciliter la programmation fron-end en proposant un aperçu en temps réel, une inclusion de librairie simple, une gestion de version, un stockage privé du code et un partage simple et rapide du résultat avec un tiers.
 
 Une fois que le résultat était satisfaisant, il a suffit de convertir une partie du HTML en JSF pour l'intégrer au code.
 
-\paragraph*{Création d'un composant réutilisable}
+\paragraph*{Création d'un composant réutilisable\\}
 Le gestionnaire de fichier utilisé pour la bibliothèque d'image a vocation à pouvoir être réutilisé à d'autres fin.
 J'ai donc créé un composant réutilisable.
 
-En JSF, trois choix sont possibles pour créer des composants réutilisables : 
-%TODO : à compléter
+En JSF, plusieurs choix sont possibles pour créer des composants réutilisables : 
 \begin{itemize}
-\item Les \textit{Custom Tags} : il s'agit de la solution la plus légère proposée par JSF. Elle permet d'externaliser dans un fichier une portion de code JSF afin de pouvoir la réutiliser ensuite. Un tag peut accepter des paramètres afin de personnaliser le comportement du composant. Les tags peuvent enuite être utilisés en JSF au moyen d'une balise.
-\item Les \textit{Composite Components} : cette solution est trés semblable aux tags, mais elle est plus coûteuse en temps de traitement. Elle a l'intérêt de présenter un passage de paramêtres plus propre que les tags.
-\item Les \textit{Custom Components} : ce sont des composants définis en java (et non plus en JSF). Pour en créer, il faut définir une classe qui assurera le rendering du composant et une autre .... %TODO
+\item Les \textit{Inclusions de code} : c'est la solution la plus rudimentaire. Elle consiste à extraire un morceau de code et à l'inclure ensuite en utilisant des \textit{<ui:include>} et \textit{<ui:param>}. Cette solution est adoptée lorsque le code inclus n'est pas ou peu paramétrable et n'a pas une sémantique trés forte (i.e. le code ne représente pas réellement un composant à lui seul).
+\item Les \textit{Custom Tags} : il s'agit de la solution la plus légère lorsqu'on souhaite créer un composant réutilisable. C'est une méthode trés proche des inclusions de code, mais qui offre une interface plus propre. Elle permet une librairie de nouvelles balises jsf, qui peuvent accepter des paramètres en attributs. \\
+Il s'agit de la solution choisie lorsqu'on souhaite éviter une répétition de code et que ce dernier remplit une fonction précise (notion de composant).
+\item Les \textit{Composite Components} : cette solution est trés semblable aux tags, mais elle est plus coûteuse en temps de traitement. Elle a l'intérêt de présenter un passage de paramêtres plus propre que les tags et de nécessiter moins de code.\\
+Cette solution est en générale choisie, lorsqu'on souhaite agréger plusieurs composants ou tags pour en créer un nouveau qui a son propre comportement.
+\item Les \textit{Custom Components} : ce sont des composants définis en java (et non plus en JSF). Pour en créer, il faut définir une classe qui assurera le rendering du composant.\\
+Cette solution est beaucoup plus lourde que les autres en temps de développement et en quantité de code. Elle est utilisée lorsque les solutions précédentes ne sont pas suffisantes. On l'utilise par exemple, pour ajouter un nouveau comportement à un composant existant, utiliser des évènements java ou avoir un rendu HTML particulier. 
 \end{itemize}
 
 Pour le gestionnaire de fichiers, mon choix s'est porté sur les tags, car la solution est performante et s'avère suffisante pour traiter le besoin.\\
-Ici, l'usage d'un custom components aurait été disproportionné car coûteux et non nécessaire (un rendering en Java n'est pas nécessaire si il peut être fait en JSF).\\
-Les composite components n'étaient pas non plus nécessaires et auraient apporté plus de lourdeur.
+Le code remplit une fonctionnalité précise et homogène (notion de composant), donc une inclusion de code n'était pas suffisante. Le code n'aggrège pas d'autres composants, donc il n'y avait pas nécessité d'utiliser un \textit{composite component}. Enfin, l'usage d'un \textit{custom component} aurait été disproportionné car coûteux et inutile (absence de nécessité du rendering en Java).\\
 
 \subsubsection{Les "placeholders"}
 Dans l'éditeur de texte de Topaze Maestro, une fonctionnalité permet d'utiliser des emplacements paramétrés (placeholders) qui sont remplacés à la sauvegarde par leur valeur réelle (en base de donnée). \\
-Cette fonctionnalité est trés puissante car elle permet à l'utilisateur d'utiliser directement une partie des données présentes en base, dans ses documents textes. \\
+Cette fonctionnalité est trés puissante car elle permet à l'utilisateur d'inclure dans ses documents des sortes de pointeurs vers des données présentes en base. \\
 
-\paragraph*{Faisabilité}
-%TODO voir si on garde
-La faisabilité de la foncionnalité reposait sur trois éléments :
-La possiblité d'insérer des balises html complexes dans ckeditor. 
-La possibilité de créer un lien entre une balise du texte et une donnée en base. 
-La possibilité de faire le remplacement de la balise par sa valeur.
+\paragraph*{Faisabilité\\}
+La faisabilité de la foncionnalité reposait sur trois éléments : %TODO expliciter plus ?
+\begin{itemize}
+\item La possiblité d'insérer des balises html complexes dans ckeditor.
+\item La possibilité de créer un lien entre une balise du texte et une donnée en base.
+\item La possibilité de remplacer la balise par sa valeur.
+\end{itemize}
 
 \paragraph*{La solution mise en place}
 \subparagraph*{L'insertion de placeholders dans l'éditeur}
@@ -305,18 +317,25 @@ En JSF, on est déjà capable d'insérer dans les vues des informations provenan
 
 \textbf{La première approche} conciste à ré-utiliser la table directory \footnote{la table directory est celle introduite pour gérer l'arborescence du gestionnaire de fichier} pour les dossiers de l'arborescence et à ajouter une nouvelle table pour les feuilles. Cette deuxième table sert à faire le lien entre les noms des placeholders, la notation pointée de java et le libellé à utiliser dans l'arborescence:\\
 
-%TODO schéma
-%Directory            Placeholder
-%id                   nom
-%title                libellé
-%parent               dotNotation
-%creator              parent
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{./img/placeholders}
+  \caption{\label{fig:mb_va_ast} Modèle UML conceptuel de base de données pour l'arorescence des placeholders.}
+\end{figure}
+
 
 \textbf{La deuxième approche} vise à utiliser les capacités de Java pour stocker l'information nécessaire directement dans le code.\\
 Pour créer l'arborescence, il est possible d'utiliser la fonctionnalité d'introspection de java. L'introspection permet de prendre une classe et de parcourir ses propriétés et méthodes. Avec cette technique, on peut parcourir les objets métiers à exposer par les placeholders pour remplir un arbre (qui sera utilisé pour construire l'arborescence dans la vue). \\
 Pour faire le lien entre les propriétés des objets métiers, les libellés de l'arbre et le nom des placeholders, on ajoute des annotations sur les propriétés des classes.\\
+Par exemple :
 
-\textbf{Pour comparer les deux solutions :} en terme de cout, dans la première approche on a un accés direct à l'information, mais celle-ci requiert un accés à la base de données et la reconstruction de l'arbre. Dans la deuxième approche, l'accés à l'information n'est pas direct, il faut parcourir les classes (couteux) et également reconstruire l'arborescence, mais on évite un accés à la base de données.\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=11cm]{./img/annotations1}
+  \caption{\label{fig:annotations} La classe PatientAnnotationView a été annotée avec 2 annotations (RtfPlaceholderContainer et RtfPlaceholder) afin de pouvoir être ensuite introspectée et servir à créer l'arborescence de placeholders.}
+\end{figure}
+
+\textbf{Pour comparer les deux solutions :} en terme de co\^ut, la première approche bénéficie d'un accés direct à l'information, mais celle-ci requiert un accés à la base de données et la reconstruction de l'arbre. Dans la deuxième approche, l'accés à l'information n'est pas direct, il faut parcourir les classes (couteux) et également reconstruire l'arborescence, mais on évite un accés à la base de données.\\
 En ce qui concerne la maintenabilité, la deuxième solution est meilleure, surtout pour le lien entre le placeholder et la notation pointée.\\
 Finalement, c'est donc la deuxième solution qui a été retenue et que j'ai implémentée.
 
@@ -324,28 +343,51 @@ Finalement, c'est donc la deuxième solution qui a été retenue et que j'ai imp
 \subparagraph*{Le remplacement des placeholders par leur valeur}
 Le remplacement des placeholders par leur valeur a lieu lors de la sauvegarde du document, ou lorsque l'utilisateur demande une prévisualisation.\\
 
-Trouver des expressions tokenisées dans un texte et les remplacer par leur valeur est une opération courante et de nombreuses bibliothèques permettent de le faire (velocity, ..... %TODO ).
-Ayant déjà la bibliothèque Velocity sur le projet, c'est la librairie qui a été utilisée.\\
+Trouver des expressions tokenisées dans un texte et les remplacer par leur valeur est une opération courante et de nombreuses bibliothèques ou objets permettent de le faire (Velocity, Freemaker, Antlr StringTemplate, StrSubstitutor etc.).
+La bibliothèque Velocity étant déjà inclue dans le projet, c'est ce choix qui a été retenue.\\
 
 Le remplacement des placeholders se fait en 3 phases : \\
 
-\textbf{La phase 1 :} elle sert à remplacer les noms des placeholders par la notation pointée.\\
+\textbf{La phase 1} sert à remplacer les noms des placeholders par la notation pointée.\\
 Cette phase se déroule en deux étapes : \\
 D'abord, les classes java correspondant aux placeholders utilisés dans le texte sont parcourues pour remplir un contexte. Le contexte consiste en un dictionnaire de clés-valeurs, avec en clé le nom du placeholder et en valeur, la notation pointée.\\
-Ensuite, Velocity se sert du contexte pour remplacer les noms des placeholders par leur valeur.\\
+Ensuite, \textit{Velocity} se sert du contexte pour remplacer les noms des placeholders par leur valeur.
+\begin{figure}[H]
+  \color{darkgray} 
+  \centering
+  $\$PATIENT\_NOM$ $~~~~~~~~$  => $\$patient.lastName$\\
+  $\$PATIENT\_ADRESSE2$  => $\$patient.address2$
+  \caption{\color{black} \label{fig:annotations} La phase 1 remplace le code du placeholder par la notation pointée qui y est associée.}
+\end{figure}
 
-%TODO schéma représentant la classe et ses annotations 
-
-\textbf{La phase 2 :} elle sert à remplacer les notations pointées par leur valeur réelle.\\
+\textbf{La phase 2} sert à remplacer les notations pointées par leur valeur réelle.\\
 Durant cette phase, on fait appel à l'API REST pour récupérer les objets métiers nécessaires, remplis avec les informations de la base de données.\\
 Avec les objets métiers on remplit un nouveau contexte clé-valeur, avec en clé le nom de l'objet (première partie de la notation pointée) et en valeur l'objet lui même.\\
-Ensuite, on refait appel à Velocity pour remplacer les notations objet par leur valeur.\\
+Ensuite, on refait appel à Velocity pour remplacer les notations objet par leur valeur.
+\begin{figure}[H]
+  \color{darkgray} 
+  \centering
+  $\$patient.lastName$ => $DUPONT$ $~~~~~~~~$\\
+  $\$patient.address2~$ => $\$patient.address2$ 
+  \caption{\color{black} \label{fig:annotations} La phase 2 remplace la notation pointée par la valeur en base. Si la valeur en base est "null", la notation pointée n'est pas remplacée.}
+\end{figure}
 
-\textbf{La phase 3 :} elle sert à remplacer les valeurs non trouvées par des points d'interrogation.\\
-En effet, lorsque Velocity ne trouve pas une valeur, ou que la valeur est "null", il ne remplasse pas la notation pointée.\\
-Dans un soucis de propreté et également pour signifier à l'utilisateur que le remplacement n'a pas fonctionné, on insert une série de points d'interrogation.\\
+\textbf{La phase 3} sert à remplacer les valeurs non trouvées par des points d'interrogation.\\
+En effet, lorsque \textit{Velocity} ne trouve pas une valeur, ou que la valeur est "null", il ne remplace pas la notation pointée.\\
+Dans un soucis de propreté et également pour signifier à l'utilisateur que le remplacement n'a pas fonctionné, on insert une série de points d'interrogation.
+\begin{figure}[H]
+  \color{darkgray} 
+  \centering
+  $\$patient.address2$ => $???$
+  \caption{\color{black} \label{fig:annotations} La phase 3 remplace les notations pointées restantes par des points d'interrogation.}
+\end{figure}
 
 %TODO schéma récapitulatif : automate ?
+
+%TODO : Remplacement des valeurs par les placeholders
+
+%TODO Recap global de tout le truc : placeholder -> Valeur -> Placeholder
+% Accés base, introspection des classes java, 3 phases, insertion du texte en js <-/-> Utilisation data-... + js pour value > placeholder
 
 \subsubsection{Les modèles de texte}
 La fonctionnalité des modèles de texte consiste à pouvoir sauvegarder dans une hiérarchie de dossiers, des documents RTF pouvant contenir des emplacements paramétrés.\\
@@ -356,14 +398,14 @@ Cette fonctionnalité se base sur la réutilisation de plusieurs autres :
 \item Les placeholders.
 \end{itemize}
 
-\subsubsection{Documents audio}
-		\paragraph*{Web RTC}
-		\paragraph*{Choix librairie front-end}
-		\paragraph*{Intégration}
-		
-\subsubsection{Les scans d'ordonnances}
+%\subsubsection{Documents audio}
+%\paragraph*{Web RTC}
+%\paragraph*{Choix librairie front-end}
+%\paragraph*{Intégration}
 
-\paragraph*{Apport au driver (devices/postes utilisateurs)}
+%TODO dire que c'est une feature secondaire, prévue pour plus tard.
+		
+\subsubsection{Introduction du concept de poste utilisateur dans le driver Pyvital}
 
 Au départ, le driver était uniquement conçu pour interragir avec le lecteur Sésam-Vitale.\\ Il avait alors été décidé que les websockets utilisées entre le serveur \textit{Sésame} et le driver aient pour identifiant le numéro de carte CPS\footnote{CPS: Carte de Professionnel de Santé} et la clé de licence.\\
 Néanmoins, il arrive que le logiciel soit utilisé par des auxiliaires médicales qui doivent effectuer des opérations pour plusieurs médecins. Dans ce cas de figure, il est peut judicieux de leur imposer de posséder les cartes de tous les praticiens. \\
@@ -375,17 +417,24 @@ En effet, les modifications impactent la connexion de l'utilisateur à Topaze We
 serveur \textit{Sésame}. \\
 La modification a donc affecté l'interface utilisateur et l'API de Topaze, mais aussi l'API de Sésame et le driver:
 %TODO schéma d'une requête de scan par exemple ? avec connexion puis scan.
+%TODO Faire le lien entre cabinetMember et device + possibilité de partager 1 device entre plusieurs cabinetMember + possiblité d'avoir 3 devices par licence.
+
+%TODO : Cookies pour stocker les devices + interfaces de choix.
+
+%TODO schéma du modèle, avant et après.
 
 De ce choix, il résulte une utilisation plus souple du logiciel (plus nécessairement besoin d'une CPS) et la possibilité de monayer plus facilement le logiciel (ex: possibilité de limiter le nombre de postes utilisateurs par licence).
 
-\paragraph*{Fonctionnalité de numérisation}
-Dans le dossier médical, l'utilisateur doit pouvoir ajouter des scans d'ordonnance (appelés SCOR\footnote{SCOR: SCannérisation des ORdonnances}).\\
+
+\subsubsection{Les scans d'ordonnances}
+\paragraph*{Fonctionnalité de numérisation\\}
+Dans le dossier médical, l'utilisateur doit pouvoir ajouter des scans d'ordonnance (appelés SCOR\footnote{SCOR: SCannérisation des ORdonnances}).
 
 \subparagraph*{Faisabilité}
 Pour cette fonctionnalité, j'ai évalué qu'il était faisable de reproduire intégralement la fonctionnalité de Topaze Maestro.\\
 
 La faisabilité de la fonctionnalité repose sur plusieurs éléments :\\
-Dans un premier temps, il faut être capable de communiquer avec des scanners de différentes marques. Ceci est faisable grâce à l'interface de programmation et protocole de communication \textit{"TWAIN"}. Ce protocole permet de communiquer avec les drivers des différents scanners à condition qu'ils implémentent l'API.\\
+Dans un premier temps, il faut être capable de communiquer avec des scanners de différentes marques. Ceci est faisable grâce à l'interface de programmation et protocole de communication \textit{"TWAIN"}. Ce protocole permet de communiquer avec les drivers de  scanners à condition qu'ils implémentent l'API.\\
 TWAIN a été créé en 1992, et la plupart des constructeurs font aujourd'hui partie du TWAIN groupe (HP, Adobe, Epson, Kodak, Fujitsu, Logitech etc.).\\
 En python (langage du driver de Topaze Web), le module Pytwain permet d'interragir avec les scanners.\\
 
@@ -394,28 +443,79 @@ Pour réaliser ces fonctionnalités, il existe de nombreuses possibilités. On p
 Enfin, le dernier choix consiste à faire la prévisualisation en javascript coté client et le traitement en java, coté serveur. \\
 
 Enfin, il est nécessaire de faire communiquer le driver avec le serveur Sésame. Ce problème a déja été entièrement résolu avant mon arrivée.
+%TODO annexe : interfaces de scan dans topaze Maestro et Web.
 
-\paragraph*{Traitement d'image (cropping/rotation/zoom)}
-%TODO
+\paragraph*{Implémentation du scan d'images}
+% Parler de l'implem avec twain : définition de la taille d'image + params (résolution (dpi), quality, Noir/blanc + acquire, callback, récupération de l'image, conversion dans le format d'image souhaité avec Pillow, respect des dpi avec Pillow, retour à Sésame grâce aux websocket définies précédemment.
+%TODO inclure schéma de séquence
+\subparagraph*{Fonctionnement global}
+La fonctionnalité de numérisation fait intervenir les serveurs Topaze Webapp, TopazeRest et Sésame ainsi que le driver Pyvital qui se trouve sur le poste client.
+Sur chaque serveur ou client, différents composants interviennent :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=16cm]{./img/macro_sesame3}
+  \caption{\label{fig:mb_va_ast} Diagrame UML de déploiement représentant les différents composants qui interviennent lors d'une requête au scanner.}
+\end{figure}
 
-\paragraph*{Génération d'un pdf}
+\subparagraph*{Déroulement d'une demande de numérisation}
+Dans un premier temps, un utilisateur clique sur le bouton "numériser" de l'application web. À ce moment, une méthode est appeléée sur l'un des controlleurs de Topaze Webapp. Le controleur va ensuite contacter le serveur Topaze Rest qui sert ici de proxy avec le serveur Sesame. \\
+Le composant Topaze Rest met à disposition un controlleur qui relie une URL publique à un service. Topaze Rest-Client permet de contacter le controleur de topaze Rest via l'appel d'une méthode. Ce mécanisme permet ainsi à Topaze WebApp d'utiliser les services de Topaze Rest en toute transparence. \\
+Dans la suite du processus, le serveur Topaze Rest contacte Sesame Rest. \\
+Le serveur Sesame Rest est doté du même mécanisme que sur Topaze, mais il dispose en plus de deux autres composants lui permettant de contacter le driver Pyvital.\\
+Le composant Sesame-Repository contient un "driver distant" qui traite les actions spécifiques au scanner. Sesame WebSocket permet quant à lui de gérer la communication en websockets avec le driver Pyvital.\\
+Enfin, le driver \textit{Pyvital} utilise TWAIN pour réaliser l'acquisition d'image avec le scanner.\\
+
+Mon travail lors de l'implémentation de la fonctionnalité a été créer les services nécessaires sur Topaze et Sesame et d'ajouter la fonction de numérisation sur Pyvital.
+
+\subparagraph*{Communication entre Sesame et Pyvital}
+Pour que Sesame puisse demander à Pyvital d'effectuer des actions, il nécessaire d'implémenter certaines interfaces. Il faut par exemple implémenter un MessagePreparator et un MessageHandler ainsi que les fabriques associées. Ces classes seront chargées de préparer le message transmis à Pyvital de traiter la réception des messages qui en proviennent. \\
+
+L'enchainement des actions est résumé sur le diagramme de séquence suivant :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=17cm]{./img/diag_seq_sesame}
+  \caption{\label{fig:diag_seq_sesame} Diagrame de séquence illustrant la communication entre Sesame et Pyvital.}
+\end{figure}
+
+\subparagraph*{La numérisation sur Pyvital}
+Sur Pyvital, j'ai utilisé TWAIN afin de réaliser la numérisation des documents. Le scan d'un document se déroule en plusieurs étapes. Dans un premier temps, on demande à Twain de lancer l'acquisition de données. Une fois l'acquisition réalisée, un callback est appelé afin de permettre l'obtention de l'image. Puis, des traitements sont effectués sur l'image (résolution, qualité, couleur etc.), grâche à Pillow. Enfin, l'image est convertie en Base64 et transmise à Sésame via les websockets.
+ 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=17cm]{./img/numerisation}
+  \caption{\label{fig:diag_seq_sesame} Diagrame d'activités UML représentant les différentes étapes effectuées par Pyvital, lors d'une demande de numérisation.}
+\end{figure}
+
+%\paragraph*{Traitement d'image (cropping/rotation/zoom)\\}
 %TODO
+%TODO parler de l'intégration de l'outil .... 
+
+%\paragraph*{Génération d'un pdf\\}
+%TODO
+%TODO coté front car économie coux serveur  + fallback coté java/back pour Android car non available.
 		
-\subsubsection{Installeur Windows pour le driver}
-Ayant travaillé sur le driver python et dans l'objectif d'une commercialisation qui approche, il m'a été demandé de réaliser un installateur windows pour le driver.\\
+\subsubsection{Installateur Windows pour le driver}
+Ayant travaillé sur le driver python et dans l'objectif d'une commercialisation qui approche, il m'a été demandé de réaliser un installateur windows pour le driver.
 
-\paragraph*{Fonctionnalités de l'installateur}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=17cm]{./img/installateur}
+  \caption{\label{fig:installateur} Diagrame d'activités UML représentant les deux modes de l'installateur..}
+\end{figure}
+
+\paragraph*{Fonctionnalités de l'installateur\\}
 Tout d'abord, l'installateur doit déplacer les fichiers du driver dans le bon dossier sur windows. Puis, il doit installer les dépendances et les .msi nécessaires.\\ 
 Il doit également compléter le fichier de configuration du driver. \\
 Ensuite, il doit contacter le serveur \textit{Sésame} afin de vérifier la clé de licence et d'enregistrer le nouveau poste utilisateur. \\
 Enfin, il doit installer le logiciel Pyxvital qui est utilisé pour les opérations de facturation.
 
 
-\paragraph*{Choix de la solution technique}
+\paragraph*{Choix de la solution technique\\}
 Pour le choix de l'installateur, la solution d'\textit{Inno Setup} m'a été fortement recommandé par le directeur de l'entreprise. En effet, il s'agit de la solution qui est utilisée dans les dernières versions de Topaze Maestro.\\
 Avant d'opter définitivement pour Inno Setup, j'ai vérifié que l'installateur recommandé satisfasse les exigences du projet.\\ Lors de l'installation, il fallait par exemple que je puisse installer des .msi\footnote{MSI: Microsoft Installer} en mode silencieux. Il fallait aussi que je puisse ajouter des écrans supplémentaires lors de l'installation. Enfin, je devais pouvoir effectuer des requêtes HTTP vers notre serveur Sésame.
 
-\paragraph*{Implémentation}
+\paragraph*{Implémentation\\}
 Inno Setup est un outil qui permet de réaliser simplement des installateurs. L'outil prend en charge la création des interfaces graphiques et d'une partie des opérations standards (ex: déplacements de fichiers). Pour l'utiliser, on remplit un fichier \textit{.iss}\footnote{.ISS: Inno Setup Script} qui permet de configurer l'installateur et d'étendre ses fonctionnalités. Le fichier .iss est structuré en sections et chaque section permet de décrire de façon déclarative la façon dont l'installateur doit se comporter. Les sections principales sont : 
 \begin{itemize}
 \item Setup : section qui décrit le nom du programme, sa version, son dossier d'installation etc.
@@ -431,7 +531,7 @@ Inno Setup est un outil qui permet de réaliser simplement des installateurs. L'
 Dans l'installateur, la partie la plus importante est la section \textit{"Code"} car elle permet d'ajouter des écrans à l'installateur et de créer de nouvelles fonctionnalités. Sur le projet, je l'ai utilisé pour créer une page de validation de clé de licence, et une page servant à définir le nom du nouveau poste utilisateur.\\
 Dans ces deux cas, l'installateur réalise une requête HTTP vers le serveur Sésame, puis traite la réponse obtenue. 
 
-\paragraph*{L'intégration de pyxvital}
+\paragraph*{L'intégration de pyxvital\\}
 Pyxvital est un logiciel qui sert à créer des FSE\footnote{FSE: Feuille de Soins Electroniques} et à assurer la transmission avec le lecteur Sésam-Vitale. Il est utilisé temporairement afin de faciliter la certification de Topaze Web et accélerer ainsi sa mise sur le marché.
 %TODO : Hors sujet. ^
 
