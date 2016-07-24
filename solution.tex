@@ -195,7 +195,7 @@ Une capture d'écran de l'éditeur de texte de Topaze Web est disponible en anne
 
 \subsubsection{La bibliothèque d'images}
 Dans Topaze Maestro, la bibliothèque d'images contient uniquement des images prédéfinies. Dans la version web, il a été décidé qu'elle puisse également contenir des images importées par l'utilisateur.\\
-De manière à ce que la bibliothèque soit simple à gérer, nous avons décidé (le chef de projet et moi) de créer un gestionnaire de fichiers avec une arborescence de dossiers.\\
+De manière à ce que la bibliothèque soit simple à gérer, nous avons décidé (le chef de projet et moi) de créer un gestionnaire de fichiers avec une arborescence de dossiers.
 
 \paragraph*{Elaboration du modèle de données\\}
 Lors de la conception du modèle, la contrainte suivante devait être prise en compte : \\
@@ -273,11 +273,11 @@ Cette solution est beaucoup plus lourde que les autres en temps de développemen
 \end{itemize}
 
 Pour le gestionnaire de fichiers, mon choix s'est porté sur les tags, car la solution est performante et s'avère suffisante pour traiter le besoin.\\
-Le code remplit une fonctionnalité précise et homogène (notion de composant), donc une inclusion de code n'était pas suffisante. Le code n'aggrège pas d'autres composants, donc il n'y avait pas nécessité d'utiliser un \textit{composite component}. Enfin, l'usage d'un \textit{custom component} aurait été disproportionné car coûteux et inutile (absence de nécessité du rendering en Java).\\
+Le code remplit une fonctionnalité précise et homogène (notion de composant), donc une inclusion de code n'était pas suffisante. Le code n'aggrège pas d'autres composants, donc il n'y avait pas nécessité d'utiliser un \textit{composite component}. Enfin, l'usage d'un \textit{custom component} aurait été disproportionné car coûteux et inutile (absence de nécessité du rendering en Java).
 
 \subsubsection{Les "placeholders"}
 Dans l'éditeur de texte de Topaze Maestro, une fonctionnalité permet d'utiliser des emplacements paramétrés (placeholders) qui sont remplacés à la sauvegarde par leur valeur réelle (en base de donnée). \\
-Cette fonctionnalité est trés puissante car elle permet à l'utilisateur d'inclure dans ses documents des sortes de pointeurs vers des données présentes en base. \\
+Cette fonctionnalité est trés puissante car elle permet à l'utilisateur d'inclure dans ses documents des sortes de pointeurs vers des données présentes en base. 
 
 \paragraph*{Faisabilité\\}
 La faisabilité de la foncionnalité reposait sur trois éléments : %TODO expliciter plus ?
@@ -406,24 +406,31 @@ Cette fonctionnalité se base sur la réutilisation de plusieurs autres :
 %TODO dire que c'est une feature secondaire, prévue pour plus tard.
 		
 \subsubsection{Introduction du concept de poste utilisateur dans le driver Pyvital}
+\paragraph*{Motivations\\}
+Au départ, le driver était uniquement conçu pour interragir avec le lecteur Sésam-Vitale.\\ Il avait alors été décidé que les websockets utilisées entre \textit{Sésame} et Pyvital aient pour identifiant le numéro de CPS\footnote{CPS: Carte de Professionnel de Santé} et la clé de licence.\\
+%Néanmoins, il arrive que le logiciel soit utilisé par des auxiliaires médicales qui doivent effectuer des opérations pour plusieurs médecins. Dans ce cas de figure, il est peut judicieux de leur imposer de posséder les cartes de tous les praticiens. \\
+Cependant, il a ensuité été prévu que le driver soit étendu pour supporter les opérations liées au scanner. Hors, pour cette fonctionnalité, il n'est pas nécessaire de disposer d'une CPS.\\
+Pour ces raisons, nous avons décidé (avec mon chef de projet), de prendre pour nouvel identifiant de la websocket, le poste utilisateur (device) et la clé de licence. 
 
-Au départ, le driver était uniquement conçu pour interragir avec le lecteur Sésam-Vitale.\\ Il avait alors été décidé que les websockets utilisées entre le serveur \textit{Sésame} et le driver aient pour identifiant le numéro de carte CPS\footnote{CPS: Carte de Professionnel de Santé} et la clé de licence.\\
-Néanmoins, il arrive que le logiciel soit utilisé par des auxiliaires médicales qui doivent effectuer des opérations pour plusieurs médecins. Dans ce cas de figure, il est peut judicieux de leur imposer de posséder les cartes de tous les praticiens. \\
-En plus de cela, le driver devait être étendu pour supporter les opérations liées au scanner. Hors, pour cette fonctionnalité, il n'est pas nécessaire de disposer d'une CPS.\\
-Pour ces raisons, nous avons décidé (avec mon chef de projet), de prendre pour nouvel identifiant de la websocket, le poste utilisateur (device) et la clé de licence. \\
+\paragraph*{Impact de la modification\\}
+L'introduction du concept de poste utilisateur impacte la connexion de l'utilisateur à Topaze Web, et les communications entre Sesame et Pyvital.\\
+Chaque utilisateur de Topaze peut être membre de plusieurs cabinets. Pour chaque cabinet, l'utilisateur dispose d'une licence Sesame lui autorisant l'usage de 3 postes utilisateurs. Lorsqu'il change de cabinet, l'utilisateur doit également choisir le poste utilisateur avec lequel ils souhaite se connecter à Sesame.\\
 
-L'introduction du concept de poste utilisateur a nécessité des modifications sur de nombreuses couches du logiciel.\\
-En effet, les modifications impactent la connexion de l'utilisateur à Topaze Web, et la communication entre le driver et le     
-serveur \textit{Sésame}. \\
-La modification a donc affecté l'interface utilisateur et l'API de Topaze, mais aussi l'API de Sésame et le driver:
-%TODO schéma d'une requête de scan par exemple ? avec connexion puis scan.
-%TODO Faire le lien entre cabinetMember et device + possibilité de partager 1 device entre plusieurs cabinetMember + possiblité d'avoir 3 devices par licence.
+Lors de l'ajout de la fonctionnalité, de nombreux services de Topaze et Sesame ont étés impactés, ainsi que le driver Pyvital.
+%TODO cf annexes.
 
-%TODO : Cookies pour stocker les devices + interfaces de choix.
+\paragraph*{Sauvegarde des préférences utilisateurs\\}
+Afin de ne pas re-demander à l'utilisateur de choisir un poste utilisateur à chaque connexion, il lui est permis d'enregistrer ses préférences.\\
+Pour l'enregistrement des préférences, j'uilise un cookie qui stocke du json chiffré. Les clés du JSON sont les identifiants du couple Utilisateur-Cabinet et les valeurs sont les ids des postes utilisés dans chaque cas.
 
-%TODO schéma du modèle, avant et après.
+%%TODO schéma d'une requête de scan par exemple ? avec connexion puis scan.
+%%TODO Faire le lien entre cabinetMember et device + possibilité de partager 1 device entre plusieurs cabinetMember + possiblité d'avoir 3 devices par licence.
 
-De ce choix, il résulte une utilisation plus souple du logiciel (plus nécessairement besoin d'une CPS) et la possibilité de monayer plus facilement le logiciel (ex: possibilité de limiter le nombre de postes utilisateurs par licence).
+%%TODO : Cookies pour stocker les devices + interfaces de choix.
+
+%%TODO schéma du modèle, avant et après.
+
+%De ce choix, il résulte une utilisation plus souple du logiciel (plus nécessairement besoin d'une CPS) et la possibilité de monayer plus facilement le logiciel (ex: possibilité de limiter le nombre de postes utilisateurs par licence).
 
 
 \subsubsection{Les scans d'ordonnances}
@@ -498,26 +505,34 @@ Sur Pyvital, j'ai utilisé TWAIN afin de réaliser la numérisation des document
 \subsubsection{Installateur Windows pour le driver}
 Ayant travaillé sur le driver python et dans l'objectif d'une commercialisation qui approche, il m'a été demandé de réaliser un installateur windows pour le driver.
 
+\paragraph*{Fonctionnalités de l'installateur\\}
+Le rôle de l'installateur est double.\\ 
+La première fois qu'il est exécuté, son but est d'installer Pyvital et de créer un nouveau poste utilisateur (à la fois sur le driver et en base de donnée). \\
+Toutes les autres fois ou l'installateur est appelé, il ne sert qu'à lier de nouvelles clés de licence au poste utilisateur.\\
+
+Par exemple, si un utilisateur exerce dans deux cabinets, il doit lancer l'installateur une première fois pour installer Pyvital et lier son compte (sur le premier cabinet) au nouveau poste utilisateur.
+Si il souhaite également lier son compte sur le deuxième cabinet, il doit relancer l'installateur. La deuxième fois, l'installateur ne fera que lier la clé de licence (associée au couple Utilisateur-Cabinet) au poste existant.
+
+Cet enchaînement d'action est décrit dans le schéma ci-dessous : 
 \begin{figure}[H]
   \centering
   \includegraphics[width=17cm]{./img/installateur}
   \caption{\label{fig:installateur} Diagrame d'activités UML représentant les deux modes de l'installateur..}
 \end{figure}
 
-\paragraph*{Fonctionnalités de l'installateur\\}
-Tout d'abord, l'installateur doit déplacer les fichiers du driver dans le bon dossier sur windows. Puis, il doit installer les dépendances et les .msi nécessaires.\\ 
+\paragraph*{Installation de Pyvital}
+Lors de l'installation de Pyvital, l'installateur doit déplacer les fichiers du driver dans le bon dossier sur windows. Puis, il doit installer les dépendances et les .msi nécessaires.\\ 
 Il doit également compléter le fichier de configuration du driver. \\
 Ensuite, il doit contacter le serveur \textit{Sésame} afin de vérifier la clé de licence et d'enregistrer le nouveau poste utilisateur. \\
-Enfin, il doit installer le logiciel Pyxvital qui est utilisé pour les opérations de facturation.
-
+Enfin, il doit installer le logiciel Pyxvital qui est utilisé pour les opérations de facturation liées au lecteur Sésam.
 
 \paragraph*{Choix de la solution technique\\}
-Pour le choix de l'installateur, la solution d'\textit{Inno Setup} m'a été fortement recommandé par le directeur de l'entreprise. En effet, il s'agit de la solution qui est utilisée dans les dernières versions de Topaze Maestro.\\
+Pour le choix de l'installateur, la solution d'\textit{Inno Setup} m'a été recommandée par le directeur de l'entreprise. En effet, il s'agit de la solution qui est utilisée dans les dernières versions de Topaze Maestro.\\
 Avant d'opter définitivement pour Inno Setup, j'ai vérifié que l'installateur recommandé satisfasse les exigences du projet.\\ Lors de l'installation, il fallait par exemple que je puisse installer des .msi\footnote{MSI: Microsoft Installer} en mode silencieux. Il fallait aussi que je puisse ajouter des écrans supplémentaires lors de l'installation. Enfin, je devais pouvoir effectuer des requêtes HTTP vers notre serveur Sésame.
 
 \paragraph*{Implémentation\\}
 Inno Setup est un outil qui permet de réaliser simplement des installateurs. L'outil prend en charge la création des interfaces graphiques et d'une partie des opérations standards (ex: déplacements de fichiers). Pour l'utiliser, on remplit un fichier \textit{.iss}\footnote{.ISS: Inno Setup Script} qui permet de configurer l'installateur et d'étendre ses fonctionnalités. Le fichier .iss est structuré en sections et chaque section permet de décrire de façon déclarative la façon dont l'installateur doit se comporter. Les sections principales sont : 
-\begin{itemize}
+\begin{sitemize}
 \item Setup : section qui décrit le nom du programme, sa version, son dossier d'installation etc.
 \item Dirs : les dossiers à créer.
 \item Files : les fichiers à déplacer (avec leur source et leur destination).
@@ -526,13 +541,13 @@ Inno Setup est un outil qui permet de réaliser simplement des installateurs. L'
 \item Run : le programme à lancer lorsque l'installation est finie.
 \item Code : la partie qui permet d'étendre inno setup au moyen de code pascal.
 \item d'autres sections moins importantes : types (les types d'installations), components (des groupes de tâches), tasks, languages, installDelete, uninstallDelete, uninstallRun, registry etc.
-\end{itemize}  
+\end{sitemize}  
 
 Dans l'installateur, la partie la plus importante est la section \textit{"Code"} car elle permet d'ajouter des écrans à l'installateur et de créer de nouvelles fonctionnalités. Sur le projet, je l'ai utilisé pour créer une page de validation de clé de licence, et une page servant à définir le nom du nouveau poste utilisateur.\\
 Dans ces deux cas, l'installateur réalise une requête HTTP vers le serveur Sésame, puis traite la réponse obtenue. 
 
 \paragraph*{L'intégration de pyxvital\\}
-Pyxvital est un logiciel qui sert à créer des FSE\footnote{FSE: Feuille de Soins Electroniques} et à assurer la transmission avec le lecteur Sésam-Vitale. Il est utilisé temporairement afin de faciliter la certification de Topaze Web et accélerer ainsi sa mise sur le marché.
+%Pyxvital est un logiciel qui sert à créer des FSE\footnote{FSE: Feuille de Soins Electroniques} et à assurer la transmission avec le lecteur Sésam-Vitale. Il est utilisé temporairement afin de faciliter la certification de Topaze Web et accélerer ainsi sa mise sur le marché.
 %TODO : Hors sujet. ^
 
 Le driver de Topaze Web utilise Pyxvital et il est donc nécessaire que celui-ci soit installé en même temps que les autres dépendances. Le problème de Pyxvital est qu'il ne peut être installé qu'au moyen d'un \textit{.exe}. Hors, nous souhaitons que son installation soit transparante pour l'utilisateur. Il a donc été nécessaire de comprendre les différentes opérations réalisées lors de l'installation, afin de les inclure dans notre installateur.\\

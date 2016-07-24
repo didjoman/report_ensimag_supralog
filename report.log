@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.10.5)  24 JUL 2016 15:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.10.5)  24 JUL 2016 20:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1529,7 +1529,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 36--37
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
@@ -1540,7 +1540,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 66--67
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
@@ -1557,7 +1557,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12] <./img/architecture1.png, id=373, 916.42375pt x 987.69pt>
+[12]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.64995pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13] <./img/architecture1.png, id=380, 916.42375pt x 987.69pt>
 File: ./img/architecture1.png Graphic file (type png)
 
 <use ./img/architecture1.png>
@@ -1570,7 +1577,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1588,7 +1595,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14] <./img/architecture2.png, id=393, 1858.945pt x 1222.5675pt>
+[15] <./img/architecture2.png, id=400, 1858.945pt x 1222.5675pt>
 File: ./img/architecture2.png Graphic file (type png)
 
 <use ./img/architecture2.png>
@@ -1605,7 +1612,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
+[16pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1618,7 +1625,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16] <./img/class.png, id=410, 457.71pt x 218.8175pt>
+[17] <./img/class.png, id=417, 457.71pt x 218.8175pt>
 File: ./img/class.png Graphic file (type png)
  <use ./img/class.png>
 Package pdftex.def Info: ./img/class.png used on input line 122.
@@ -1628,7 +1635,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
-<./img/existing_model.png, id=411, 737.75626pt x 336.25626pt>
+<./img/existing_model.png, id=418, 737.75626pt x 336.25626pt>
 File: ./img/existing_model.png Graphic file (type png)
 
 <use ./img/existing_model.png>
@@ -1641,14 +1648,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
+[18pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.136 
        <./img/class.png>]
-<./img/created_model.png, id=420, 687.56876pt x 223.83624pt>
+<./img/created_model.png, id=429, 687.56876pt x 223.83624pt>
 File: ./img/created_model.png Graphic file (type png)
 
 <use ./img/created_model.png>
@@ -1659,7 +1666,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--147
 
  []
 
-<./img/gridfs.png, id=421, 575.14874pt x 338.26375pt>
+<./img/gridfs.png, id=430, 575.14874pt x 338.26375pt>
 File: ./img/gridfs.png Graphic file (type png)
  <use ./img/gridfs.png>
 Package pdftex.def Info: ./img/gridfs.png used on input line 151.
@@ -1671,7 +1678,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
+[19pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1686,7 +1693,7 @@ s been already used, duplicate ignored
 l.154 L
        a collection \textit{Chuncks} sert Ã  stocker les donnÃ©es du fichier...
  <./img/existing_model.png> <./img/created_model.png>]
-<./img/diag_seq.png, id=432, 1119.18124pt x 484.81125pt>
+<./img/diag_seq.png, id=439, 1119.18124pt x 484.81125pt>
 File: ./img/diag_seq.png Graphic file (type png)
 
 <use ./img/diag_seq.png>
@@ -1703,7 +1710,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[19pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+[20pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1748,17 +1755,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 192--193
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--199
-
- []
-
-<./img/directory_entities_concept.png, id=449, 610.28pt x 274.02374pt>
+<./img/directory_entities_concept.png, id=456, 610.28pt x 274.02374pt>
 File: ./img/directory_entities_concept.png Graphic file (type png)
 
 <use ./img/directory_entities_concept.png>
@@ -1772,13 +1774,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[21pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
+[22pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.221 \end{itemize}
-                    <./img/directory_entities_concept.png>]
+l.225 \item G
+             ET /account/models/directory/{directoryId}/picutre/{pictureId}/...
+ <./img/directory_entities_concept.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 231--232
 
  []
@@ -1809,7 +1812,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[22pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
+[23pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1822,17 +1825,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 275--277
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 279--281
-
- []
-
-
+[24]
 Underfull \hbox (badness 10000) in paragraph at lines 292--294
 
  []
@@ -1848,7 +1841,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[24]
+[25]
 Underfull \hbox (badness 10000) in paragraph at lines 316--317
 
  []
@@ -1858,14 +1851,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 318--319
 
  []
 
-<./img/placeholders.png, id=478, 506.89375pt x 142.5325pt>
+<./img/placeholders.png, id=485, 506.89375pt x 142.5325pt>
 File: ./img/placeholders.png Graphic file (type png)
 
 <use ./img/placeholders.png>
 Package pdftex.def Info: ./img/placeholders.png used on input line 322.
 (pdftex.def)             Requested size: 341.43306pt x 96.00954pt.
 
-<./img/annotations1.png, id=479, 329.73187pt x 106.89937pt>
+<./img/annotations1.png, id=486, 329.73187pt x 106.89937pt>
 File: ./img/annotations1.png Graphic file (type png)
 
 <use ./img/annotations1.png>
@@ -1878,7 +1871,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[25pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
+[26pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1905,7 +1898,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[26pdfTeX warning (ext4): destination with the same identifier (name{figure.12}
+[27pdfTeX warning (ext4): destination with the same identifier (name{figure.12}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1918,17 +1911,12 @@ s restantes par des points
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 410--414
-
- []
-
-
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.64995pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[27pdfTeX warning (ext4): destination with the same identifier (name{figure.13}
+[28pdfTeX warning (ext4): destination with the same identifier (name{figure.13}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1947,17 +1935,17 @@ l.414
                                                   \fi \fi 
 l.414 
       ]
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
+Underfull \hbox (badness 10000) in paragraph at lines 416--418
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 436--440
+Underfull \hbox (badness 10000) in paragraph at lines 441--442
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 441--444
+Underfull \hbox (badness 10000) in paragraph at lines 443--447
 
  []
 
@@ -1967,71 +1955,93 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[28] <./img/macro_sesame3.png, id=508, 757.83125pt x 233.87375pt>
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 448--451
+
+ []
+
+<./img/macro_sesame3.png, id=515, 757.83125pt x 233.87375pt>
 File: ./img/macro_sesame3.png Graphic file (type png)
 
 <use ./img/macro_sesame3.png>
-Package pdftex.def Info: ./img/macro_sesame3.png used on input line 456.
+Package pdftex.def Info: ./img/macro_sesame3.png used on input line 463.
 (pdftex.def)             Requested size: 455.24408pt x 140.49304pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 461--467
+Underfull \hbox (badness 10000) in paragraph at lines 468--474
 
  []
 
 
-Overfull \hbox (2.92546pt too wide) in paragraph at lines 471--472
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.64995pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[30pdfTeX warning (ext4): destination with the same identifier (name{figure.16}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.474 
+       <./img/macro_sesame3.png>]
+Overfull \hbox (2.92546pt too wide) in paragraph at lines 478--479
 []\T1/lmr/m/n/12 Pour que Sesame puisse de-man-der à Pyvi-tal d'effectuer des a
 c-tions, il néces-saire d'implémenter
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--472
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
 
  []
 
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.64995pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[29pdfTeX warning (ext4): destination with the same identifier (name{figure.16}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.472 
-       <./img/macro_sesame3.png>]
-<./img/diag_seq_sesame.png, id=515, 1024.82875pt x 581.17125pt>
+<./img/diag_seq_sesame.png, id=523, 1024.82875pt x 581.17125pt>
 File: ./img/diag_seq_sesame.png Graphic file (type png)
 
 <use ./img/diag_seq_sesame.png>
-Package pdftex.def Info: ./img/diag_seq_sesame.png used on input line 477.
+Package pdftex.def Info: ./img/diag_seq_sesame.png used on input line 484.
 (pdftex.def)             Requested size: 483.69684pt x 274.30336pt.
 
-Overfull \hbox (11.6656pt too wide) in paragraph at lines 477--478
+Overfull \hbox (11.6656pt too wide) in paragraph at lines 484--485
  [][] 
  []
 
-<./img/numerisation.png, id=516, 791.95876pt x 56.21pt>
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.64995pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[31pdfTeX warning (ext4): destination with the same identifier (name{figure.17}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.490 
+       <./img/diag_seq_sesame.png>]
+<./img/numerisation.png, id=530, 791.95876pt x 56.21pt>
 File: ./img/numerisation.png Graphic file (type png)
 
 <use ./img/numerisation.png>
-Package pdftex.def Info: ./img/numerisation.png used on input line 486.
+Package pdftex.def Info: ./img/numerisation.png used on input line 493.
 (pdftex.def)             Requested size: 483.69684pt x 34.33092pt.
 
-Overfull \hbox (11.6656pt too wide) in paragraph at lines 486--487
+Overfull \hbox (11.6656pt too wide) in paragraph at lines 493--494
  [][] 
  []
 
-<./img/installateur.png, id=517, 794.97pt x 341.275pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 509--512
+
+ []
+
+<./img/installateur.png, id=531, 794.97pt x 341.275pt>
 File: ./img/installateur.png Graphic file (type png)
 
 <use ./img/installateur.png>
-Package pdftex.def Info: ./img/installateur.png used on input line 503.
+Package pdftex.def Info: ./img/installateur.png used on input line 519.
 (pdftex.def)             Requested size: 483.69684pt x 207.65149pt.
 
-Overfull \hbox (11.6656pt too wide) in paragraph at lines 503--504
+Overfull \hbox (11.6656pt too wide) in paragraph at lines 519--520
  [][] 
  []
 
@@ -2041,41 +2051,34 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[30pdfTeX warning (ext4): destination with the same identifier (name{figure.17}
+[32pdfTeX warning (ext4): destination with the same identifier (name{figure.18}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.505 \end{figure}
-                  pdfTeX warning (ext4): destination with the same identifier (
-name{figure.18}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.505 \end{figure}
-                   <./img/diag_seq_sesame.png> <./img/numerisation.png>]
+l.522 
+       <./img/numerisation.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.64995pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[31pdfTeX warning (ext4): destination with the same identifier (name{figure.19}
+[33pdfTeX warning (ext4): destination with the same identifier (name{figure.19}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.521 \item
-            Setup : section qui dÃ©crit le nom du programme, sa version, son...
- <./img/installateur.png>]
+l.535 \begin{sitemize}
+                       <./img/installateur.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.64995pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 560--562
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 575--577
 
  []
 
@@ -2086,7 +2089,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[33] <./img/gantt_prev.png, id=549, 870.25125pt x 314.17375pt>
+[35] <./img/gantt_prev.png, id=559, 870.25125pt x 314.17375pt>
 File: ./img/gantt_prev.png Graphic file (type png)
 
 <use ./img/gantt_prev.png>
@@ -2097,7 +2100,7 @@ Overfull \hbox (11.6656pt too wide) in paragraph at lines 8--9
  [][] 
  []
 
-<./img/gantt_reel.png, id=550, 903.375pt x 465.74pt>
+<./img/gantt_reel.png, id=560, 903.375pt x 465.74pt>
 File: ./img/gantt_reel.png Graphic file (type png)
 
 <use ./img/gantt_reel.png>
@@ -2115,7 +2118,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[34pdfTeX warning (ext4): destination with the same identifier (name{figure.20}
+[36pdfTeX warning (ext4): destination with the same identifier (name{figure.20}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -2129,12 +2132,19 @@ igure.21}) has been already used, duplicate ignored
 l.1 \newpage
              <./img/gantt_prev.png (PNG copy)> <./img/gantt_reel.png (PNG copy)
 >]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.64995pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[37]
 Underfull \hbox (badness 10000) in paragraph at lines 18--23
 
  []
 
 ) (./appendices.tex
-<./img/medical_data_maestro.PNG, id=556, 1263.97218pt x 714.41907pt>
+<./img/medical_data_maestro.PNG, id=579, 1263.97218pt x 714.41907pt>
 File: ./img/medical_data_maestro.PNG Graphic file (type png)
 
 <use ./img/medical_data_maestro.PNG>
@@ -2151,21 +2161,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[35]
+[38]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.64995pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[36pdfTeX warning (ext4): destination with the same identifier (name{figure.22}
+[39pdfTeX warning (ext4): destination with the same identifier (name{figure.22}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.10 \newpage
               <./img/medical_data_maestro.PNG>]
-<./img/text_editor2.PNG, id=569, 1263.97218pt x 666.23906pt>
+<./img/text_editor2.PNG, id=593, 1263.97218pt x 666.23906pt>
 File: ./img/text_editor2.PNG Graphic file (type png)
 
 <use ./img/text_editor2.PNG>
@@ -2182,14 +2192,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[37pdfTeX warning (ext4): destination with the same identifier (name{figure.23}
+[40pdfTeX warning (ext4): destination with the same identifier (name{figure.23}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.19 \newpage
               <./img/text_editor2.PNG>]
-<./img/modele_generateur.PNG, id=576, 813.79031pt x 399.74344pt>
+<./img/modele_generateur.PNG, id=600, 813.79031pt x 399.74344pt>
 File: ./img/modele_generateur.PNG Graphic file (type png)
 
 <use ./img/modele_generateur.PNG>
@@ -2200,7 +2210,7 @@ Overfull \hbox (40.11836pt too wide) in paragraph at lines 23--24
  [][] 
  []
 
-<./img/diag_seq2.png, id=577, 484.81125pt x 1119.18124pt>
+<./img/diag_seq2.png, id=601, 484.81125pt x 1119.18124pt>
 File: ./img/diag_seq2.png Graphic file (type png)
 
 <use ./img/diag_seq2.png>
@@ -2213,7 +2223,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[38pdfTeX warning (ext4): destination with the same identifier (name{figure.24}
+[41pdfTeX warning (ext4): destination with the same identifier (name{figure.24}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -2229,14 +2239,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[39pdfTeX warning (ext4): destination with the same identifier (name{figure.25}
+[42pdfTeX warning (ext4): destination with the same identifier (name{figure.25}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.33 
       <./img/diag_seq2.png>]
-<./img/dossier_medical_web2.PNG, id=590, 868.74562pt x 463.7325pt>
+<./img/dossier_medical_web2.PNG, id=614, 868.74562pt x 463.7325pt>
 File: ./img/dossier_medical_web2.PNG Graphic file (type png)
 
 <use ./img/dossier_medical_web2.PNG>
@@ -2253,14 +2263,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[40pdfTeX warning (ext4): destination with the same identifier (name{figure.26}
+[43pdfTeX warning (ext4): destination with the same identifier (name{figure.26}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.42 \newpage
               <./img/dossier_medical_web2.PNG>]
-<./img/editeur_topaze_web.PNG, id=597, 874.76813pt x 662.475pt>
+<./img/editeur_topaze_web.PNG, id=621, 874.76813pt x 662.475pt>
 File: ./img/editeur_topaze_web.PNG Graphic file (type png)
 
 <use ./img/editeur_topaze_web.PNG>
@@ -2279,7 +2289,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[41pdfTeX warning (ext4): destination with the same identifier (name{figure.27}
+[44pdfTeX warning (ext4): destination with the same identifier (name{figure.27}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -2291,9 +2301,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 387.
  (./report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 387.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 387.
-Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: C157A81EC29CB40D2474EAE2174285BF;2788.
 
+
+Package rerunfilecheck Warning: File `report.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `report.out':
+(rerunfilecheck)             Before: C157A81EC29CB40D2474EAE2174285BF;2788
+(rerunfilecheck)             After:  515FB8083ECA02A7D4CA6A1282877271;3423.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
@@ -2307,30 +2323,36 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 387.
  ) 
 Here is how much of TeX's memory you used:
- 16427 strings out of 494958
- 240966 string characters out of 6179213
+ 16440 strings out of 494958
+ 241114 string characters out of 6179213
  415998 words of memory out of 5000000
  19058 multiletter control sequences out of 15000+600000
  94093 words of font info for 82 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  49i,12n,97p,2196b,530s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/shar
-e/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/l
-m-rm.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12
-.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></
-usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/pu
-blic/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share
-/texmf/fonts/type1/public/lm/lmsy10.pfb>
-Output written on report.pdf (42 pages, 3684665 bytes).
+pdfTeX warning (dest): name{subsection.4.5} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.4} has been referenced but does not ex
+ist, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvip
+s/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/
+texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
+rm.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf/fo
+nts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/publ
+ic/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmsy10.pfb>
+Output written on report.pdf (45 pages, 3687709 bytes).
 PDF statistics:
- 685 PDF objects out of 1000 (max. 8388607)
- 577 compressed objects within 6 object streams
- 135 named destinations out of 1000 (max. 500000)
+ 714 PDF objects out of 1000 (max. 8388607)
+ 602 compressed objects within 7 object streams
+ 148 named destinations out of 1000 (max. 500000)
  414 words of extra memory for PDF output out of 10000 (max. 10000000)
 
