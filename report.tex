@@ -43,6 +43,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{titlesec}
+\usepackage[nottoc, notlof, notlot]{tocbibind}
 
 \usepackage{float}
 %\usepackage{parskip}
@@ -349,7 +350,8 @@
 \pagenumbering{arabic}  
 
 % Coordonnées TODO
-\input{coordinates.tex}  
+%\input{coordinates.tex}  
+%\input{thanks.tex}
 
 % Table des matières 
 \newpage
@@ -381,6 +383,12 @@
 \input{progress.tex} % (2 page) done: 0
 \input{feeling.tex} % (1 page) done: 0
 
+
+% Bibliography
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+% Appendices 
 \input{appendices.tex} % (0 pages)
 
 
