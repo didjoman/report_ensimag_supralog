@@ -1,12 +1,72 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{springPlanning}
-
-
-\bibitem{dailyScrum}
+\bibitem{bib:dailyScrum}
 Mike Cohn.
 \newblock Daily scrum --- mountain goat software.
-\newblock https://www.mountaingoatsoftware.com/agile/scrum/daily-scrum, 2016.
+\newblock \url{https://www.mountaingoatsoftware.com/agile/scrum/daily-scrum},
+  2016.
 \newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:springPlanning}
+Mike Cohn.
+\newblock Sprint planning meeting --- mountain goat software.
+\newblock
+  \url{https://www.mountaingoatsoftware.com/agile/scrum/sprint-planning-meeting},
+  2016.
+\newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:compositeComponent}
+David Geary.
+\newblock Jsf 2 fu: Best practices for composite components.
+\newblock \url{http://www.ibm.com/developerworks/library/j-jsf2fu0111/}, 01
+  2011.
+\newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:twain}
+TWAIN~Working Group.
+\newblock About twain.
+\newblock \url{http://www.twain.org/}, 1992.
+\newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:pillow}
+Fredrik Lundh, Alex~Clark Contributors, and Contributors.
+\newblock Overview - pillow.
+\newblock \url{https://pillow.readthedocs.io/en/3.3.x/handbook/overview.html},
+  2016.
+\newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:compositePattern}
+The~\"Gang of~Four\": Erich~Gamma, Richard Helm, Ralph Johnson, and John
+  Vlissides.
+\newblock {\em Design Patterns: Elements of Reusable Object-Oriented Software},
+  chapter 4 Structural Patterns, pages 163--174.
+\newblock Addison-Wesley, 1994.
+
+\bibitem{bib:java8}
+Oracle.
+\newblock Java 8: Overview.
+\newblock
+  \url{http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html},
+  2016.
+\newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:hibernate}
+Andrea Boriero Brett Meyer Radim~Vansa Steve~Ebersole, Vlad~Mihalcea.
+\newblock Hibernate orm 5.2 user guide.
+\newblock
+  \url{http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html},
+  06 2016.
+\newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:jsf}
+Tutorialspoint.
+\newblock Javaserver faces (jsf) tutorial.
+\newblock \url{http://www.tutorialspoint.com/jsf/}, 2016.
+\newblock Online; Accessed: 25/07/2016.
+
+\bibitem{bib:spring}
+Craig Walls.
+\newblock {\em Spring in Action}.
+\newblock Manning Publications, 4 edition, 11 2014.
 
 \end{thebibliography}

@@ -44,8 +44,8 @@ Afin de satisfaire les besoins de ces deux types d'utilisateurs, deux applicatio
 
 \paragraph*{L'application Topaze\\}
 L'application Topaze a été scindée en deux parties : \textit{Topaze REST} et \textit{Topaze Webapp}.\\
-\textit{Topaze Rest} est un serveur REST, à accès sécurisé par token. Il réalise les opérations liées à la logique métier et il fait persister les données en base.\\
-Topaze Webapp gère la mise en forme des données avant affichage. Son accès est sécurisé via une authentification par sessions. Elle contacte topaze REST afin de rapatrier les données, puis elle les met en forme avant de les envoyer au client (le navigateur).
+\textit{Topaze Rest} est un serveur REST, à accès sécurisé par token. Il réalise les opérations liées à la logique métier et il fait persister les données en base. Topaze Rest est réalisé grâce au framework Spring MVC \cite{bib:spring}\\
+\textit{Topaze Webapp} utilise JSF pour mettre les données en forme avant affichage \cite{bib:jsf}. Son accès est sécurisé via une authentification par sessions. Elle contacte \textit{topaze REST} afin de rapatrier les données, puis elle les met en forme avant de les envoyer au client (le navigateur).
 
 \paragraph*{L'application Opale\\}
 Opale et Topaze ont une base de données en commun. De cette manière, un administrateur d'Opale peut ajouter un utilisateur qui sera ensuite utilisable dans Topaze. \\
@@ -81,10 +81,10 @@ Voici le schéma d'architecture globale représentant l'architecture 3-Tiers et 
 Les technologies utilisées par le projet sont :
 \begin{sitemize}
 \item Bases de données : PostgreSQL pour les modèles de données, MongoDB et GridFS pour les fichiers.
-\item ORM : Hibernate
+\item ORM : Hibernate\cite{bib:hibernate}
 \item Serveur : Tomcat
-\item Backend : Java et Spring
-\item Front-End : JSF et Primefaces
+\item Backend : Java8\cite{bib:java8} et Spring\cite{bib:spring}
+\item Front-End : JSF\cite{bib:jsf} et Primefaces
 \end{sitemize} 
 
 \subsection{Solution envisagée}
@@ -234,7 +234,7 @@ L'API REST récupère les donneés de la base au moyen de DAOs\footnote{DAO: Dat
 Pour la base de donnée, il était plus simple de stocker l'arborescence de façon ascendante (chaque fichier contient l'id du dossier parent). Mais, concernant les objets métiers (qui eux seront exposés), on souhaite que l'arborescence soit stockée de façon descendante, pour que leur usage soit naturel.
 En effet, les objets métiers sont ensuite utilisés pour générer les vues en HTML. Dans ce cas, on a donc en général accés à un dossier et on souhaite obtenir la liste de ses fils. \\
 
-Pour représenter ce type de modèle, on pense naturellement au design pattern composite : \\
+Pour représenter ce type de modèle, on pense naturellement au design pattern composite \cite{bib:compositePattern} : \\
 \begin{figure}[H]
   \centering
   \includegraphics[width=12cm]{./img/directory_entities_concept}
@@ -267,7 +267,7 @@ En JSF, plusieurs choix sont possibles pour créer des composants réutilisables
 \item Les \textit{Inclusions de code} : c'est la solution la plus rudimentaire. Elle consiste à extraire un morceau de code et à l'inclure ensuite en utilisant des \textit{<ui:include>} et \textit{<ui:param>}. Cette solution est adoptée lorsque le code inclus n'est pas ou peu paramétrable et n'a pas une sémantique trés forte (i.e. le code ne représente pas réellement un composant à lui seul).
 \item Les \textit{Custom Tags} : il s'agit de la solution la plus légère lorsqu'on souhaite créer un composant réutilisable. C'est une méthode trés proche des inclusions de code, mais qui offre une interface plus propre. Elle permet une librairie de nouvelles balises jsf, qui peuvent accepter des paramètres en attributs. \\
 Il s'agit de la solution choisie lorsqu'on souhaite éviter une répétition de code et que ce dernier remplit une fonction précise (notion de composant).
-\item Les \textit{Composite Components} : cette solution est trés semblable aux tags, mais elle est plus coûteuse en temps de traitement. Elle a l'intérêt de présenter un passage de paramêtres plus propre que les tags et de nécessiter moins de code.\\
+\item Les \textit{Composite Components\cite{bib:compositeComponent}} : cette solution est trés semblable aux tags, mais elle est plus coûteuse en temps de traitement. Elle a l'intérêt de présenter un passage de paramêtres plus propre que les tags et de nécessiter moins de code.\\
 Cette solution est en générale choisie, lorsqu'on souhaite agréger plusieurs composants ou tags pour en créer un nouveau qui a son propre comportement.
 \item Les \textit{Custom Components} : ce sont des composants définis en java (et non plus en JSF). Pour en créer, il faut définir une classe qui assurera le rendering du composant.\\
 Cette solution est beaucoup plus lourde que les autres en temps de développement et en quantité de code. Elle est utilisée lorsque les solutions précédentes ne sont pas suffisantes. On l'utilise par exemple, pour ajouter un nouveau comportement à un composant existant, utiliser des évènements java ou avoir un rendu HTML particulier. 
@@ -443,10 +443,12 @@ Pour cette fonctionnalité, j'ai évalué qu'il était faisable de reproduire in
 
 La faisabilité de la fonctionnalité repose sur plusieurs éléments :\\
 Dans un premier temps, il faut être capable de communiquer avec des scanners de différentes marques. Ceci est faisable grâce à l'interface de programmation et protocole de communication \textit{"TWAIN"}. Ce protocole permet de communiquer avec les drivers de  scanners à condition qu'ils implémentent l'API.\\
-TWAIN a été créé en 1992, et la plupart des constructeurs font aujourd'hui partie du TWAIN groupe (HP, Adobe, Epson, Kodak, Fujitsu, Logitech etc.).\\
+TWAIN a été créé en 1992\cite{bib:twain}, et la plupart des constructeurs font aujourd'hui partie du TWAIN groupe (HP, Adobe, Epson, Kodak, Fujitsu, Logitech etc.).\\
 En python (langage du driver de Topaze Web), le module Pytwain permet d'interragir avec les scanners.\\
 
-Ensuite, la fonction de scan de Topaze Maestro propose des fonctions rudimentaires de traitement de l'image (cropping, redimensionnement, rotation). 
+Ensuite, la fonction de scan de Topaze Maestro propose différentes options de scan (qualité, résolution, format de sortie, couleurs). Pour réaliser ces différentes options, il est possible d'utiliser la bibliothèque \textit{Pillow} qui permet de réaliser différent traitements de l'image (conversion de couleurs, redimensionnement, encodage etc.)\cite{bib:pillow}.\\
+
+D'autre part, Topaze Maestro propose une interface graphique permettant d'appliquer différents traitements à l'image numérisée (cropping, redimensionnement, rotation). 
 Pour réaliser ces fonctionnalités, il existe de nombreuses possibilités. On peut par exemple le faire entièrement coté navigateur, au moyen d'une bibliothèque javascript (il en existe plusieurs). Soit opter pour une solution hybride. Dans ce cas, il est par exemple possible de faire une prévisualisation en javascript, et le traitement en Python avec Pillow. 
 Enfin, le dernier choix consiste à faire la prévisualisation en javascript coté client et le traitement en java, coté serveur. \\
 
@@ -547,12 +549,12 @@ Inno Setup est un outil qui permet de réaliser simplement des installateurs. L'
 Dans l'installateur, la partie la plus importante est la section \textit{"Code"} car elle permet d'ajouter des écrans à l'installateur et de créer de nouvelles fonctionnalités. Sur le projet, je l'ai utilisé pour créer une page de validation de clé de licence, et une page servant à définir le nom du nouveau poste utilisateur.\\
 Dans ces deux cas, l'installateur réalise une requête HTTP vers le serveur Sésame, puis traite la réponse obtenue. 
 
-\paragraph*{L'intégration de pyxvital\\}
+\paragraph*{L'intégration de pixvital\\}
 %Pyxvital est un logiciel qui sert à créer des FSE\footnote{FSE: Feuille de Soins Electroniques} et à assurer la transmission avec le lecteur Sésam-Vitale. Il est utilisé temporairement afin de faciliter la certification de Topaze Web et accélerer ainsi sa mise sur le marché.
 %TODO : Hors sujet. ^
 
-Le driver de Topaze Web utilise Pyxvital et il est donc nécessaire que celui-ci soit installé en même temps que les autres dépendances. Le problème de Pyxvital est qu'il ne peut être installé qu'au moyen d'un \textit{.exe}. Hors, nous souhaitons que son installation soit transparante pour l'utilisateur. Il a donc été nécessaire de comprendre les différentes opérations réalisées lors de l'installation, afin de les inclure dans notre installateur.\\
-Pour ce faire, j'ai donc du lancer l'installateur de Pyxvital et regarder si des registres étaient modifiés, quels fichiers étaient installés et quels fichiers de configuration étaient complétés. Ensuite, j'ai dû ajouter ces opérations à la phase finale d'installation dans Inno Setup.
+Le driver de Topaze Web utilise Pixvital et il est donc nécessaire que celui-ci soit installé en même temps que les autres dépendances. Le problème de Pixvital est qu'il ne peut être installé qu'au moyen d'un \textit{.exe}. Hors, nous souhaitons que son installation soit transparante pour l'utilisateur. Il a donc été nécessaire de comprendre les différentes opérations réalisées lors de l'installation, afin de les inclure dans notre installateur.\\
+Pour ce faire, j'ai donc du lancer l'installateur de Pixvital et regarder si des registres étaient modifiés, quels fichiers étaient installés et quels fichiers de configuration étaient complétés. Ensuite, j'ai dû ajouter ces opérations à la phase finale d'installation dans Inno Setup.
 
 
 \subsection{Protocole d'évaluation}
