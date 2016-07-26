@@ -4,72 +4,20 @@
 
 \subsection{Contexte du projet}
 Le développement du projet s'effectue en sprints, selon la méthode Scrum. Le contenu de chaque sprint est décidé d'un commun accord entre le chef de projet et le client. Le but est de réaliser en premier lieu les fonctionnalités les plus importantes fonctionnellement. 
-Les aspects concernant la méthode de travail sont abordés plus en détail dans la section \ref{sec:projectManagement}.\\
 
-\paragraph*{État du projet au début du stage\\}
-A mon arrivée sur le projet, deux sprints avaient déjà été réalisés : le sprint 0 qui a servi à la mise en place du projet et le sprint 1.\\
+\subsubsection{Mise en place du projet}
+Durant cette première étape, il a fallu mettre en place l'architecture du projet, avec notamment les différents serveurs \textit{J2EE/Spring}, la base de données \textit{Postgre Sql}, l'\gls{ORM} Hibernate, la partie webapp avec \textit{JSF} et \textit{primefaces}.
+Cette partie est abordée plus en détails, dans la section Architecture.
 
-Durant le sprint 0, l'architecture du projet a été mise en place, avec notamment les différents serveurs \textit{J2EE/Spring}, la base de données \textit{Postgre Sql}, l'\gls{ORM} Hibernate, la partie webapp avec \textit{JSF} et \textit{primefaces}.
-Cette partie est abordée plus en détails, dans la section \ref{sec:architecture}.\\
-
+\subsubsection{Sprint 1}
 Le sprint 1, qui a eu lieu avant mon arrivée, avait pour but la création des fonctionnalités de base permettant la gestion d'un cabinet.\\
+
 La première fonctionnalité développée durant ce sprint permet la création d'un cabinet médical avec l'ajout de praticiens (kinésithérapeute, infirmiers etc.) et l'ajout de patients au cabinet.
 La deuxième fonctionnalité porte sur la gestion des ordonnances pour les professions de type kinésithérapeute et infirmiers. Enfin, il y a la gestion des séances, avec la création d'un planning.
 
-\paragraph*{Évolutions prévues durant le stage\\}
-Les évolutions prévues sont
-\paragraph*{Vision du projet\\}
-Sprint 3 : 
-Gestion des patients :
-Processus de création manuelle d'un patient.
-Synchronisation du dossier patient avec sa carte vitale,
-
-Facture/télétransmission :
-Création des DRE (Demandes de remboursement electroniques)
-
-Dossier médical : 
-Gestion des modèles de documents
-
-Gestion des ordonnances :
-Saisie d'une DAP (Demande d'accord préalable)
-Prise en compte des natures d'assurance
-
-Sprint 4 :
-Dossier médical :
-Modification d'un document scanné avant persistance (crop, rotation ...)
-
-Facture/Télétransmission:
-Recherche des conventions.
-
-Gestion des patients : 
-Prise en compte des maternités et arrêts de travail.
-
-Gestion des ordonnances : 
-DSI (Demande de Soin Infirmier)
-
-Suite :
-Gestion des patients : 4 écrans, suivi des factures, suivi des règlements
-Gestion des ordonnances : Bilan Kiné, Suivi de grossesse
-Facture et télétransmission : Mise en lots, transmission, gestions des ARL et retours NOEMIE, CCAM (SF)
-Gestion des séances : rétrocessions, organisation des séances
-Dossier médical : dossier SF
-Mobilité (TLA)
-SCOR
-Comptabilité
-Design UI
-Autres (statistiques, communication)
-
-
-% Ce qui a déjà été réalisé
-
-% Ce qui doit être fait durant le stage et après. (Vision)
-
-% Ce que je dois réaliser.
-
-
 
 \subsubsection{Sprint 2}
-Le second sprint du projet a commencé en début mars, peu de temps après mon arrivée. Il a été dimensionné pour tenir sur 7 semaines.\\
+Le second sprint du projet a commencé en début mars, peu de temps après mon arrivée. Il a été dimensionné pour tenir sur 6 semaines.
 Les objectifs de ce sprint portent sur la création des fonctionnalités suivantes : 
 \begin{itemize}
 \item \textit{Les Feuilles de Soins Electroniques} : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale du patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
@@ -91,7 +39,7 @@ Les objectifs de ce sprint portent sur la création des fonctionnalités suivant
 \item \textit{Gestion des modèles de documents RTF} : 
 \end{itemize}
 
-\subsubsection{Sprint 4}
+\subsubsection{Sprint 3}
 Ce quatrième sprint prend place du 1er juin au 31 Août.
 Les objectifs de ce sprint portent sur la création des fonctionnalités suivantes :
 \begin{itemize}
