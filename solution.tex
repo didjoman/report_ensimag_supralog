@@ -30,6 +30,7 @@ clients finaux.
 
 Pour résumer, voici une schéma de l'architecture 3-tiers de Topaze Web :
 \begin{figure}[H]
+	\vspace{-10pt}
   \centering
   \includegraphics[width=8cm]{./img/architecture1}
   \caption{\label{fig:mb_va_ast} Schéma de l'architecture 3-tiers (créé par Tom Veniat, utilisé avec son accord)}
@@ -73,7 +74,7 @@ Afin de pouvoir communiquer avec la carte vitale un driver doit être installé 
 Voici le schéma d'architecture globale représentant l'architecture 3-Tiers et la communication entre les différentes applications :
 \begin{figure}[H]
   \centering
-  \includegraphics[width=18cm]{./img/architecture2}
+  \centerline{\includegraphics[width=20cm]{./img/architecture5}}
   \caption{\label{fig:mb_va_ast} Schéma d'architecture global (créé par Tom Veniat, utilisé avec son accord)}
 \end{figure}
 
@@ -321,7 +322,7 @@ En JSF, on est déjà capable d'insérer dans les vues des informations provenan
 \begin{figure}[H]
   \centering
   \includegraphics[width=12cm]{./img/placeholders}
-  \caption{\label{fig:mb_va_ast} Modèle UML conceptuel de base de données pour l'arorescence des placeholders.}
+  \caption{\label{fig:mb_va_ast} Modèle UML conceptuel de base de données pour l'arborescence des placeholders.}
 \end{figure}
 
 
@@ -352,35 +353,45 @@ Le remplacement des placeholders se fait en 3 phases : \\
 \textbf{La phase 1} sert à remplacer les noms des placeholders par la notation pointée.\\
 Cette phase se déroule en deux étapes : \\
 D'abord, les classes java correspondant aux placeholders utilisés dans le texte sont parcourues pour remplir un contexte. Le contexte consiste en un dictionnaire de clés-valeurs, avec en clé le nom du placeholder et en valeur, la notation pointée.\\
-Ensuite, \textit{Velocity} se sert du contexte pour remplacer les noms des placeholders par leur valeur.
-\begin{figure}[H]
-  \color{darkgray} 
-  \centering
-  $\$PATIENT\_NOM$ $~~~~~~~~$  => $\$patient.lastName$\\
-  $\$PATIENT\_ADRESSE2$  => $\$patient.address2$
-  \caption{\color{black} \label{fig:annotations} La phase 1 remplace le code du placeholder par la notation pointée qui y est associée.}
-\end{figure}
+Ensuite, \textit{Velocity} se sert du contexte pour remplacer les noms des placeholders par leur valeur.\\
+%\begin{figure}[H]
+%  \color{darkgray} 
+%  \centering
+%  $\$PATIENT\_NOM$ $~~~~~~~~$  => $\$patient.lastName$\\
+%  $\$PATIENT\_ADRESSE2$  => $\$patient.address2$
+%  \caption{\color{black} \label{fig:annotations} La phase 1 remplace le code du placeholder par la notation pointée qui y est associée.}
+%\end{figure}
 
 \textbf{La phase 2} sert à remplacer les notations pointées par leur valeur réelle.\\
 Durant cette phase, on fait appel à l'API REST pour récupérer les objets métiers nécessaires, remplis avec les informations de la base de données.\\
 Avec les objets métiers on remplit un nouveau contexte clé-valeur, avec en clé le nom de l'objet (première partie de la notation pointée) et en valeur l'objet lui même.\\
-Ensuite, on refait appel à Velocity pour remplacer les notations objet par leur valeur.
-\begin{figure}[H]
-  \color{darkgray} 
-  \centering
-  $\$patient.lastName$ => $DUPONT$ $~~~~~~~~$\\
-  $\$patient.address2~$ => $\$patient.address2$ 
-  \caption{\color{black} \label{fig:annotations} La phase 2 remplace la notation pointée par la valeur en base. Si la valeur en base est "null", la notation pointée n'est pas remplacée.}
-\end{figure}
+Ensuite, on refait appel à Velocity pour remplacer les notations objet par leur valeur.\\
+%\begin{figure}[H]
+%  \color{darkgray} 
+%  \centering
+%  $\$patient.lastName$ => $DUPONT$ $~~~~~~~~$\\
+%  $\$patient.address2~$ => $\$patient.address2$ 
+%  \caption{\color{black} \label{fig:annotations} La phase 2 remplace la notation pointée par la valeur en base. Si la valeur en base est "null", la notation pointée n'est pas remplacée.}
+%\end{figure}
 
 \textbf{La phase 3} sert à remplacer les valeurs non trouvées par des points d'interrogation.\\
 En effet, lorsque \textit{Velocity} ne trouve pas une valeur, ou que la valeur est "null", il ne remplace pas la notation pointée.\\
 Dans un soucis de propreté et également pour signifier à l'utilisateur que le remplacement n'a pas fonctionné, on insert une série de points d'interrogation.
+
+%\begin{figure}[H]
+%  \color{darkgray} 
+%  \centering
+%  $\$patient.address2$ => $???$
+%  \caption{\color{black} \label{fig:annotations} La phase 3 remplace les notations pointées restantes par des points d'interrogation.}
+%\end{figure}
+
 \begin{figure}[H]
-  \color{darkgray} 
-  \centering
-  $\$patient.address2$ => $???$
-  \caption{\color{black} \label{fig:annotations} La phase 3 remplace les notations pointées restantes par des points d'interrogation.}
+	\color{darkgray} 
+	\centering
+$\$PATIENT\_NOM$ $~~$ =1=> $\$patient.lastName$ =2=> $DUPONT$ $~$ =3=> $DUPONT$ $~$\\ $~$\\
+  $\$PATIENT\_ADRESSE2$  =1=> $\$patient.address2$ =2=> $\$patient.address2~$ =3=> $???$ 	
+	
+	\caption{\color{black} \label{fig:annotations} Cette figure illustre la succession des 3 phases lors du remplacement d'un placeholder par sa valeur. Durant le processus, le placeholder est remplacé par la notation pointée, puis par sa valeur. Le deuxième exemple illustre le cas où aucune valeur n'a été trouvée en étape 2.}
 \end{figure}
 
 %TODO schéma récapitulatif : automate ?
@@ -518,6 +529,7 @@ Si il souhaite également lier son compte sur le deuxième cabinet, il doit rela
 
 Cet enchaînement d'action est décrit dans le schéma ci-dessous : 
 \begin{figure}[H]
+  \vspace{-10pt}
   \centering
   \includegraphics[width=17cm]{./img/installateur}
   \caption{\label{fig:installateur} Diagrame d'activités UML représentant les deux modes de l'installateur..}
@@ -563,7 +575,7 @@ Pour ce faire, j'ai donc du lancer l'installateur de Pixvital et regarder si des
 Pour s'assurer de la qualité du logiciel, nous effectuons des tests unitaires JUnit sur les services réalisés, les composants métiers et tout ce qui contient de la logique métier. Ces tests permettent également de garantir la non-régression du code.
 
 \paragraph*{Le développement dirigé par les tests\\}
-Les tests unitaires sont la plupart du temps réalisés en respectant la méthodologie du Test Driven Development.
+Les tests unitaires sont dans la mesure du possible réalisés en respectant la méthodologie du Test Driven Development.\\
 La méthode de développement dirigé par les tests a été progressivement mise en place lors du sprint 2 et permet de garantir une meilleure qualité du code. En effet, par l'utilisation de cette méthode, on est certain que chaque fonctionnalité a été testée. D'autre part, chaque test sert en quelques sortes de spécification pour le morceau de code testé.
 
 \paragraph*{L'intégration continue et l'inspecteur de qualité de code\\} 
@@ -571,7 +583,7 @@ Durant le sprint 2, un serveur d'intégration continue a été mis en place. Pou
 Par la suite, SonarQube a également été installé. Il s'agit d'un outil réalisant l'inspection de la qualité de code. Il fournit une estimation de la dette technique et pointe les problèmes rencontrés. Il fournit également une explication détaillée pour chaque problème rencontré.
 
 \paragraph{Revues de code\\}
-Fréquemment, le chef de projet effectue des revues de code et peut demander à ce que certaines parties soient refactorées ou que l'architecture soit revue.
+Fréquemment, le chef de projet effectue des revues de code et peut demander à ce que certaines parties soient re-factorisées ou que l'architecture soit revue.
 
 \subsubsection{Evaluation fonctionnelle du logiciel}
 \paragraph*{Les réunions avec le client en fin de sprint\\}

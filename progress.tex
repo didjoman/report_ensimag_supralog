@@ -61,10 +61,14 @@ Enfin, pour l'hébergement du code du projet, nous utilisons \textit{Bitbucket} 
 Le second sprint du projet a commencé en début mars, peu de temps après mon arrivée. Il a été dimensionné pour tenir sur 7 semaines.\\
 Les objectifs de ce sprint portent sur la création des fonctionnalités suivantes : 
 \begin{itemize}
-	\item \textit{Les Feuilles de Soins Electroniques} : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale du patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
-	\item \textit{Le contexte de facturation} : Il comprend la gestion des tarifications, des types de couverture et des types de prise en charge. Cette fonctionnalité nécessite la lecture des cartes SESAM Vitale.
-	\item \textit{Le dossier médical du patient} : Il contient une liste des documents associés au patient (ordonnances, factures, prescriptions, scans, images etc.)
-	\item \textit{Les cas métiers de la gestion des séances} : La gestion de base des séances faisait partie du sprint 1. Dans ce sprint ce sont les cas particuliers (i.e. les cas de figure issus du terrain) qui sont traités. Ces cas de figure couvrent par exemple l'annulation ou le décalage d'une séance par le praticien ou le client.
+	\item \textit{La gestion des patients} : ajouter les FSE (Feuilles de Soins Electroniques) : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale du patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
+	
+	\item \textit{Les factures et la télé-transmission} : mettre en place le contexte de facturation. Le contexte comprend la gestion des tarifications, des types de couverture et des types de prise en charge. Cette fonctionnalité nécessite la lecture des cartes SESAM Vitale.
+
+	\item \textit{Le dossier médical} : démarrer la fonctionnalité. Le dossier médical contient une liste des documents associés au patient (ordonnances, factures, prescriptions, scans, images etc.)
+	
+	\item \textit{La gestion des ordonnances} : ajouter les cas métiers de la gestion des séances. La gestion de base des séances faisait partie du sprint 1. Dans ce sprint ce sont les cas particuliers (i.e. les cas de figure issus du terrain) qui sont traités. Ces cas de figure couvrent par exemple l'annulation ou le décalage d'une séance par le praticien ou le client.
+
 	\item \textit{L'intégration continue et le TDD} : Ce n'est pas une fonctionnalité à proprement parlé, mais plus une amélioration des méthodes de production. L'intégration continue doit permettre une industrialisation de la production (tests lancés automatiquement lors du build et obtention de rapports portants sur la qualité du code). La méthodologie de TDD\footnote{TDD: Test-Driven Development (Développement dirigé par les tests).} porte sur la façon de développer et tester le logiciel. Elle doit permettre d'augmenter la qualité du code développé.
 \end{itemize}
 

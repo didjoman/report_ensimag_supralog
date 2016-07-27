@@ -1,4 +1,4 @@
-\BOOKMARK [1][-]{section*.1}{Glossary}{}% 1
+\BOOKMARK [1][-]{section*.1}{Glossaire}{}% 1
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 2
 \BOOKMARK [1][-]{section.2}{Contexte du stage}{}% 3
 \BOOKMARK [2][-]{subsection.2.1}{Le groupe IDLOG}{section.2}% 4
@@ -8,35 +8,30 @@
 \BOOKMARK [2][-]{subsection.2.5}{Mission}{section.2}% 8
 \BOOKMARK [1][-]{section.3}{Probl\351matique}{}% 9
 \BOOKMARK [2][-]{subsection.3.1}{Contexte du projet}{section.3}% 10
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Sprint 2}{subsection.3.1}% 11
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Sprint 3}{subsection.3.1}% 12
-\BOOKMARK [3][-]{subsubsection.3.1.3}{Sprint 4}{subsection.3.1}% 13
-\BOOKMARK [2][-]{subsection.3.2}{Travail \340 r\351aliser}{section.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Les fonctionnalit\351s du dossier m\351dical dans Topaze Maestro}{subsection.3.2}% 15
-\BOOKMARK [2][-]{subsection.3.3}{Les objectifs pr\351cis attendus}{section.3}% 16
-\BOOKMARK [2][-]{subsection.3.4}{Les enjeux pour l'entreprise}{section.3}% 17
-\BOOKMARK [1][-]{section.4}{Solutions techniques}{}% 18
-\BOOKMARK [2][-]{subsection.4.1}{Synth\350se de l'existant}{section.4}% 19
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Architecture logicielle}{subsection.4.1}% 20
-\BOOKMARK [3][-]{subsubsection.4.1.2}{Technologies utilis\351es}{subsection.4.1}% 21
-\BOOKMARK [2][-]{subsection.4.2}{Solution envisag\351e}{section.4}% 22
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Conception et impl\351mentation du dossier m\351dical}{subsection.4.2}% 23
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Choix et int\351gration de l'\351diteur de texte}{subsection.4.2}% 24
-\BOOKMARK [3][-]{subsubsection.4.2.3}{La biblioth\350que d'images}{subsection.4.2}% 25
-\BOOKMARK [3][-]{subsubsection.4.2.4}{Les "placeholders"}{subsection.4.2}% 26
-\BOOKMARK [3][-]{subsubsection.4.2.5}{Les mod\350les de texte}{subsection.4.2}% 27
-\BOOKMARK [3][-]{subsubsection.4.2.6}{Introduction du concept de poste utilisateur dans le driver Pyvital}{subsection.4.2}% 28
-\BOOKMARK [3][-]{subsubsection.4.2.7}{Les scans d'ordonnances}{subsection.4.2}% 29
-\BOOKMARK [3][-]{subsubsection.4.2.8}{Installateur Windows pour le driver}{subsection.4.2}% 30
-\BOOKMARK [2][-]{subsection.4.3}{Protocole d'\351valuation}{section.4}% 31
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Evaluation de la qualit\351 du code}{subsection.4.3}% 32
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Evaluation fonctionnelle du logiciel}{subsection.4.3}% 33
-\BOOKMARK [1][-]{section.5}{Gestion de projet}{}% 34
-\BOOKMARK [2][-]{subsection.5.1}{M\351thode de travail employ\351e}{section.5}% 35
-\BOOKMARK [2][-]{subsection.5.2}{Outils d'assistance au d\351veloppement utilis\351s.}{section.5}% 36
-\BOOKMARK [2][-]{subsection.5.3}{Planning pr\351visionnel et r\351alis\351}{section.5}% 37
-\BOOKMARK [2][-]{subsection.5.4}{\311valuation du co\373t du projet r\351alis\351}{section.5}% 38
-\BOOKMARK [2][-]{subsection.5.5}{Journ\351e type et \351v\350nements.}{section.5}% 39
-\BOOKMARK [2][-]{subsection.5.6}{Difficult\351s rencontr\351es}{section.5}% 40
-\BOOKMARK [1][-]{subsection.5.6}{References}{}% 41
-\BOOKMARK [1][-]{section*.2}{Annexes}{}% 42
+\BOOKMARK [2][-]{subsection.3.2}{Objectif de l'\351tude}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Les fonctionnalit\351s du dossier m\351dical dans Topaze Maestro}{subsection.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.3}{Travail attendu}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{Les enjeux pour l'entreprise}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{Solutions techniques}{}% 15
+\BOOKMARK [2][-]{subsection.4.1}{Synth\350se de l'existant}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Architecture logicielle}{subsection.4.1}% 17
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Technologies utilis\351es}{subsection.4.1}% 18
+\BOOKMARK [2][-]{subsection.4.2}{Solution envisag\351e}{section.4}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Conception et impl\351mentation du dossier m\351dical}{subsection.4.2}% 20
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Choix et int\351gration de l'\351diteur de texte}{subsection.4.2}% 21
+\BOOKMARK [3][-]{subsubsection.4.2.3}{La biblioth\350que d'images}{subsection.4.2}% 22
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Les "placeholders"}{subsection.4.2}% 23
+\BOOKMARK [3][-]{subsubsection.4.2.5}{Les mod\350les de texte}{subsection.4.2}% 24
+\BOOKMARK [3][-]{subsubsection.4.2.6}{Introduction du concept de poste utilisateur dans le driver Pyvital}{subsection.4.2}% 25
+\BOOKMARK [3][-]{subsubsection.4.2.7}{Les scans d'ordonnances}{subsection.4.2}% 26
+\BOOKMARK [3][-]{subsubsection.4.2.8}{Installateur Windows pour le driver}{subsection.4.2}% 27
+\BOOKMARK [2][-]{subsection.4.3}{Protocole d'\351valuation}{section.4}% 28
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Evaluation de la qualit\351 du code}{subsection.4.3}% 29
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Evaluation fonctionnelle du logiciel}{subsection.4.3}% 30
+\BOOKMARK [1][-]{section.5}{Gestion de projet}{}% 31
+\BOOKMARK [2][-]{subsection.5.1}{M\351thode de travail employ\351e}{section.5}% 32
+\BOOKMARK [2][-]{subsection.5.2}{Outils d'assistance au d\351veloppement utilis\351s.}{section.5}% 33
+\BOOKMARK [2][-]{subsection.5.3}{Planning pr\351visionnel et r\351alis\351}{section.5}% 34
+\BOOKMARK [2][-]{subsection.5.4}{\311valuation du co\373t du projet r\351alis\351}{section.5}% 35
+\BOOKMARK [1][-]{subsection.5.4}{References}{}% 36
+\BOOKMARK [1][-]{section*.2}{Annexes}{}% 37
