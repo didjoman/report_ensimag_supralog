@@ -1,12 +1,46 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: report.aux
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
-Too many commas in name 1 of "Steve Ebersole, Vlad Mihalcea, Andrea Boriero, Brett Meyer, Radim Vansa" for entry bib:hibernate
-while executing---line 1049 of file plain.bst
-Too many commas in name 1 of "Steve Ebersole, Vlad Mihalcea, Andrea Boriero, Brett Meyer, Radim Vansa" for entry bib:hibernate
-while executing---line 1049 of file plain.bst
-Too many commas in name 1 of "Steve Ebersole, Vlad Mihalcea, Andrea Boriero, Brett Meyer, Radim Vansa" for entry bib:hibernate
-while executing---line 1090 of file plain.bst
-Too many commas in name 1 of "Steve Ebersole, Vlad Mihalcea, Andrea Boriero, Brett Meyer, Radim Vansa" for entry bib:hibernate
-while executing---line 1090 of file plain.bst
-(There were 4 error messages)
+You've used 12 entries,
+            2118 wiz_defined-function locations,
+            560 strings with 5786 characters,
+and the built_in function-call counts, 3422 in all, are:
+= -- 325
+> -- 179
+< -- 2
++ -- 72
+- -- 60
+* -- 180
+:= -- 583
+add.period$ -- 46
+call.type$ -- 12
+change.case$ -- 65
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 105
+empty$ -- 283
+format.name$ -- 60
+if$ -- 728
+int.to.chr$ -- 0
+int.to.str$ -- 12
+missing$ -- 4
+newline$ -- 73
+num.names$ -- 24
+pop$ -- 114
+preamble$ -- 1
+purify$ -- 54
+quote$ -- 0
+skip$ -- 83
+stack$ -- 0
+substring$ -- 92
+swap$ -- 22
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 44
+warning$ -- 0
+while$ -- 27
+width$ -- 14
+write$ -- 144

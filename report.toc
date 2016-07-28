@@ -34,21 +34,21 @@
 \contentsline {subsubsection}{\numberline {4.2.7}Les scans d'ordonnances}{30}{subsubsection.4.2.7}
 \contentsline {subsubsection}{\numberline {4.2.8}Installateur Windows pour le driver}{33}{subsubsection.4.2.8}
 \contentsline {subsection}{\numberline {4.3}Protocole d'\IeC {\'e}valuation}{35}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Evaluation de la qualit\IeC {\'e} du code}{35}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.1}\IeC {\'E}valuation de la qualit\IeC {\'e} du code}{35}{subsubsection.4.3.1}
 \contentsline {paragraph}{Revues de code\\}{35}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Evaluation fonctionnelle du logiciel}{36}{subsubsection.4.3.2}
-\contentsline {section}{\numberline {5}Gestion de projet}{37}{section.5}
-\contentsline {subsection}{\numberline {5.1}M\IeC {\'e}thode de travail employ\IeC {\'e}e}{37}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Outils d'assistance au d\IeC {\'e}veloppement utilis\IeC {\'e}s.}{38}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Planning pr\IeC {\'e}visionnel et r\IeC {\'e}alis\IeC {\'e}}{39}{subsection.5.3}
-\contentsline {subparagraph}{Objectifs globaux}{39}{subsection.5.3}
-\contentsline {subparagraph}{Objectifs personnels}{39}{subsection.5.3}
-\contentsline {subparagraph}{Retour sur le sprint :}{40}{figure.18}
-\contentsline {subparagraph}{Objectifs globaux}{41}{figure.18}
-\contentsline {subparagraph}{Objectifs personnels :}{41}{figure.18}
-\contentsline {subparagraph}{Retour sur le sprint :}{42}{figure.19}
-\contentsline {subparagraph}{Objectifs globaux}{43}{figure.19}
-\contentsline {subparagraph}{Objectifs personnels}{43}{figure.19}
-\contentsline {subsection}{\numberline {5.4}\IeC {\'E}valuation du co\IeC {\^u}t du projet r\IeC {\'e}alis\IeC {\'e}\\}{44}{subsection.5.4}
-\contentsline {section}{References}{46}{subsection.5.4}
-\contentsline {section}{Annexes}{47}{section*.2}
+\contentsline {subsubsection}{\numberline {4.3.2}\IeC {\'E}valuation fonctionnelle du logiciel}{35}{subsubsection.4.3.2}
+\contentsline {section}{\numberline {5}Gestion de projet}{36}{section.5}
+\contentsline {subsection}{\numberline {5.1}M\IeC {\'e}thode de travail employ\IeC {\'e}e}{36}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Outils d'assistance au d\IeC {\'e}veloppement utilis\IeC {\'e}s.}{37}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Planning pr\IeC {\'e}visionnel et r\IeC {\'e}alis\IeC {\'e}}{38}{subsection.5.3}
+\contentsline {subparagraph}{Objectifs globaux}{38}{subsection.5.3}
+\contentsline {subparagraph}{Objectifs personnels}{38}{subsection.5.3}
+\contentsline {subparagraph}{Retour sur le sprint :}{39}{figure.18}
+\contentsline {subparagraph}{Objectifs globaux}{40}{figure.18}
+\contentsline {subparagraph}{Objectifs personnels :}{40}{figure.18}
+\contentsline {subparagraph}{Retour sur le sprint :}{41}{figure.19}
+\contentsline {subparagraph}{Objectifs globaux}{42}{figure.19}
+\contentsline {subparagraph}{Objectifs personnels}{42}{figure.19}
+\contentsline {subsection}{\numberline {5.4}\IeC {\'E}valuation du co\IeC {\^u}t du projet r\IeC {\'e}alis\IeC {\'e}\\}{43}{subsection.5.4}
+\contentsline {section}{References}{45}{subsection.5.4}
+\contentsline {section}{Annexes}{46}{section*.2}

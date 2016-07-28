@@ -10,19 +10,19 @@ Les aspects concernant la méthode de travail sont abordés plus en détail dans
 A mon arrivée sur le projet, deux sprints avaient déjà été réalisés : le sprint 0 qui a servi à la mise en place du projet et le sprint 1.\\
 
 Durant le sprint 0, l'architecture du projet a été mise en place, avec notamment les différents serveurs \textit{J2EE/Spring}, la base de données \textit{Postgre Sql}, l'\gls{ORM} Hibernate, la partie webapp avec \textit{JSF} et \textit{primefaces}.
-Cette partie est abordée plus en détails, dans la section \ref{sec:architecture}.\\
+Cette partie est abordée plus en détail, dans la section \ref{sec:architecture}.\\
 
 Le sprint 1, qui a eu lieu avant mon arrivée, avait pour but la création des fonctionnalités de base permettant la gestion d'un cabinet.\\
-La première fonctionnalité développée durant ce sprint permet la création d'un cabinet médical avec l'ajout de praticiens (kinésithérapeute, infirmiers etc.) et l'ajout de patients au cabinet.
+La première fonctionnalité développée durant ce sprint permet la création d'un cabinet médical avec l'ajout de praticiens (kinésithérapeute, infirmiers, etc.) et l'ajout de patients au cabinet.
 La deuxième fonctionnalité porte sur la gestion des ordonnances pour les professions de type kinésithérapeute et infirmiers. Enfin, il y a la gestion des séances, avec la création d'un planning.
 
 \paragraph*{Vision du projet\\}
 
 Au commencement du stage, le projet dispose des cabinets, des praticiens, des patients et des ordonnances.\\
 
-Le but, ensuite, est de permettre à un praticien de gérer son activité au quotidien. Pour atteindre ce but, 4 grands axes de développement sont définis : la gestion des patients, la facturation (et télé-transmission), le dossier médical et la gestion des ordonnances.\\
+Le but, ensuite, est de permettre à un praticien de gérer son activité au quotidien. Pour atteindre ce but, 4 grands axes de développement sont définis : la gestion des patients, la facturation (et télétransmission), le dossier médical et la gestion des ordonnances.\\
 
-Il est prévu d'ajouter un dossier médical, pour que le praticien puisse gérer les documents relatifs à ses patients. Ensuite, les informations liées aux patients doivent être enrichies et doivent pouvoir être synchronisées avec la carte vitale. D'autre part, l'application doit permettre aux praticiens de facturer (génération de \glossary{FSE}) et de réaliser des demandes de remboursement (génération de \gls{DRE}). Enfin, concernant les ordonnances, il faut pouvoir réaliser des \gls{SCOR} et les cas spécifiques liés aux métiers des praticiens doivent être traités (émission de \gls{DAP} et création de bilans pour les kinésithérapeutes; ajout de \gls{DSI} pour les infirmiers etc.). \\
+Il est prévu d'ajouter un dossier médical, pour que le praticien puisse gérer les documents relatifs à ses patients. Ensuite, les informations liées aux patients doivent être enrichies et doivent pouvoir être synchronisées avec la carte vitale. D'autre part, l'application doit permettre aux praticiens de facturer (génération de \glossary{FSE}) et de réaliser des demandes de remboursement (génération de \gls{DRE}). Enfin, concernant les ordonnances, il faut pouvoir réaliser des \gls{SCOR} et les cas spécifiques liés aux métiers des praticiens doivent être traités (émission de \gls{DAP} et création de bilans pour les kinésithérapeutes; ajout de \gls{DSI} pour les infirmiers, etc.). \\
 
 A plus grande échéance, il faudra également gérer la transmission des données aux différents organismes.
 
@@ -34,7 +34,7 @@ Une capture d'écran de la fonctionnalité du dossier médical de Topaze Maestro
 
 
 \subsubsection{Les fonctionnalités du dossier médical dans Topaze Maestro}
-Le dossier médical est une fonctionnalité composite qui est constituée d'un élément principal (la liste des documents du patient), au quel se rattachent plusieurs autres fonctions.\\
+Le dossier médical est une fonctionnalité composite qui est constituée d'un élément principal (la liste des documents du patient), auquel se rattachent plusieurs autres fonctions.\\
 Ci-dessous, je détaille la liste des fonctionnalités présentes dans Topaze Maestro et qu'il faudra introduire dans Topaze Webapp.
 
 \paragraph*{La liste des documents associés au patient\\}
@@ -60,7 +60,7 @@ L'utilisateur peut insérer dans le document texte une image provenant de son or
 La bibliothèque d'image présente plusieurs onglets thématiques et chaque onglet contient une liste d'images prédéfinies.
 
 \subparagraph*{Les "placeholders"}
-Les emplacements paramétrés (placeholders) sont des balises génériques qui peuvent être introduites dans un document texte et qui seront remplacées à la sauvegarde par leur valeur réelle (valeur en base de donnée).\\
+Les emplacements paramétrés (placeholders) sont des balises génériques qui peuvent être introduites dans un document texte et qui seront remplacées à la sauvegarde par leur valeur réelle (valeur en base de données).\\
 
 Le mécanisme fonctionne en plusieurs temps : \\
 D'abord, l'utilisateur sélectionne dans une arborescence l'information dont il a besoin (par exemple: la date d'une ordonnance) et le logiciel insère dans le texte la balise correspondante (dans notre cas : \textit{$[$ordonnance.numero$\_$securité$\_$sociale$]$}). \\
@@ -68,7 +68,7 @@ Ensuite, l'utilisateur remplit un contexte. Dans notre cas, le praticien aurait 
 Enfin, lorsque l'utilisateur clique sur "pré-visualiser" ou "sauvegarder", l'emplacement est remplacé par sa valeur réelle.
 
 \subparagraph*{Les modèles de texte}
-Les modèles de texte sont des document RTF contenant des placeholders, qui ont vocation à être réutilisés.\\
+Les modèles de texte sont des documents RTF contenant des placeholders, qui ont vocation à être réutilisés.\\
 Ces modèles sont accessibles via une bibliothèque similaire à celle des images. 
 Lorsque l'utilisateur ouvre un modèle, il peut le modifier et l'enregistrer comme un document normal. 
 
@@ -76,9 +76,9 @@ Lorsque l'utilisateur ouvre un modèle, il peut le modifier et l'enregistrer com
 L'utilisateur a la possibilité de numériser un document directement en cliquant sur un bouton du menu latéral. Il peut également insérer un document déjà scanné, via le même bouton.
 
 \paragraph*{L'ajout d'objets OLE\\}
-Le protocole OLE (Object Linking and Embedding) est un protocole mis au point par microsoft permettant la liaison et l'incorporation d'objets. Cela permet à différents logiciels de se transmettre des objets. \\
-Dans topaze, l'utilisateur peut donc insérer tout objet/document qui implémente l'interface \textit{IOleObject}. Concrètement, il peut donc insérer un document word, une image paint, une vidéo etc. et lorsqu'il cliquera sur "voir", le logiciel approprié de windows s'ouvrira pour lui permettre de visualiser et/ou éditer le document.
-Cette fonctionnalité est trés puissante car elle permet le support d'un trés grand nombre de documents. 
+Le protocole OLE (Object Linking and Embedding) est un protocole mis au point par Microsoft permettant la liaison et l'incorporation d'objets. Cela permet à différents logiciels de se transmettre des objets. \\
+Dans topaze, l'utilisateur peut donc insérer tout objet/document qui implémente l'interface \textit{IOleObject}. Concrètement, il peut donc insérer un document word, une image Paint, une vidéo, etc. et lorsqu'il cliquera sur "voir", le logiciel approprié de Windows s'ouvrira pour lui permettre de visualiser et/ou éditer le document.
+Cette fonctionnalité est très puissante, car elle permet le support d'un très grand nombre de documents. 
 
 \paragraph*{L'enregistrement de sons\\}
 L'utilisateur peut enregistrer un son en cliquant sur un bouton du menu. Cela lui ouvre un logiciel d'enregistrement de sons de Windows.
@@ -98,4 +98,4 @@ Pour chaque fonctionnalité existant sur Topaze Maestro, les tâches suivantes s
 \end{itemize}
 
 \subsection{Les enjeux pour l'entreprise}
-Le dossier médical fait partie de la vision du projet. La fonctionnalité est importante car elle permet aux praticiens d'assurer le suivi des patients.
+Le dossier médical fait partie de la vision du projet. La fonctionnalité est importante, car elle permet aux praticiens d'assurer le suivi des patients.

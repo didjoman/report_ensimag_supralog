@@ -15,6 +15,14 @@ Mike Cohn.
   2016.
 \newblock Online; Accessed: 25/07/2016.
 
+\bibitem{bib:hibernate}
+Steve Ebersole, Vlad Mihalcea, Andrea Boriero, Brett Meyer, and Radim Vansa.
+\newblock Hibernate orm 5.2 user guide.
+\newblock
+  \url{http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html},
+  06 2016.
+\newblock Online; Accessed: 25/07/2016.
+
 \bibitem{bib:compositeComponent}
 David Geary.
 \newblock Jsf 2 fu: Best practices for composite components.
@@ -62,14 +70,6 @@ raphael0202, marie ototoi, FBerthelot, Buridan, and theGlenn.
 \newblock Web audio api.
 \newblock \url{https://developer.mozilla.org/fr/docs/Web/API/Web_Audio_API},
   2016.
-\newblock Online; Accessed: 25/07/2016.
-
-\bibitem{bib:hibernate}
-Andrea Boriero~Brett Meyer Radim~Vansa Steve~Ebersole, Vlad~Mihalcea.
-\newblock Hibernate orm 5.2 user guide.
-\newblock
-  \url{http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html},
-  06 2016.
 \newblock Online; Accessed: 25/07/2016.
 
 \bibitem{bib:jsf}

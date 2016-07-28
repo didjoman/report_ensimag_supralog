@@ -8,11 +8,11 @@
 \subsection{Méthode de travail employée}
 La méthode de travail utilisée est proche de la méthode Scrum.
 \paragraph*{Les sprints\\}
-Le projet est découpé en "Sprints". Un sprint est une période de temps donnée, durant laquelle un certain nombre de fonctionnalités doivent être implémentées par les développeurs. A la fin de la période, le travail réalisé est présenté au client.\\
+Le projet est découpé en "Sprints". Un sprint est une période de temps donnée, durant laquelle un certain nombre de fonctionnalités doivent être implémentées par les développeurs. À la fin de la période, le travail réalisé est présenté au client.\\
 
 La méthode Scrum recommande des sprints d'une durée d'environ deux semaines. Cependant, dans le cadre de notre projet, les sprint ont plutôt une durée comprise entre un et deux mois. Cela se justifie notamment par le fait que certaines fonctionnalités peuvent avoir un temps de développement long.\\
 Le fait que la durée soit plus longue que celle recommandée présente des intérêts et des désavantages. 
-Un sprint plus long permet de solliciter le client moins souvent, de limiter le temps alloué à la gestion du sprint lui même, de limiter le nombre de rendus.
+Un sprint plus long permet de solliciter le client moins souvent, de limiter le temps alloué à la gestion du sprint lui-même, de limiter le nombre de rendus.
 Le point négatif d'une durée allongée est que cela limite le nombre de retours clients et augmente ainsi le risque d'une inadéquation entre le travail réalisé et l'attendu.
 
 \paragraph*{Les stand-up meetings\\}
@@ -30,9 +30,9 @@ Lorsqu'un problème se pose, il est généralement discuté directement entre le
 \paragraph*{La planification des sprints\\}
 Dans la méthode Scrum, la planification a lieu en équipe\cite{bib:springPlanning}, avec le "\textit{product owner}"\footnote{product owner (propriétaire du produit): Il s'agit de la personne qui fait le lien entre la maitrise d'ouvrage et la maitrise d'oeuvre.}. \\
 Durant cette réunion, le product owner doit apporter le "\textit{product backlog}"\footnote{product backlog (carnet de produit): il contient la liste ordonnée des besoins et fonctionnalités à implémenter dans la suite du projet.} et décider avec l'équipe quels seront les objectifs du sprint.\\
-Durant la réunion, certaines "\textit{user-stories}" du product backlog sont choisies et découpées en tâches détaillées. A l'issue de la réunion, l'équipe repars avec le "\textit{sprint backlog}". Le \textit{sprint backlog} contient la liste des \textit{user-stories} que l'équipe s'est engagé à livrer et la liste des tâches à réaliser pour y parvenir.\\
+Durant la réunion, certaines "\textit{user-stories}" du product backlog sont choisies et découpées en tâches détaillées. À l'issue de la réunion, l'équipe repart avec le "\textit{sprint backlog}". Le \textit{sprint backlog} contient la liste des \textit{user-stories} que l'équipe s'est engagée à livrer et la liste des tâches à réaliser pour y parvenir.\\
 
-Du fait de l'activité d'édition logiciel, sur le projet, la planification du sprint est discutée entre le directeur de l'entreprise et le chef de projet. Par la suite, le chef de projet établis le \textit{sprint backlog}, et le transmet à l'équipe (via \textit{Jira}).
+Du fait de l'activité d'édition logicielle, sur le projet, la planification du sprint est discutée entre le directeur de l'entreprise et le chef de projet. Par la suite, le chef de projet établit le \textit{sprint backlog}, et le transmet à l'équipe (via \textit{Jira}).
 
 \paragraph*{La réunion de présentation du sprint\\}
 Dans la méthode Scrum, il s'agit du \textit{Sprint Review Meeting}. Le but de la réunion est de présenter le travail réalisé pendant le sprint. 
@@ -61,15 +61,15 @@ Enfin, pour l'hébergement du code du projet, nous utilisons \textit{Bitbucket} 
 Le second sprint du projet a commencé en début mars, peu de temps après mon arrivée. Il a été dimensionné pour tenir sur 7 semaines.\\
 Les objectifs de ce sprint portent sur la création des fonctionnalités suivantes : 
 \begin{itemize}
-	\item \textit{La gestion des patients} : ajouter les \gls{FSE} (Feuilles de Soins Électroniques) : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale REdu patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
+	\item \textit{La gestion des patients} : ajouter les \gls{FSE} (Feuilles de Soins Électroniques) : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale du patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
 	
-	\item \textit{Les factures et la télé-transmission} : mettre en place le contexte de facturation. Le contexte comprend la gestion des tarifications, des types de couverture et des types de prise en charge. Cette fonctionnalité nécessite la lecture des cartes SESAM Vitale.
+	\item \textit{Les factures et la télétransmission} : mettre en place le contexte de facturation. Le contexte comprend la gestion des tarifications, des types de couvertures et des types de prise en charge. Cette fonctionnalité nécessite la lecture des cartes SESAM Vitale.
 
-	\item \textit{Le dossier médical} : démarrer la fonctionnalité. Le dossier médical contient une liste des documents associés au patient (ordonnances, factures, prescriptions, scans, images etc.)
+	\item \textit{Le dossier médical} : démarrer la fonctionnalité. Le dossier médical contient une liste des documents associés au patient (ordonnances, factures, prescriptions, scans, images, etc.)
 	
 	\item \textit{La gestion des ordonnances} : ajouter les cas métiers de la gestion des séances. La gestion de base des séances faisait partie du sprint 1. Dans ce sprint ce sont les cas particuliers (i.e. les cas de figure issus du terrain) qui sont traités. Ces cas de figure couvrent par exemple l'annulation ou le décalage d'une séance par le praticien ou le client.
 
-	\item \textit{L'intégration continue et le TDD} : Ce n'est pas une fonctionnalité à proprement parlé, mais plus une amélioration des méthodes de production. L'intégration continue doit permettre une industrialisation de la production (tests lancés automatiquement lors du build et obtention de rapports portants sur la qualité du code). La méthodologie de TDD\footnote{TDD: Test-Driven Development (Développement dirigé par les tests).} porte sur la façon de développer et tester le logiciel. Elle doit permettre d'augmenter la qualité du code développé.
+	\item \textit{L'intégration continue et le TDD} : Ce n'est pas une fonctionnalité à proprement parler, mais plus une amélioration des méthodes de production. L'intégration continue doit permettre une industrialisation de la production (tests lancés automatiquement lors du build et obtention de rapports portants sur la qualité du code). La méthodologie de TDD\footnote{TDD: Test-Driven Development (Développement dirigé par les tests).} porte sur la façon de développer et tester le logiciel. Elle doit permettre d'augmenter la qualité du code développé.
 \end{itemize}
 
 \subparagraph{Objectifs personnels}
@@ -114,7 +114,7 @@ Il était également prévu que je revoie l'authentification à l'API Sésame, p
 \end{figure}
 
 \subparagraph{Retour sur le sprint :}
-Durant ce sprint, la fonctionnalité principale était l'ajout des champs génériques. Cette tâche était intéressante techniquement car elle m'a fait découvrir l'introspection de java. Cette tâche a pris un certain temps car elle a demandé un effort de conception particulier lors de la création de l'arborescence de placeholders et les 3 phases de remplacements des champs génériques par leurs valeurs.  \\
+Durant ce sprint, la fonctionnalité principale était l'ajout des champs génériques. Cette tâche était intéressante techniquement, car elle m'a fait découvrir l'introspection de java. Cette tâche a pris un certain temps, car elle a demandé un effort de conception particulier lors de la création de l'arborescence de placeholders et les 3 phases de remplacements des champs génériques par leurs valeurs.  \\
 L'ajout des modèles de documents a été implémenté plus rapidement que prévu grâce aux composants réutilisables que j'ai créé en sprint 2.\\
 La tâche de 
 
@@ -126,14 +126,14 @@ Les objectifs du sprint 4 sont :
 \begin{itemize}
 \item \textit{La gestion des patients} : ajout  de la prise en compte des maternités et arrêts de travail dans la fiche patient.
 
-\item \textit{Les factures et la télé-transmission} : ajout de la recherche de conventions. \footnote{Les conventions: Les médecins signent des conventions avec des mutuelles ou des regroupements de mutuelles et peuvent ensuite émettre des demandes de remboursement électronique.} 
+\item \textit{Les factures et la télétransmission} : ajout de la recherche de conventions. \footnote{Les conventions: Les médecins signent des conventions avec des mutuelles ou des regroupements de mutuelles et peuvent ensuite émettre des demandes de remboursement électronique.} 
 %(praticien et une amc ou regroupement de mutuelles) recherche convention gestion unique ou séparée, transmission de DRE dans le cas des tiers payants)
 
 \item \textit{Le dossier médical} : Ajout de la fonctionnalité de numérisation et de la possibilité de traiter l'image obtenue (crop, rotation ...).
 
 \item \textit{La gestion des ordonnances} : Ajout de la \gls{DSI}.
 
-\item \textit{Autre} : Création d'un installateur windows pour le driver Pyvital. 
+\item \textit{Autre} : Création d'un installateur Windows pour le driver Pyvital. 
 \end{itemize} 
 
 \subparagraph{Objectifs personnels}
@@ -152,12 +152,12 @@ Voici le récapitulatif, par domaine, de l'état du projet et des fonctionnalit�
 	\item \textit{La gestion des patients} : le logiciel offre désormais la possibilité de créer des patients, de mettre à jour leurs informations avec la carte vitale et de générer des feuilles de soins électroniques.
 	Dans le futur, le logiciel devra être capable d'assurer le suivi des factures et des règlements.
 	
-	\item \textit{Les factures et la télé-transmission} : aujourd'hui, le logiciel est capable de créer des feuilles de soins électroniques et des demandes de soins électroniques. Par la suite, ces documents électroniques devront pouvoir être mis en lots et transmis aux organismes. Il faudra également traiter les \gls{ARL} (Accusé de Réception Logique) reçus après les transmissions.
+	\item \textit{Les factures et la télétransmission} : aujourd'hui, le logiciel est capable de créer des feuilles de soins électroniques et des demandes de soins électroniques. Par la suite, ces documents électroniques devront pouvoir être mis en lots et transmis aux organismes. Il faudra également traiter les \gls{ARL} (Accusé de Réception Logique) reçus après les transmissions.
 	%(praticien et une amc ou regroupement de mutuelles) recherche convention gestion unique ou séparée, transmission de DRE dans le cas des tiers payants)
 	
 	\item \textit{Le dossier médical} : le dossier médical permet à un praticien (kinésithérapeute ou infirmier) de gérer les documents liés à ses patients, de créer des documents textes et de scanner des documents. Par la suite, il faudra également gérer le dossier médical des sages-femmes qui présente des particularités propres au métier.
 	
-	\item \textit{La gestion des ordonnances} : il est aujourd'hui possible de créer des ordonnances (pour les kinésithérapeutes et infirmiers), de gérer des séances et de créer des \gls{DAP}. Par la suite, les kinés devra pouvoir effectuer un bilan des soins effectués et une sage-femme devra pouvoir faire un suivi de grossesse.
+	\item \textit{La gestion des ordonnances} : il est aujourd'hui possible de créer des ordonnances (pour les kinésithérapeutes et infirmiers), de gérer des séances et de créer des \gls{DAP}. Par la suite, les kinés devront pouvoir effectuer un bilan des soins effectués et une sage-femme devra pouvoir faire un suivi de grossesse.
 	
 	\item \textit{Les SCORs} : l'application devra pouvoir créer et émettre des \gls{SCOR} (SCans d'ORdonnances). Ce sont des ordonnances numérisées dont le formatage respecte une certaine norme.
 \end{itemize} 
