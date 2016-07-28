@@ -56,16 +56,16 @@ Le \textit{Skeleton Generator} est un projet open-source, développé par le che
 
 \paragraph*{L'application Sesame\\}
 
-La manipulation des Feuilles de Soins Electroniques (FSE) et la facturation nécessitent la lecture d'informations présentes sur la carte vitale du patient. D'autre part, les logiciels utilisant les FSE sont soumis à l’obtention d’un agrément délivré
+La manipulation des Feuilles de Soins Electroniques (\gls{FSE}) et la facturation nécessitent la lecture d'informations présentes sur la carte vitale du patient. D'autre part, les logiciels utilisant les \gls{FSE} sont soumis à l’obtention d’un agrément délivré
 par les représentants des organismes d’Assurance Maladie. Cet agrément est obtenu après de
 nombreux tests vérifiant que le logiciel en question respecte un cahier des charges très précis.\\
-La gestion de la facturation et des FSE étant nécessaire à l’application, mais pouvant
+La gestion de la facturation et des \gls{FSE} étant nécessaire à l’application, mais pouvant
 être externalisée, c’est une troisième application qui en a la responsabilité. \\
 Cette troisième application nommée \textit{Sesame} répond à trois problématiques : 
 \begin{sitemize}
 \item La communication avec le lecteur de cartes vitales.
 \item La facturation des actes réalisés par les praticiens, en fonction des informations du patient présentes sur la carte vitale.
-\item La communication avec Topaze et la restriction des accés à la carte vitale.
+\item La communication avec Topaze et la restriction des accès à la carte vitale.
 \end{sitemize}
 
 Afin de pouvoir communiquer avec la carte vitale un driver doit être installé sur la machine de l'utilisateur. Par la suite, le serveur Sesame communique avec le driver via des websockets afin d'avoir accès aux informations de la carte vitale.
@@ -114,9 +114,9 @@ Après discussion avec le chef de projet, il a été décidé que l'utilisation 
 Les choix techniques et l'intégration du composant seront décrits dans la section \ref{editeur_section}.
 
 \subparagraph*{Le cas des sons} est particulier. Pendant longtemps, cette fonctionnalité a été implémentée en web en utilisant du flash. Aujourd'hui, la balise audio d'HTML5 permet de lire des sons de façon native dans les navigateurs. Cette fonctionnalité d'HTML5 est supporté par quasiment tous les navigateurs, sauf IE8 \footnote{Support de la balise audio : http://caniuse.com/\#feat=audio}. \\
-En ce qui concerne l'enregistrement des sons (possible dans Topaze Maestro via un objet OLE), HTML5 offre l'API getUserMedia qui permet d'accéder au flux audio ou vidéo d'un périphérique externe. Cependant, le support de cette fonctionnalité n'est pas encore assuré par tous les navigateurs \footnote{Support de l'API getUserMedia : http://caniuse.com/\#feat=stream}. Afin de résoudre la question du support des navigateurs, des bibliothèques open-source telles que \textit{getUserMedia.js}\footnote{getUserMedia.js : https://github.com/addyosmani/getUserMedia.js} ont été développées. Ces bibliothèques utilisent la getUserMedia API si elle est disponible et utilisent Flash si ce n'est pas le cas.
+En ce qui concerne l'enregistrement des sons (possible dans Topaze Maestro via un objet OLE), HTML5 offre l'API \textit{Web Audio}\cite{bib:webaudio} qui permet d'accéder au flux audio ou vidéo d'un périphérique externe et l'API \textit{MediaRecorder}\cite{bib:mediarecorder} qui permet d'enregistrer des flux média. Cependant, le support de cette fonctionnalité n'est pas encore assuré par tous les navigateurs \footnote{Support de l'API mediaRecorder : http://caniuse.com//\#feat=mediarecorder}. 
 
-\paragraph{Elaboration d'une solution\\}
+\paragraph{Élaboration d'une solution\\}
 Afin d'élaborer une solution, j'ai commencé par réaliser un diagramme de classe d'analyse modélisant les différents objets qui interviennent dans le dossier médical:
 
 \begin{figure}[H]
@@ -199,9 +199,9 @@ Une capture d'écran de l'éditeur de texte de Topaze Web est disponible en anne
 Dans Topaze Maestro, la bibliothèque d'images contient uniquement des images prédéfinies. Dans la version web, il a été décidé qu'elle puisse également contenir des images importées par l'utilisateur.\\
 De manière à ce que la bibliothèque soit simple à gérer, nous avons décidé (le chef de projet et moi) de créer un gestionnaire de fichiers avec une arborescence de dossiers.
 
-\paragraph*{Elaboration du modèle de données\\}
+\paragraph*{Élaboration du modèle de données\\}
 Lors de la conception du modèle, la contrainte suivante devait être prise en compte : \\
-Lorsqu'un utilisateur supprime une image de sa bibliothèque, si celle-ci a été insérée dans un document, elle doit continuer d'y appraître. \\
+Lorsqu'un utilisateur supprime une image de sa bibliothèque, si celle-ci a été insérée dans un document, elle doit continuer d'y apparaître. \\
 Ainsi, il était nécessaire de séparer en base, l'apparition d'une image dans la bibliothèque de son stockage pour utilisation dans les documents texte. \\
 J'ai donc créé le modèle suivant : 
 
@@ -250,14 +250,15 @@ N'ayant que deux types d'objets, j'ai donc préféré briser l'héritage.
 %TODO  OK: schéma du nouveau modèle. => NON c'est hiddeux ...
 
 \paragraph*{Implémentation de la partie WebApp\\}
-La webapp effectue des traitements assez standards. Elle effectue des appels aux services REST pour obtenir les dossiers et leur contenu et expose un certain nombre de méthodes utilisables par les vues JSF grâce un controlleur.
+La webapp effectue des traitements assez standards. Elle effectue des appels aux services REST pour obtenir les dossiers et leur contenu et expose un certain nombre de méthodes utilisables par les vues JSF grâce un contrôleur.
 Le modèle utilisé par la webapp est rudimentaire car il ne fait qu'encapsuler les objets métiers obtenus de l'API REST et stocke en plus quelques variables d'états pour la vue.
 
 \paragraph*{Spécification de l'interface graphique\\}
-Avant d'implémenter la vue en JSF dans l'application, j'ai réalisé un prototype en HTML et javascript dans plunker.
+Avant d'implémenter la vue en JSF dans l'application, j'ai réalisé un prototype en HTML et javascript dans plunker (voir annexe \ref{fig:proto_filemanager}).
 Plunker est un éditeur en ligne pour le front-end. Il permet de faciliter la programmation fron-end en proposant un aperçu en temps réel, une inclusion de librairie simple, une gestion de version, un stockage privé du code et un partage simple et rapide du résultat avec un tiers.
 
 Une fois que le résultat était satisfaisant, il a suffit de convertir une partie du HTML en JSF pour l'intégrer au code.
+Une capture d'écran de la galerie d'image de l'éditeur est disponible en annexe \ref{fig:editeur_imports}.
 
 \paragraph*{Création d'un composant réutilisable\\}
 Le gestionnaire de fichier utilisé pour la bibliothèque d'image a vocation à pouvoir être réutilisé à d'autres fin.
@@ -275,32 +276,31 @@ Cette solution est beaucoup plus lourde que les autres en temps de développemen
 \end{itemize}
 
 Pour le gestionnaire de fichiers, mon choix s'est porté sur les tags, car la solution est performante et s'avère suffisante pour traiter le besoin.\\
-Le code remplit une fonctionnalité précise et homogène (notion de composant), donc une inclusion de code n'était pas suffisante. Le code n'aggrège pas d'autres composants, donc il n'y avait pas nécessité d'utiliser un \textit{composite component}. Enfin, l'usage d'un \textit{custom component} aurait été disproportionné car coûteux et inutile (absence de nécessité du rendering en Java).
+Le code remplit une fonctionnalité précise et homogène (notion de composant), donc une inclusion de code n'était pas suffisante. Le code n'agrège pas d'autres composants, donc il n'y avait pas nécessité d'utiliser un \textit{composite component}. Enfin, l'usage d'un \textit{custom component} aurait été disproportionné car coûteux et inutile (absence de nécessité du rendering en Java).
 
-\subsubsection{Les "placeholders"}
-Dans l'éditeur de texte de Topaze Maestro, une fonctionnalité permet d'utiliser des emplacements paramétrés (placeholders) qui sont remplacés à la sauvegarde par leur valeur réelle (en base de donnée). \\
-Cette fonctionnalité est trés puissante car elle permet à l'utilisateur d'inclure dans ses documents des sortes de pointeurs vers des données présentes en base. 
+\subsubsection{Les champs génériques (placeholders)}
+Dans l'éditeur de texte de Topaze Maestro, une fonctionnalité permet d'utiliser des champs génériques (placeholders) qui sont remplacés à la sauvegarde par leur valeur réelle (en base de donnée). Cette fonctionnalité est très puissante car elle permet à l'utilisateur d'inclure dans ses documents des sortes de pointeurs vers des données présentes en base. 
 
 \paragraph*{Faisabilité\\}
-La faisabilité de la foncionnalité reposait sur trois éléments : %TODO expliciter plus ?
+Pour rappel, l'insertion et le remplacement des champs génériques se déroule en plusieurs étapes. Dans un premier temps, l'utilisateur choisit dans une arborescence le champ qu'il souhaite utiliser et lorsqu'il clique sur un champ, celui-ci est inséré dans le texte.
+Une fois dans le texte, les champs génériques ne peuvent être modifiés (mais ils peuvent être supprimés).\\
+Ensuite, lorsque l'utilisateur demande à pré-visualiser ou à enregistrer le document, les champs génériques sont remplacés par leur valeur.\\
+Si le remplacement nécessite des informations particulières, une modale est ouverte pour demander des renseignements à l'utilisateur (voir annexe \ref{fig:editeur_context}).\\
+ 
+La faisabilité de la fonctionnalité repose donc la possibilité de réaliser les fonctionnalités suivantes : %TODO expliciter plus ?
 \begin{itemize}
-\item La possiblité d'insérer des balises html complexes dans ckeditor.
-\item La possibilité de créer un lien entre une balise du texte et une donnée en base.
-\item La possibilité de remplacer la balise par sa valeur.
+\item Obtenir une arborescence des champs génériques utilisables.
+\item Insérer des balises html complexes dans ckeditor (pour empêcher les modifications et stocker des méta-données nécessaire).
+\item Faire le lien entre le champ générique, le contexte remplit et l'information en base.
+\item Remplacer la balise par sa valeur et vis versa.
 \end{itemize}
 
 \paragraph*{La solution mise en place}
-\subparagraph*{L'insertion de placeholders dans l'éditeur}
-Le premier pas pour réaliser la fonctionnalité était d'ajouter un plugin à l'éditeur pour insérer les placeholders.\\
-Dans l'éditeur, les placeholders doivent avoir un formattage spécifique pour être reconnaissables, ne pas pouvoir être éditables et le html doit éventuellement pouvoir encapsuler des données (attributs \textit{data-*} de HTML).\\
 
-Le plugin a été réalisé de la même manière que pour la bibliothèque d'image : en ajoutant un fichier \textit{plugin.js} et en utilisant une modale bootstrap.\\
-En ce qui concerne les balises : le CSS permet de leur donner l'allure souhaitée, l'API de CKEditor permet d'insérer du HTML dans le texte à l'endroit du curseur et la liste blanche des éléments acceptés par l'éditeur est modifiable via un fichier de configuration.
+\subparagraph*{L'arborescence de champs génériques et la liaison de données}
 
-\subparagraph*{Le lien entre les données vues par l'utilisateur et les données en base}
-
-Lorsque l'utilisateur souhaite insérer un placeholder, il doit d'abord le sélectionner dans une arborescence. 
-Lors du click sur une feuille de l'arborescence, le placeholder est inséré.  \\
+Lorsque l'utilisateur souhaite insérer un placeholder, il doit d'abord le sélectionner dans une arborescence (voir annexe \ref{fig:editeur_arbo}). 
+Lors du clique sur une feuille de l'arborescence, le placeholder est inséré.  \\
 
 Lors de la manipulation, l'utilisateur voit donc deux types d'informations : 
 \begin{itemize}
@@ -311,13 +311,11 @@ Lors de la manipulation, l'utilisateur voit donc deux types d'informations :
 Pour pouvoir construire l'arborescence et effectuer le remplacement des placeholders par leur valeur, les informations visibles par l'utilisateur doivent être reliées à des objets métiers de l'API.
 Dans ce but, deux solutions étaient disponibles : 
 \begin{itemize}
-\item utiliser des tables en base de données.
-\item socker l'information dans les classes java. % annotations spring + introspection java
+\item Utiliser des tables en base de données.
+\item Stocker l'information dans les classes java. % annotations spring + introspection java
 \end{itemize}
 
-En JSF, on est déjà capable d'insérer dans les vues des informations provenant du modèle grâce aux EL \footnote{EL: Expression Language}. Par exemple, l'expression \textit{\#$\{$prescriptionView.date$\}$} sera remplacée par sa valeur par JSF, lors de la génération du HTML. Lors du remplacement d'un placeholder par sa valeur, on doit donc faire le lien entre cette notation pointée et le nom du placeholder.\\
-
-\textbf{La première approche} conciste à ré-utiliser la table directory \footnote{la table directory est celle introduite pour gérer l'arborescence du gestionnaire de fichier} pour les dossiers de l'arborescence et à ajouter une nouvelle table pour les feuilles. Cette deuxième table sert à faire le lien entre les noms des placeholders, la notation pointée de java et le libellé à utiliser dans l'arborescence:\\
+\textbf{La première approche} consiste à ré-utiliser la table directory \footnote{la table directory est celle introduite pour gérer l'arborescence du gestionnaire de fichier} pour les dossiers de l'arborescence et à ajouter une nouvelle table pour les feuilles. Cette deuxième table sert à faire le lien entre les noms des placeholders, la notation pointée de java et le libellé à utiliser dans l'arborescence:\\
 
 \begin{figure}[H]
   \centering
@@ -337,13 +335,17 @@ Par exemple :
   \caption{\label{fig:annotations} La classe PatientAnnotationView a été annotée avec 2 annotations (RtfPlaceholderContainer et RtfPlaceholder) afin de pouvoir être ensuite introspectée et servir à créer l'arborescence de placeholders.}
 \end{figure}
 
-\textbf{Pour comparer les deux solutions :} en terme de co\^ut, la première approche bénéficie d'un accés direct à l'information, mais celle-ci requiert un accés à la base de données et la reconstruction de l'arbre. Dans la deuxième approche, l'accés à l'information n'est pas direct, il faut parcourir les classes (couteux) et également reconstruire l'arborescence, mais on évite un accés à la base de données.\\
+\textbf{Pour comparer les deux solutions :} en terme de co\^ut, la première approche bénéficie d'un accès direct à l'information, mais celle-ci requiert un accès à la base de données et la reconstruction de l'arbre. Dans la deuxième approche, l'accès à l'information n'est pas direct, il faut parcourir les classes (couteux) et également reconstruire l'arborescence, mais on évite un accès à la base de données.\\
 En ce qui concerne la maintenabilité, la deuxième solution est meilleure, surtout pour le lien entre le placeholder et la notation pointée.\\
 Finalement, c'est donc la deuxième solution qui a été retenue et que j'ai implémentée.
 
+\subparagraph*{L'insertion de placeholders dans l'éditeur}
+Pour insérer un champ générique dans le texte, on insère une balise HTML. Pour pouvoir le faire, il faut éditer la liste blanche des éléments acceptés par l'éditeur. Ensuite, les balises doivent être reconnaissables, donc un style particulier leur est attribué en CSS.\\
+Il faut également que les balises ne soient pas modifiables, pour ça, l'attribut HTML5 "contenteditable" est utilisé.\\
+Enfin, les placeholders stockent des méta-données  (attributs \textit{data-*} de HTML) qui seront utilisées lors du remplacement de la valeur du placeholder, par son nom.
 
 \subparagraph*{Le remplacement des placeholders par leur valeur}
-Le remplacement des placeholders par leur valeur a lieu lors de la sauvegarde du document, ou lorsque l'utilisateur demande une prévisualisation.\\
+Le remplacement des placeholders par leur valeur a lieu lors de la sauvegarde du document, ou lorsque l'utilisateur demande une pré-visualisation.\\
 
 Trouver des expressions tokenisées dans un texte et les remplacer par leur valeur est une opération courante et de nombreuses bibliothèques ou objets permettent de le faire (Velocity, Freemaker, Antlr StringTemplate, StrSubstitutor etc.).
 La bibliothèque Velocity étant déjà inclue dans le projet, c'est ce choix qui a été retenue.\\
@@ -376,7 +378,7 @@ Ensuite, on refait appel à Velocity pour remplacer les notations objet par leur
 
 \textbf{La phase 3} sert à remplacer les valeurs non trouvées par des points d'interrogation.\\
 En effet, lorsque \textit{Velocity} ne trouve pas une valeur, ou que la valeur est "null", il ne remplace pas la notation pointée.\\
-Dans un soucis de propreté et également pour signifier à l'utilisateur que le remplacement n'a pas fonctionné, on insert une série de points d'interrogation.
+Dans un soucis de propreté et également pour signifier à l'utilisateur que le remplacement n'a pas fonctionné, on insère une série de points d'interrogation.
 
 %\begin{figure}[H]
 %  \color{darkgray} 
@@ -390,9 +392,11 @@ Dans un soucis de propreté et également pour signifier à l'utilisateur que le
 	\centering
 $\$PATIENT\_NOM$ $~~$ =1=> $\$patient.lastName$ =2=> $DUPONT$ $~$ =3=> $DUPONT$ $~$\\ $~$\\
   $\$PATIENT\_ADRESSE2$  =1=> $\$patient.address2$ =2=> $\$patient.address2~$ =3=> $???$ 	
-	
 	\caption{\color{black} \label{fig:annotations} Cette figure illustre la succession des 3 phases lors du remplacement d'un placeholder par sa valeur. Durant le processus, le placeholder est remplacé par la notation pointée, puis par sa valeur. Le deuxième exemple illustre le cas où aucune valeur n'a été trouvée en étape 2.}
 \end{figure}
+
+\subparagraph*{Le remplacement de la valeur du placeholder par son nom}
+Pour effectuer ce remplacement, on stocke le nom du placeholder dans un attribut "data-" dans le html. Ainsi, lorsqu'il faut remplacer la valeur du champ par son nom, l'opération est réalisée en javascript et ne nécessite aucun appel au serveur.
 
 %TODO schéma récapitulatif : automate ?
 
@@ -404,12 +408,13 @@ $\$PATIENT\_NOM$ $~~$ =1=> $\$patient.lastName$ =2=> $DUPONT$ $~$ =3=> $DUPONT$ 
 \subsubsection{Les modèles de texte}
 La fonctionnalité des modèles de texte consiste à pouvoir sauvegarder dans une hiérarchie de dossiers, des documents RTF pouvant contenir des emplacements paramétrés.\\
 Cette fonctionnalité se base sur la réutilisation de plusieurs autres :
-\begin{itemize}
+\begin{sitemize}
 \item Le gestionnaire de fichiers et les hiérarchies de dossiers/fichiers.
 \item Les documents texte.
 \item Les placeholders.
-\end{itemize}
+\end{sitemize}
 
+Une capture d'écran de l'écran de sauvegarde d'un document texte en modèle est visible en annexe \ref{fig:editeur_template}.
 %\subsubsection{Documents audio}
 %\paragraph*{Web RTC}
 %\paragraph*{Choix librairie front-end}
@@ -419,14 +424,14 @@ Cette fonctionnalité se base sur la réutilisation de plusieurs autres :
 		
 \subsubsection{Introduction du concept de poste utilisateur dans le driver Pyvital}
 \paragraph*{Motivations\\}
-Au départ, le driver était uniquement conçu pour interragir avec le lecteur Sésam-Vitale.\\ Il avait alors été décidé que les websockets utilisées entre \textit{Sésame} et Pyvital aient pour identifiant le numéro de CPS\footnote{CPS: Carte de Professionnel de Santé} et la clé de licence.\\
+Au départ, le driver était uniquement conçu pour interragir avec le lecteur Sésam-Vitale.\\ Il avait alors été décidé que les websockets utilisées entre \textit{Sésame} et Pyvital aient pour identifiant le numéro de \gls{CPS} et la clé de licence.\\
 %Néanmoins, il arrive que le logiciel soit utilisé par des auxiliaires médicales qui doivent effectuer des opérations pour plusieurs médecins. Dans ce cas de figure, il est peut judicieux de leur imposer de posséder les cartes de tous les praticiens. \\
 Cependant, il a ensuité été prévu que le driver soit étendu pour supporter les opérations liées au scanner. Hors, pour cette fonctionnalité, il n'est pas nécessaire de disposer d'une CPS.\\
 Pour ces raisons, nous avons décidé (avec mon chef de projet), de prendre pour nouvel identifiant de la websocket, le poste utilisateur (device) et la clé de licence. 
 
 \paragraph*{Impact de la modification\\}
 L'introduction du concept de poste utilisateur impacte la connexion de l'utilisateur à Topaze Web, et les communications entre Sesame et Pyvital.\\
-Chaque utilisateur de Topaze peut être membre de plusieurs cabinets. Pour chaque cabinet, l'utilisateur dispose d'une licence Sesame lui autorisant l'usage de 3 postes utilisateurs. Lorsqu'il change de cabinet, l'utilisateur doit également choisir le poste utilisateur avec lequel ils souhaite se connecter à Sesame.\\
+Chaque utilisateur de Topaze peut être membre de plusieurs cabinets. Pour chaque cabinet, l'utilisateur dispose d'une licence Sesame lui autorisant l'usage de 3 postes utilisateurs. Lorsqu'il change de cabinet, l'utilisateur doit également choisir le poste utilisateur avec lequel ils souhaite se connecter à Sesame (voir annexe \ref{fig:device}).\\
 
 Lors de l'ajout de la fonctionnalité, de nombreux services de Topaze et Sesame ont étés impactés, ainsi que le driver Pyvital.
 %TODO cf annexes.
@@ -447,7 +452,7 @@ Pour l'enregistrement des préférences, j'uilise un cookie qui stocke du json c
 
 \subsubsection{Les scans d'ordonnances}
 \paragraph*{Fonctionnalité de numérisation\\}
-Dans le dossier médical, l'utilisateur doit pouvoir ajouter des scans d'ordonnance (appelés SCOR\footnote{SCOR: SCannérisation des ORdonnances}).
+Dans le dossier médical, l'utilisateur doit pouvoir ajouter des documents numérisés.
 
 \subparagraph*{Faisabilité}
 Pour cette fonctionnalité, j'ai évalué qu'il était faisable de reproduire intégralement la fonctionnalité de Topaze Maestro.\\
@@ -480,7 +485,7 @@ Sur chaque serveur ou client, différents composants interviennent :
 
 \subparagraph*{Déroulement d'une demande de numérisation}
 Dans un premier temps, un utilisateur clique sur le bouton "numériser" de l'application web. À ce moment, une méthode est appeléée sur l'un des controlleurs de Topaze Webapp. Le controleur va ensuite contacter le serveur Topaze Rest qui sert ici de proxy avec le serveur Sesame. \\
-Le composant Topaze Rest met à disposition un controlleur qui relie une URL publique à un service. Topaze Rest-Client permet de contacter le controleur de topaze Rest via l'appel d'une méthode. Ce mécanisme permet ainsi à Topaze WebApp d'utiliser les services de Topaze Rest en toute transparence. \\
+Le composant Topaze Rest met à disposition un contrôleur qui relie une URL publique à un service. Topaze Rest-Client permet de contacter le contrôleur de topaze Rest via l'appel d'une méthode. Ce mécanisme permet ainsi à Topaze WebApp d'utiliser les services de Topaze Rest en toute transparence. \\
 Dans la suite du processus, le serveur Topaze Rest contacte Sesame Rest. \\
 Le serveur Sesame Rest est doté du même mécanisme que sur Topaze, mais il dispose en plus de deux autres composants lui permettant de contacter le driver Pyvital.\\
 Le composant Sesame-Repository contient un "driver distant" qui traite les actions spécifiques au scanner. Sesame WebSocket permet quant à lui de gérer la communication en websockets avec le driver Pyvital.\\
@@ -490,11 +495,11 @@ Mon travail lors de l'implémentation de la fonctionnalité a été créer les s
 
 \subparagraph*{Communication entre Sesame et Pyvital}
 Pour que Sesame puisse demander à Pyvital d'effectuer des actions, il nécessaire d'implémenter certaines interfaces. Il faut par exemple implémenter un MessagePreparator et un MessageHandler ainsi que les fabriques associées. Ces classes seront chargées de préparer le message transmis à Pyvital de traiter la réception des messages qui en proviennent. \\
-
 L'enchainement des actions est résumé sur le diagramme de séquence suivant :
 
 \begin{figure}[H]
   \centering
+  \vspace{-5pt}
   \includegraphics[width=17cm]{./img/diag_seq_sesame}
   \caption{\label{fig:diag_seq_sesame} Diagrame de séquence illustrant la communication entre Sesame et Pyvital.}
 \end{figure}
@@ -504,6 +509,7 @@ Sur Pyvital, j'ai utilisé TWAIN afin de réaliser la numérisation des document
  
 \begin{figure}[H]
   \centering
+  \vspace{-10pt}
   \includegraphics[width=17cm]{./img/numerisation}
   \caption{\label{fig:diag_seq_sesame} Diagrame d'activités UML représentant les différentes étapes effectuées par Pyvital, lors d'une demande de numérisation.}
 \end{figure}
@@ -523,15 +529,13 @@ Ayant travaillé sur le driver python et dans l'objectif d'une commercialisation
 Le rôle de l'installateur est double.\\ 
 La première fois qu'il est exécuté, son but est d'installer Pyvital et de créer un nouveau poste utilisateur (à la fois sur le driver et en base de donnée). \\
 Toutes les autres fois ou l'installateur est appelé, il ne sert qu'à lier de nouvelles clés de licence au poste utilisateur.\\
-
 Par exemple, si un utilisateur exerce dans deux cabinets, il doit lancer l'installateur une première fois pour installer Pyvital et lier son compte (sur le premier cabinet) au nouveau poste utilisateur.
-Si il souhaite également lier son compte sur le deuxième cabinet, il doit relancer l'installateur. La deuxième fois, l'installateur ne fera que lier la clé de licence (associée au couple Utilisateur-Cabinet) au poste existant.
-
+Si il souhaite également lier son compte sur le deuxième cabinet, il doit relancer l'installateur. La deuxième fois, l'installateur ne fera que lier la clé de licence (associée au couple Utilisateur-Cabinet) au poste existant.\\
 Cet enchaînement d'action est décrit dans le schéma ci-dessous : 
 \begin{figure}[H]
-  \vspace{-10pt}
+  \vspace{0pt}
   \centering
-  \includegraphics[width=17cm]{./img/installateur}
+  \includegraphics[width=16cm]{./img/installateur}
   \caption{\label{fig:installateur} Diagrame d'activités UML représentant les deux modes de l'installateur..}
 \end{figure}
 

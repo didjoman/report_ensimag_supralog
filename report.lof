@@ -1,27 +1,34 @@
 \select@language {english}
-\contentsline {figure}{\numberline {1}{\ignorespaces Supralog}}{8}{figure.1}
-\contentsline {figure}{\numberline {2}{\ignorespaces Sch\IeC {\'e}ma de l'architecture 3-tiers (cr\IeC {\'e}\IeC {\'e} par Tom Veniat, utilis\IeC {\'e} avec son accord)}}{14}{figure.2}
-\contentsline {figure}{\numberline {3}{\ignorespaces Sch\IeC {\'e}ma d'architecture global (cr\IeC {\'e}\IeC {\'e} par Tom Veniat, utilis\IeC {\'e} avec son accord)}}{16}{figure.3}
-\contentsline {figure}{\numberline {4}{\ignorespaces Diagramme de classe d'analyse du dossier m\IeC {\'e}dical.}}{18}{figure.4}
-\contentsline {figure}{\numberline {5}{\ignorespaces Mod\IeC {\`e}le UML conceptuel de la base de donn\IeC {\'e}e, au d\IeC {\'e}part.}}{19}{figure.5}
-\contentsline {figure}{\numberline {6}{\ignorespaces Mod\IeC {\`e}le UML illustrant les ajouts \IeC {\`a} la base de donn\IeC {\'e}es.}}{19}{figure.6}
-\contentsline {figure}{\numberline {7}{\ignorespaces Collections utilis\IeC {\'e}es par GridFS pour le stockage des fichiers.}}{20}{figure.7}
-\contentsline {figure}{\numberline {8}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{20}{figure.8}
-\contentsline {figure}{\numberline {9}{\ignorespaces Mod\IeC {\`e}le UML conceptuel du syst\IeC {\`e}me de gestion de fichiers.}}{22}{figure.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Mod\IeC {\`e}le UML de classes du syst\IeC {\`e}me de fichiers, suivant le patron de conception composite.}}{23}{figure.10}
-\contentsline {figure}{\numberline {11}{\ignorespaces Mod\IeC {\`e}le UML conceptuel de base de donn\IeC {\'e}es pour l'arborescence des placeholders.}}{26}{figure.11}
-\contentsline {figure}{\numberline {12}{\ignorespaces La classe PatientAnnotationView a \IeC {\'e}t\IeC {\'e} annot\IeC {\'e}e avec 2 annotations (RtfPlaceholderContainer et RtfPlaceholder) afin de pouvoir \IeC {\^e}tre ensuite introspect\IeC {\'e}e et servir \IeC {\`a} cr\IeC {\'e}er l'arborescence de placeholders.}}{27}{figure.12}
-\contentsline {figure}{\numberline {13}{\ignorespaces \color {black} Cette figure illustre la succession des 3 phases lors du remplacement d'un placeholder par sa valeur. Durant le processus, le placeholder est remplac\IeC {\'e} par la notation point\IeC {\'e}e, puis par sa valeur. Le deuxi\IeC {\`e}me exemple illustre le cas o\IeC {\`u} aucune valeur n'a \IeC {\'e}t\IeC {\'e} trouv\IeC {\'e}e en \IeC {\'e}tape 2.}}{28}{figure.13}
-\contentsline {figure}{\numberline {14}{\ignorespaces Diagrame UML de d\IeC {\'e}ploiement repr\IeC {\'e}sentant les diff\IeC {\'e}rents composants qui interviennent lors d'une requ\IeC {\^e}te au scanner.}}{30}{figure.14}
-\contentsline {figure}{\numberline {15}{\ignorespaces Diagrame de s\IeC {\'e}quence illustrant la communication entre Sesame et Pyvital.}}{31}{figure.15}
-\contentsline {figure}{\numberline {16}{\ignorespaces Diagrame d'activit\IeC {\'e}s UML repr\IeC {\'e}sentant les diff\IeC {\'e}rentes \IeC {\'e}tapes effectu\IeC {\'e}es par Pyvital, lors d'une demande de num\IeC {\'e}risation.}}{32}{figure.16}
-\contentsline {figure}{\numberline {17}{\ignorespaces Diagrame d'activit\IeC {\'e}s UML repr\IeC {\'e}sentant les deux modes de l'installateur..}}{32}{figure.17}
-\contentsline {figure}{\numberline {18}{\ignorespaces Gantt pr\IeC {\'e}visionnel et Gantt r\IeC {\'e}alis\IeC {\'e} du Sprint 2.}}{39}{figure.18}
-\contentsline {figure}{\numberline {19}{\ignorespaces Gantt pr\IeC {\'e}visionnel et Gantt r\IeC {\'e}alis\IeC {\'e} du Sprint 3.}}{41}{figure.19}
-\contentsline {figure}{\numberline {20}{\ignorespaces Gantt pr\IeC {\'e}visionnel et Gantt r\IeC {\'e}alis\IeC {\'e} du Sprint 4.}}{42}{figure.20}
-\contentsline {figure}{\numberline {21}{\ignorespaces Dossier m\IeC {\'e}dical tel qu'il est pr\IeC {\'e}sent dans Topaze Maestro.}}{46}{figure.21}
-\contentsline {figure}{\numberline {22}{\ignorespaces L'\IeC {\'e}diteur de texte pr\IeC {\'e}sent dans Topaze Maestro.}}{47}{figure.22}
-\contentsline {figure}{\numberline {23}{\ignorespaces Exemple de mod\IeC {\`e}le d\IeC {\'e}crit en XML \IeC {\`a} destination du g\IeC {\'e}n\IeC {\'e}rateur.}}{48}{figure.23}
-\contentsline {figure}{\numberline {24}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{49}{figure.24}
-\contentsline {figure}{\numberline {25}{\ignorespaces Le dossier m\IeC {\'e}dical impl\IeC {\'e}ment\IeC {\'e} dans Topaze Web.}}{50}{figure.25}
-\contentsline {figure}{\numberline {26}{\ignorespaces L'\IeC {\'e}diteur de texte (CKEditor) int\IeC {\'e}gr\IeC {\'e} dans Topaze Web .}}{51}{figure.26}
+\contentsline {figure}{\numberline {1}{\ignorespaces Supralog}}{9}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Sch\IeC {\'e}ma de l'architecture 3-tiers (cr\IeC {\'e}\IeC {\'e} par Tom Veniat, utilis\IeC {\'e} avec son accord)}}{15}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Sch\IeC {\'e}ma d'architecture global (cr\IeC {\'e}\IeC {\'e} par Tom Veniat, utilis\IeC {\'e} avec son accord)}}{17}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Diagramme de classe d'analyse du dossier m\IeC {\'e}dical.}}{19}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Mod\IeC {\`e}le UML conceptuel de la base de donn\IeC {\'e}e, au d\IeC {\'e}part.}}{20}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Mod\IeC {\`e}le UML illustrant les ajouts \IeC {\`a} la base de donn\IeC {\'e}es.}}{20}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Collections utilis\IeC {\'e}es par GridFS pour le stockage des fichiers.}}{21}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{21}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Mod\IeC {\`e}le UML conceptuel du syst\IeC {\`e}me de gestion de fichiers.}}{23}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Mod\IeC {\`e}le UML de classes du syst\IeC {\`e}me de fichiers, suivant le patron de conception composite.}}{24}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Mod\IeC {\`e}le UML conceptuel de base de donn\IeC {\'e}es pour l'arborescence des placeholders.}}{27}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces La classe PatientAnnotationView a \IeC {\'e}t\IeC {\'e} annot\IeC {\'e}e avec 2 annotations (RtfPlaceholderContainer et RtfPlaceholder) afin de pouvoir \IeC {\^e}tre ensuite introspect\IeC {\'e}e et servir \IeC {\`a} cr\IeC {\'e}er l'arborescence de placeholders.}}{28}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces \color {black} Cette figure illustre la succession des 3 phases lors du remplacement d'un placeholder par sa valeur. Durant le processus, le placeholder est remplac\IeC {\'e} par la notation point\IeC {\'e}e, puis par sa valeur. Le deuxi\IeC {\`e}me exemple illustre le cas o\IeC {\`u} aucune valeur n'a \IeC {\'e}t\IeC {\'e} trouv\IeC {\'e}e en \IeC {\'e}tape 2.}}{29}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Diagrame UML de d\IeC {\'e}ploiement repr\IeC {\'e}sentant les diff\IeC {\'e}rents composants qui interviennent lors d'une requ\IeC {\^e}te au scanner.}}{31}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Diagrame de s\IeC {\'e}quence illustrant la communication entre Sesame et Pyvital.}}{32}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Diagrame d'activit\IeC {\'e}s UML repr\IeC {\'e}sentant les diff\IeC {\'e}rentes \IeC {\'e}tapes effectu\IeC {\'e}es par Pyvital, lors d'une demande de num\IeC {\'e}risation.}}{33}{figure.16}
+\contentsline {figure}{\numberline {17}{\ignorespaces Diagrame d'activit\IeC {\'e}s UML repr\IeC {\'e}sentant les deux modes de l'installateur..}}{33}{figure.17}
+\contentsline {figure}{\numberline {18}{\ignorespaces Gantt pr\IeC {\'e}visionnel et Gantt r\IeC {\'e}alis\IeC {\'e} du Sprint 2.}}{40}{figure.18}
+\contentsline {figure}{\numberline {19}{\ignorespaces Gantt pr\IeC {\'e}visionnel et Gantt r\IeC {\'e}alis\IeC {\'e} du Sprint 3.}}{42}{figure.19}
+\contentsline {figure}{\numberline {20}{\ignorespaces Gantt pr\IeC {\'e}visionnel et Gantt r\IeC {\'e}alis\IeC {\'e} du Sprint 4.}}{43}{figure.20}
+\contentsline {figure}{\numberline {21}{\ignorespaces Dossier m\IeC {\'e}dical tel qu'il est pr\IeC {\'e}sent dans Topaze Maestro.}}{47}{figure.21}
+\contentsline {figure}{\numberline {22}{\ignorespaces L'\IeC {\'e}diteur de texte pr\IeC {\'e}sent dans Topaze Maestro.}}{48}{figure.22}
+\contentsline {figure}{\numberline {23}{\ignorespaces Exemple de mod\IeC {\`e}le d\IeC {\'e}crit en XML \IeC {\`a} destination du g\IeC {\'e}n\IeC {\'e}rateur.}}{49}{figure.23}
+\contentsline {figure}{\numberline {24}{\ignorespaces Diagramme de s\IeC {\'e}quence mod\IeC {\'e}lisant la requ\IeC {\^e}te du dossier m\IeC {\'e}dical.}}{50}{figure.24}
+\contentsline {figure}{\numberline {25}{\ignorespaces Le dossier m\IeC {\'e}dical impl\IeC {\'e}ment\IeC {\'e} dans Topaze Web.}}{51}{figure.25}
+\contentsline {figure}{\numberline {26}{\ignorespaces L'\IeC {\'e}diteur de texte (CKEditor) int\IeC {\'e}gr\IeC {\'e} dans Topaze Web.}}{52}{figure.26}
+\contentsline {figure}{\numberline {27}{\ignorespaces Prototypage de la galerie d'image, sur plunker.}}{53}{figure.27}
+\contentsline {figure}{\numberline {28}{\ignorespaces La galerie d'image ajout\IeC {\'e}e \IeC {\`a} CKEditor.}}{54}{figure.28}
+\contentsline {figure}{\numberline {29}{\ignorespaces Le plugin cr\IeC {\'e}\IeC {\'e} pour CKEditor pour permettre d'ins\IeC {\'e}rer un champ g\IeC {\'e}n\IeC {\'e}rique dans le texte.}}{55}{figure.29}
+\contentsline {figure}{\numberline {30}{\ignorespaces La modale permettant de renseigner le contexte n\IeC {\'e}cessaire pour remplir les champs g\IeC {\'e}n\IeC {\'e}riques du texte. Dans le cas pr\IeC {\'e}sent, l'utilisateur a utilis\IeC {\'e} des champs g\IeC {\'e}n\IeC {\'e}riques de l'ordonnance. Le programme doit conna\IeC {\^\i }tre l'ordonnance cibl\IeC {\'e}e par le document.}}{56}{figure.30}
+\contentsline {figure}{\numberline {31}{\ignorespaces La modale permettant \IeC {\`a} l'utilisateur de sauvegarder un document texte comme un mod\IeC {\`e}le.}}{57}{figure.31}
+\contentsline {figure}{\numberline {32}{\ignorespaces L'\IeC {\'e}cran de choix du poste utilisateur. L'\IeC {\'e}cran est affich\IeC {\'e} \IeC {\`a} la connexion (en l'absence de cookie), lors du changement de cabinet, ou lorsque l'utilisateur souhaite changer de poste utilisateur.}}{58}{figure.32}
+\contentsline {figure}{\numberline {33}{\ignorespaces L'outil de num\IeC {\'e}risation int\IeC {\'e}gr\IeC {\'e} dans Topaze Web.}}{59}{figure.33}

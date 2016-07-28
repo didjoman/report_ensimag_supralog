@@ -46,7 +46,7 @@ C'est également l'occasion pour le client de faire un retour sur le travail ré
 Pour réaliser la gestion du projet, nous utilisons l'outil \textit{Jira}.
 Jira permet de découper les fonctionnalités à réaliser en tâches et de les affecter ensuite aux membres du projet.\\
 Au fur et à mesure que le projet avance, chaque développeur journalise le nombre d'heures qu'il a travaillé sur chaque tâche et fait évoluer leur statut (tâche ouverte, en cours, en cours de revue, finie).\\
-L'utilité de Jira est donc double puisqu'il permet à la fois de planifier le projet, mais également de suivre son avancement. La maitrise d'oeuvre s'en sert donc pour s'organiser et la maitrise d'ouvrage l'utilise pour se tenir au courant de l'avancement des travaux.\\
+L'utilité de Jira est donc double puisqu'il permet à la fois de planifier le projet, mais également de suivre son avancement. La maitrise d'œuvre s'en sert donc pour s'organiser et la maitrise d'ouvrage l'utilise pour se tenir au courant de l'avancement des travaux.\\
 
 Le deuxième outil utilisé par l'équipe est \textit{Confluence}. Il permet de partager et gérer les documents propres au projet. De plus, Il offre une gestion de version et l'aperçu instantané des documents. On l'utilise pour stocker la documentation fonctionnelle, la documentation technique, l'architecture du projet, et le manuel utilisateur.\\
 
@@ -61,7 +61,7 @@ Enfin, pour l'hébergement du code du projet, nous utilisons \textit{Bitbucket} 
 Le second sprint du projet a commencé en début mars, peu de temps après mon arrivée. Il a été dimensionné pour tenir sur 7 semaines.\\
 Les objectifs de ce sprint portent sur la création des fonctionnalités suivantes : 
 \begin{itemize}
-	\item \textit{La gestion des patients} : ajouter les FSE (Feuilles de Soins Electroniques) : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale du patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
+	\item \textit{La gestion des patients} : ajouter les \gls{FSE} (Feuilles de Soins Électroniques) : Il s'agit des feuilles de soins qui sont créées par le praticien et qui décrivent la prise en charge du bénéficiaire des soins ainsi que les différents actes réalisés et leur coût. La \gls{FSE} est mise à jour avec la carte vitale REdu patient à la réalisation du dernier acte et est ensuite transmise à l'assurance maladie.
 	
 	\item \textit{Les factures et la télé-transmission} : mettre en place le contexte de facturation. Le contexte comprend la gestion des tarifications, des types de couverture et des types de prise en charge. Cette fonctionnalité nécessite la lecture des cartes SESAM Vitale.
 
@@ -80,6 +80,8 @@ Voici le diagramme de Gantt prévisionnel et le gantt effectif :
   \centerline{\includegraphics[width=20.5cm]{./img/gantt_sprint2}}
   \caption{\label{fig:mb_va_ast} Gantt prévisionnel et Gantt réalisé du Sprint 2.}
 \end{figure}
+
+\subparagraph{Retour sur le sprint :}
 Le sprint s'est déroulé globalement comme prévu. L'implémentation du dossier médical a pris un peu plus de temps que prévu, car il m'a fallu un moment pour découvrir les technologies et les méthodes de travail de l'équipe.
 
 \newpage
@@ -93,12 +95,12 @@ L'objectif du sprint est de faire avancer le projet sur quatre domaines :
 \begin{itemize}
 \item \textit{La gestion des patients} : Ajouter la possibilité de créer manuellement un patient et de synchroniser le dossier d'un patient avec sa carte vitale.
 
-\item \textit{Les factures et la télétransmission} :
-Création des DRE (Demandes de remboursement electroniques)
+\item \textit{Les factures et la télé transmission} :
+Création des \gls{DRE} (Demandes de remboursement électroniques)
 
 \item \textit{Le dossier médical} : Ajouter la gestion des modèles de documents et des placeholders.
 
-\item \textit{La gestion des ordonnances} : Ajouter la saisie d'une DAP \footnote{DAP: Demande d'accord préalable. Les DAP concernent les rééducations en masso-kinésithérapie. Pour chaque type de rééducations, il est prévu qu'un certain nombre de séances soient remboursées par la sécurité sociale. Si ce nombre de séances doit être dépassé, il convient de faire une demande préalable (la DAP).}. Prise en compte des natures d'assurance\footnote{Il existe plusieurs natures d'assurance: maladie, accident du travail, maternité. La nature d'assurance impacte le taux de prise en charge.}
+\item \textit{La gestion des ordonnances} : Ajouter la saisie d'une \gls{DAP} et la prise en compte des natures d'assurance\footnote{Il existe plusieurs natures d'assurance: maladie, accident du travail, maternité. La nature d'assurance impacte le taux de prise en charge.}
 \end{itemize} 
 
 \subparagraph{Objectifs personnels :}
@@ -111,6 +113,7 @@ Il était également prévu que je revoie l'authentification à l'API Sésame, p
   \caption{\label{fig:mb_va_ast} Gantt prévisionnel et Gantt réalisé du Sprint 3.}
 \end{figure}
 
+\subparagraph{Retour sur le sprint :}
 Durant ce sprint, la fonctionnalité principale était l'ajout des champs génériques. Cette tâche était intéressante techniquement car elle m'a fait découvrir l'introspection de java. Cette tâche a pris un certain temps car elle a demandé un effort de conception particulier lors de la création de l'arborescence de placeholders et les 3 phases de remplacements des champs génériques par leurs valeurs.  \\
 L'ajout des modèles de documents a été implémenté plus rapidement que prévu grâce aux composants réutilisables que j'ai créé en sprint 2.\\
 La tâche de 
@@ -128,7 +131,7 @@ Les objectifs du sprint 4 sont :
 
 \item \textit{Le dossier médical} : Ajout de la fonctionnalité de numérisation et de la possibilité de traiter l'image obtenue (crop, rotation ...).
 
-\item \textit{La gestion des ordonnances} : Ajout de la DSI (Démarche de Soin Infirmier).
+\item \textit{La gestion des ordonnances} : Ajout de la \gls{DSI}.
 
 \item \textit{Autre} : Création d'un installateur windows pour le driver Pyvital. 
 \end{itemize} 
@@ -149,14 +152,14 @@ Voici le récapitulatif, par domaine, de l'état du projet et des fonctionnalit�
 	\item \textit{La gestion des patients} : le logiciel offre désormais la possibilité de créer des patients, de mettre à jour leurs informations avec la carte vitale et de générer des feuilles de soins électroniques.
 	Dans le futur, le logiciel devra être capable d'assurer le suivi des factures et des règlements.
 	
-	\item \textit{Les factures et la télé-transmission} : aujourd'hui, le logiciel est capable de créer des feuilles de soins électroniques et des demandes de soins électroniques. Par la suite, ces documents électroniques devront pouvoir être mis en lots et transmis aux organismes. Il faudra également traiter les ARL (Accusé de Réception Logique) reçus après les transmissions.
+	\item \textit{Les factures et la télé-transmission} : aujourd'hui, le logiciel est capable de créer des feuilles de soins électroniques et des demandes de soins électroniques. Par la suite, ces documents électroniques devront pouvoir être mis en lots et transmis aux organismes. Il faudra également traiter les \gls{ARL} (Accusé de Réception Logique) reçus après les transmissions.
 	%(praticien et une amc ou regroupement de mutuelles) recherche convention gestion unique ou séparée, transmission de DRE dans le cas des tiers payants)
 	
 	\item \textit{Le dossier médical} : le dossier médical permet à un praticien (kinésithérapeute ou infirmier) de gérer les documents liés à ses patients, de créer des documents textes et de scanner des documents. Par la suite, il faudra également gérer le dossier médical des sages-femmes qui présente des particularités propres au métier.
 	
-	\item \textit{La gestion des ordonnances} : il est aujourd'hui possible de créer des ordonnances (pour les kinésithérapeutes et infirmiers), de gérer des séances et de créer des DAP. Par la suite, les kinés devra pouvoir effectuer un bilan des soins effectués et une sage-femme devra pouvoir faire un suivi de grossesse.
+	\item \textit{La gestion des ordonnances} : il est aujourd'hui possible de créer des ordonnances (pour les kinésithérapeutes et infirmiers), de gérer des séances et de créer des \gls{DAP}. Par la suite, les kinés devra pouvoir effectuer un bilan des soins effectués et une sage-femme devra pouvoir faire un suivi de grossesse.
 	
-	\item \textit{Les SCORs} : l'application devra pouvoir créer et émettre des SCOR (SCans d'ORdonnances). Ce sont des ordonnances numérisées dont le formatage respecte une certaine norme.
+	\item \textit{Les SCORs} : l'application devra pouvoir créer et émettre des \gls{SCOR} (SCans d'ORdonnances). Ce sont des ordonnances numérisées dont le formatage respecte une certaine norme.
 \end{itemize} 
 
 %TODO Planning prévisionnel 

@@ -1,10 +1,6 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: report.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
-Warning--entry type for "bib:dailyScrum" isn't style-file defined
---line 89 of file bibliography.bib
-Warning--entry type for "bib:springPlanning" isn't style-file defined
---line 97 of file bibliography.bib
 Too many commas in name 1 of "Steve Ebersole, Vlad Mihalcea, Andrea Boriero, Brett Meyer, Radim Vansa" for entry bib:hibernate
 while executing---line 1049 of file plain.bst
 Too many commas in name 1 of "Steve Ebersole, Vlad Mihalcea, Andrea Boriero, Brett Meyer, Radim Vansa" for entry bib:hibernate

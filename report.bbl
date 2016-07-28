@@ -36,11 +36,18 @@ Fredrik Lundh, Alex~Clark Contributors, and Contributors.
 \newblock Online; Accessed: 25/07/2016.
 
 \bibitem{bib:compositePattern}
-The~\"Gang of~Four\": Erich~Gamma, Richard Helm, Ralph Johnson, and John
+The \"~Gang of~Four \"~: Erich~Gamma, Richard Helm, Ralph Johnson, and John
   Vlissides.
 \newblock {\em Design Patterns: Elements of Reusable Object-Oriented Software},
   chapter 4 Structural Patterns, pages 163--174.
 \newblock Addison-Wesley, 1994.
+
+\bibitem{bib:mediarecorder}
+omidfi, jpmedley, chrisdavidmills, Sebastianz, padenotmoz, and eldog.
+\newblock Mediarecorder.
+\newblock \url{https://developer.mozilla.org/fr/docs/Web/API/MediaRecorder}, 07
+  2016.
+\newblock Online; Accessed: 25/07/2016.
 
 \bibitem{bib:java8}
 Oracle.
@@ -50,8 +57,15 @@ Oracle.
   2016.
 \newblock Online; Accessed: 25/07/2016.
 
+\bibitem{bib:webaudio}
+raphael0202, marie ototoi, FBerthelot, Buridan, and theGlenn.
+\newblock Web audio api.
+\newblock \url{https://developer.mozilla.org/fr/docs/Web/API/Web_Audio_API},
+  2016.
+\newblock Online; Accessed: 25/07/2016.
+
 \bibitem{bib:hibernate}
-Andrea Boriero Brett Meyer Radim~Vansa Steve~Ebersole, Vlad~Mihalcea.
+Andrea Boriero~Brett Meyer Radim~Vansa Steve~Ebersole, Vlad~Mihalcea.
 \newblock Hibernate orm 5.2 user guide.
 \newblock
   \url{http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html},
