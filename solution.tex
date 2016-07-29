@@ -39,7 +39,7 @@ Pour résumer, voici un schéma de l'architecture 3-tiers de Topaze Web :
 Afin de satisfaire les besoins de ces deux types d'utilisateurs, deux applications qui accèdent aux mêmes données ont été créées: 
 
 \begin{sitemize}
-\item \textit{Topaze} : l'application utilisée par les professionnels de la santé. 
+\item \textit{Topaze} : l'application utilisée par les professionnels de santé. 
 \item \textit{Opale} : l'application utilisée par les administrateurs.
 \end{sitemize}
 
@@ -52,7 +52,7 @@ L'application Topaze a été scindée en deux parties : \textit{Topaze REST} et 
 Opale et Topaze ont une base de données en commun. De cette manière, un administrateur d'Opale peut ajouter un utilisateur qui sera ensuite utilisable dans Topaze. \\
 Les deux applications sont séparées, car elles sont utilisées par des utilisateurs différents, mais également parce qu'elles effectuent des tâches de nature différente. En effet, les tâches réalisées par les administrateurs, dans Opale, se résument à des opérations CRUD \footnote{CRUD: Create, Read, Update, Delete} sur la base de données. Dans Opale, il n'y a donc pas ou peu de logique métier. 
 De ce fait, le code de l'application Opale est presque entièrement généré au moyen du \textit{Skeleton Generator}.\\ \\
-Le \textit{Skeleton Generator} est un projet open-source, développé par le chef de projet, qui permet de faire du M2C \footnote{M2C: Modèle To Code}. Dans opale, on décrit donc les modèles de données via un fichier XML (cf annexe \ref{fig:xml}), puis le générateur est utilisé pour créer les entités en base de données, générer le code des DAO \footnote{DAO: Data Access Object} qui serviront pour Opale et Topaze et générer tout le code d'Opale (les composants-métier, les objets métiers, les services, l'api rest, ainsi que l'application web). 
+Le \textit{Skeleton Generator} est un projet open-source, développé par le chef de projet, qui permet de faire du M2C \footnote{M2C: Modèle To Code}. Dans opale, on décrit donc les modèles de données via un fichier XML (cf annexe \ref{fig:xml}), puis le générateur est utilisé pour créer les entités en base de données, générer le code des DAO \footnote{DAO: Data Access Object} qui serviront pour Opale et Topaze et générer tout le code d'Opale (les composants-métier, les objets métier, les services, l'api REST, ainsi que l'application web). 
 
 \paragraph*{L'application Sesame\\}
 
@@ -101,19 +101,19 @@ Les technologies utilisées par le projet sont :
 %\item Implémentation de la solution (backend + frontend) dans Topaze Web.
 \paragraph{Analyse de l'existant\\}
 Le dossier médical de Topaze Web doit, si possible, apporter les mêmes fonctionnalités que celui présent dans Topaze Maestro.
-La première étape de conception a donc consisté à faire une analyse de l’existant et à lister les fonctionnalités présentes (il s’agit de la liste décrite dans la section Problématique).
+La première étape de conception a donc consisté à faire une analyse de l’existant et à lister les fonctionnalités présentes (il s’agit de la liste décrite dans la section \ref{sec:pb}).
 
 \paragraph{Etude de la faisabilité\\}
-Ensuite, j'ai étudié la faisabilité des différentes fonctionnalités et les ai triées en fonction de leur difficulté à être implémentées en web. La plupart des fonctionnalités peuvent être créées sans difficulté, cependant certaines ont soulevé des questions :
+Ensuite, j'ai étudié la faisabilité des différentes fonctionnalités et les ai triées en fonction de leur difficulté à être implémentées en web. La plupart des fonctionnalités peuvent être créées sans difficulté, cependant certaines ont soulevé des questions :\\
 
-\subparagraph*{Le cas des objets OLE} est particulier, car il s'agit là d'un protocole de Microsoft à destination de Windows. 
+\textbf{Le cas des objets OLE} est particulier, car il s'agit là d'un protocole de Microsoft à destination de Windows. 
 Il ne peut donc pas être utilisé dans une solution web. À ce niveau, il était donc nécessaire de savoir quels types d'objets devaient être supportés et si la fonctionnalité était vraiment importante. En effet, chaque objet à supporter nécessite de bâtir une solution sur mesure.\\
-Après discussion avec le chef de projet, il a été décidé que l'utilisation des objets OLE ne serait pas gérée à proprement parler dans l'application. Cependant, l'utilisateur peut, s'il le désire, télécharger différents types de fichiers sur l'application et les récupérer ensuite pour les éditer avec ses propres logiciels.
+Après discussion avec le chef de projet, il a été décidé que l'utilisation des objets OLE ne serait pas gérée à proprement parler dans l'application. Cependant, l'utilisateur peut, s'il le désire, télécharger différents types de fichiers sur l'application et les récupérer ensuite pour les éditer avec ses propres logiciels.\\
 
-\subparagraph*{Le cas des documents RichText} a lui aussi demandé un traitement spécifique. Dans Topaze Maestro, les documents au format richtext peuvent être téléchargés puis édités directement depuis l'application. En web, l'édition de documents au format richtext n'est pas habituelle. En revanche, de nombreux éditeurs \gls{WYSIWYG} existent et permettent d'éditer du Markdown, du BBCode ou du HTML. J'ai donc choisi d'intégrer un composant extérieur afin de remplir cette tâche. Afin que les utilisateurs de Topaze Maestro puissent réutiliser leurs données dans Topaze Web, il a été décidé que les fichiers au format RTF seraient transformés en HTML au moyen d'un traitement batch en cas de migration de donnée. \\
-Les choix techniques et l'intégration du composant seront décrits dans la section \ref{editeur_section}.
+\textbf{Le cas des documents RichText} a lui aussi demandé un traitement spécifique. Dans Topaze Maestro, les documents au format richtext peuvent être téléchargés puis édités directement depuis l'application. En web, l'édition de documents au format richtext n'est pas habituelle. En revanche, de nombreux éditeurs \gls{WYSIWYG} existent et permettent d'éditer du Markdown, du BBCode ou du HTML. J'ai donc choisi d'intégrer un composant extérieur afin de remplir cette tâche. Afin que les utilisateurs de Topaze Maestro puissent réutiliser leurs données dans Topaze Web, il a été décidé que les fichiers au format RTF seraient transformés en HTML au moyen d'un traitement batch en cas de migration de données. \\
+Les choix techniques et l'intégration du composant seront décrits dans la section \ref{editeur_section}.\\
 
-\subparagraph*{Le cas des sons} est particulier. Pendant longtemps, cette fonctionnalité a été implémentée en web en utilisant du flash. Aujourd'hui, la balise audio d'HTML5 permet de lire des sons de façon native dans les navigateurs. Cette fonctionnalité d'HTML5 est supportée par quasiment tous les navigateurs, sauf IE8 \footnote{Support de la balise audio : http://caniuse.com/\#feat=audio}. \\
+\textbf{Le cas des sons} est particulier. Pendant longtemps, cette fonctionnalité a été implémentée en web en utilisant du flash. Aujourd'hui, la balise audio d'HTML5 permet de lire des sons de façon native dans les navigateurs. Cette fonctionnalité d'HTML5 est supportée par quasiment tous les navigateurs, sauf IE8 \footnote{Support de la balise audio : http://caniuse.com/\#feat=audio}. \\
 En ce qui concerne l'enregistrement des sons (possible dans Topaze Maestro via un objet OLE), HTML5 offre l'API \textit{Web Audio}\cite{bib:webaudio} qui permet d'accéder au flux audio ou vidéo d'un périphérique externe et l'API \textit{MediaRecorder}\cite{bib:mediarecorder} qui permet d'enregistrer des flux média. Cependant, le support de cette fonctionnalité n'est pas encore assuré par tous les navigateurs \footnote{Support de l'API mediaRecorder : http://caniuse.com//\#feat=mediarecorder}. 
 
 \paragraph{Élaboration d'une solution\\}
@@ -255,10 +255,10 @@ Le modèle utilisé par la webapp est rudimentaire, car il ne fait qu'encapsuler
 
 \paragraph*{Spécification de l'interface graphique\\}
 Avant d'implémenter la vue en JSF dans l'application, j'ai réalisé un prototype en HTML et JavaScript dans plunker (voir annexe \ref{fig:proto_filemanager}).
-Plunker est un éditeur en ligne pour le front-end. Il permet de faciliter la programmation fron-end en proposant un aperçu en temps réel, une inclusion de librairie simple, une gestion de version, un stockage privé du code et un partage simple et rapide du résultat avec un tiers.
+Plunker est un éditeur en ligne pour le front-end. Il permet de faciliter la programmation fron-end en proposant un aperçu en temps réel, une inclusion de librairies simple, une gestion de versions, un stockage privé du code et un partage simple et rapide du résultat avec un tiers.
 
 Une fois que le résultat était satisfaisant, il a suffi de convertir une partie du HTML en JSF pour l'intégrer au code.
-Une capture d'écran de la galerie d'image de l'éditeur est disponible en annexe \ref{fig:editeur_imports}.
+Une capture d'écran de la galerie d'images de l'éditeur est disponible en annexe \ref{fig:editeur_imports}.
 
 \paragraph*{Création d'un composant réutilisable\\}
 Le gestionnaire de fichier utilisé pour la bibliothèque d'image a vocation à pouvoir être réutilisé à d'autres fins.
@@ -267,10 +267,10 @@ J'ai donc créé un composant réutilisable.
 En JSF, plusieurs choix sont possibles pour créer des composants réutilisables : 
 \begin{itemize}
 \item Les \textit{Inclusions de code} : c'est la solution la plus rudimentaire. Elle consiste à extraire un morceau de code et à l'inclure ensuite en utilisant des \textit{<ui:include>} et \textit{<ui:param>}. Cette solution est adoptée lorsque le code inclus n'est pas ou peu paramétrable et n'a pas une sémantique très forte (i.e. le code ne représente pas réellement un composant à lui seul).
-\item Les \textit{Custom Tags} : il s'agit de la solution la plus légère lorsqu'on souhaite créer un composant réutilisable. C'est une méthode très proche des inclusions de code, mais qui offre une interface plus propre. Elle permet une librairie de nouvelles balises JSF, qui peuvent accepter des paramètres en attributs. \\
+\item Les \textit{Custom Tags} : il s'agit de la solution la plus légère lorsqu'on souhaite créer un composant réutilisable. C'est une méthode très proche des inclusions de code, mais qui offre une interface plus propre. Elle permet de créer une librairie de nouvelles balises JSF, qui peuvent accepter des paramètres en attributs. \\
 Il s'agit de la solution choisie lorsqu'on souhaite éviter une répétition de code et que ce dernier remplit une fonction précise (notion de composant).
 \item Les \textit{Composite Components\cite{bib:compositeComponent}} : cette solution est très semblable aux tags, mais elle est plus coûteuse en temps de traitement. Elle a l'intérêt de présenter un passage de paramètres plus propre que les tags et de nécessiter moins de code.\\
-Cette solution est en général choisie, lorsqu'on souhaite agréger plusieurs composants ou tags pour en créer un nouveau qui a son propre comportement.
+Cette solution est en général choisie lorsqu'on souhaite agréger plusieurs composants ou tags pour en créer un nouveau qui a son propre comportement.
 \item Les \textit{Custom Components} : ce sont des composants définis en java (et non plus en JSF). Pour en créer, il faut définir une classe qui assurera le rendering du composant.\\
 Cette solution est beaucoup plus lourde que les autres en temps de développement et en quantité de code. Elle est utilisée lorsque les solutions précédentes ne sont pas suffisantes. On l'utilise par exemple, pour ajouter un nouveau comportement à un composant existant, utiliser des évènements java ou avoir un rendu HTML particulier. 
 \end{itemize}
@@ -287,12 +287,12 @@ Une fois dans le texte, les champs génériques ne peuvent être modifiés (mais
 Ensuite, lorsque l'utilisateur demande à prévisualiser ou à enregistrer le document, les champs génériques sont remplacés par leur valeur.\\
 Si le remplacement nécessite des informations particulières, une modale est ouverte pour demander des renseignements à l'utilisateur (voir annexe \ref{fig:editeur_context}).\\
  
-La faisabilité de la fonctionnalité repose donc la possibilité de réaliser les fonctionnalités suivantes : %TODO expliciter plus ?
+Pour réaliser la fonctionnalité il faut pouvoir : %TODO expliciter plus ?
 \begin{sitemize}
 \item Obtenir une arborescence des champs génériques utilisables.
-\item Insérer des balises html complexes dans ckeditor (pour empêcher les modifications et stocker des métadonnées nécessaires).
+\item Insérer des balises html complexes dans ckeditor (pour empêcher les modifications et stocker des méta-données nécessaires).
 \item Faire le lien entre le champ générique, le contexte rempli et l'information en base.
-\item Remplacer la balise par sa valeur et vis versa.
+\item Remplacer la balise par sa valeur et vis-versa.
 \end{sitemize}
 
 \paragraph*{La solution mise en place}
@@ -304,8 +304,8 @@ Lors du clique sur une feuille de l'arborescence, le placeholder est inséré.  
 
 Lors de la manipulation, l'utilisateur voit donc deux types d'informations : 
 \begin{itemize}
-\item les noeuds de l'arborescence.
-\item les placeholders.
+\item les catégories (qui sont les nœuds de l'arborescence).
+\item les placeholders (qui sont les feuilles de l'arborescence).
 \end{itemize}
 
 Pour pouvoir construire l'arborescence et effectuer le remplacement des placeholders par leur valeur, les informations visibles par l'utilisateur doivent être reliées à des objets métiers de l'API.
@@ -315,7 +315,7 @@ Dans ce but, deux solutions étaient disponibles :
 \item Stocker l'information dans les classes Java. % annotations spring + introspection java
 \end{itemize}
 
-\textbf{La première approche} consiste à réutiliser la table directory \footnote{la table directory est celle introduite pour gérer l'arborescence du gestionnaire de fichiers} pour les dossiers de l'arborescence et à ajouter une nouvelle table pour les feuilles. Cette deuxième table sert à faire le lien entre les noms des placeholders, la notation pointée de java et le libellé à utiliser dans l'arborescence:\\
+\textbf{La première approche} consiste à réutiliser la table directory \footnote{la table directory est celle introduite pour gérer l'arborescence du gestionnaire de fichiers} pour les nœuds de l'arborescence et à ajouter une nouvelle table pour les feuilles. Cette deuxième table sert à faire le lien entre les noms des placeholders, la notation pointée de java et le libellé à utiliser dans l'arborescence:\\
 
 \begin{figure}[H]
   \centering
@@ -335,8 +335,8 @@ Par exemple :
   \caption{\label{fig:annotations} La classe PatientAnnotationView a été annotée avec 2 annotations (RtfPlaceholderContainer et RtfPlaceholder) afin de pouvoir être ensuite introspectée et servir à créer l'arborescence de placeholders.}
 \end{figure}
 
-\textbf{Pour comparer les deux solutions :} en terme de co\^ut, la première approche bénéficie d'un accès direct à l'information, mais celle-ci requiert un accès à la base de données et la reconstruction de l'arbre. Dans la deuxième approche, l'accès à l'information n'est pas direct, il faut parcourir les classes (couteux) et également reconstruire l'arborescence, mais on évite un accès à la base de données.\\
-En ce qui concerne la maintenabilité, la deuxième solution est meilleure, surtout pour le lien entre le placeholder et la notation pointée.\\
+\textbf{Pour comparer les deux solutions :} en terme de co\^ut, la première approche requiert un accès à la base de données et la reconstruction de l'arbre. Dans la deuxième approche, l'accès à l'information n'est pas direct, il faut parcourir les classes (couteux) et également reconstruire l'arborescence, mais on évite un accès à la base de données.\\
+En ce qui concerne la maintenabilité, la deuxième solution est meilleure, surtout en ce qui concerne le lien entre le placeholder et la notation pointée.\\
 Finalement, c'est donc la deuxième solution qui a été retenue et que j'ai implémentée.
 
 \subparagraph*{L'insertion de placeholders dans l'éditeur}
@@ -365,7 +365,7 @@ Ensuite, \textit{Velocity} se sert du contexte pour remplacer les noms des place
 %\end{figure}
 
 \textbf{La phase 2} sert à remplacer les notations pointées par leur valeur réelle.\\
-Durant cette phase, on fait appel à l'API REST pour récupérer les objets métiers nécessaires, remplis avec les informations de la base de données.\\
+Durant cette phase, on fait appel à l'API REST pour récupérer les objets métier nécessaires, remplis avec les informations de la base de données.\\
 Avec les objets métiers on remplit un nouveau contexte clé-valeur, avec en clé le nom de l'objet (première partie de la notation pointée) et en valeur l'objet lui-même.\\
 Ensuite, on refait appel à Velocity pour remplacer les notations objet par leur valeur.\\
 %\begin{figure}[H]
@@ -406,7 +406,7 @@ Pour effectuer ce remplacement, on stocke le nom du placeholder dans un attribut
 % Accés base, introspection des classes java, 3 phases, insertion du texte en js <-/-> Utilisation data-... + js pour value > placeholder
 
 \subsubsection{Les modèles de texte}
-La fonctionnalité des modèles de texte consiste à pouvoir sauvegarder dans une hiérarchie de dossiers, des documents RTF pouvant contenir des emplacements paramétrés.\\
+La fonctionnalité des modèles de texte consiste à pouvoir sauvegarder dans une hiérarchie de dossiers, des documents RTF pouvant contenir des champs génériques.\\
 Cette fonctionnalité se base sur la réutilisation de plusieurs autres :
 \begin{sitemize}
 \item Le gestionnaire de fichiers et les hiérarchies de dossiers/fichiers.
@@ -414,7 +414,7 @@ Cette fonctionnalité se base sur la réutilisation de plusieurs autres :
 \item Les placeholders.
 \end{sitemize}
 
-Une capture d'écran de l'écran de sauvegarde d'un document texte en modèle est visible en annexe \ref{fig:editeur_template}.
+Une capture de l'écran de sauvegarde des modèles est visible en annexe \ref{fig:editeur_template}.
 %\subsubsection{Documents audio}
 %\paragraph*{Web RTC}
 %\paragraph*{Choix librairie front-end}
@@ -427,14 +427,12 @@ Une capture d'écran de l'écran de sauvegarde d'un document texte en modèle es
 Au départ, le driver était uniquement conçu pour interagir avec le lecteur Sésam-Vitale.\\ Il avait alors été décidé que les websockets utilisées entre \textit{Sésame} et Pyvital aient pour identifiant le numéro de \gls{CPS} et la clé de licence.\\
 %Néanmoins, il arrive que le logiciel soit utilisé par des auxiliaires médicales qui doivent effectuer des opérations pour plusieurs médecins. Dans ce cas de figure, il est peut judicieux de leur imposer de posséder les cartes de tous les praticiens. \\
 Cependant, il a ensuite été prévu que le driver soit étendu pour supporter les opérations liées au scanner. Or, pour cette fonctionnalité, il n'est pas nécessaire de disposer d'une CPS.\\
-Pour ces raisons, nous avons décidé (avec mon chef de projet), de prendre pour nouvel identifiant de la websocket, le poste utilisateur (device) et la clé de licence. 
+Pour ces raisons, nous avons décidé (avec mon chef de projet), de prendre pour nouvel identifiant de la websocket, le poste utilisateur et la clé de licence. 
 
 \paragraph*{Impact de la modification\\}
 L'introduction du concept de poste utilisateur impacte la connexion de l'utilisateur à Topaze Web, et les communications entre Sesame et Pyvital.\\
-Chaque utilisateur de Topaze peut être membre de plusieurs cabinets. Pour chaque cabinet, l'utilisateur dispose d'une licence Sesame lui autorisant l'usage de 3 postes utilisateurs. Lorsqu'il change de cabinet, l'utilisateur doit également choisir le poste utilisateur avec lequel il souhaite se connecter à Sesame (voir annexe \ref{fig:device}).\\
 
-Lors de l'ajout de la fonctionnalité, de nombreux services de Topaze et Sesame ont été impactés, ainsi que le driver Pyvital.
-%TODO cf annexes.
+Chaque utilisateur de Topaze peut être membre de plusieurs cabinets. Pour chaque cabinet, l'utilisateur dispose d'une licence Sesame lui autorisant l'usage de 3 postes utilisateurs. Lorsqu'il change de cabinet, l'utilisateur doit également choisir le poste utilisateur avec lequel il souhaite se connecter à Sesame (voir annexe \ref{fig:device}).\\
 
 \paragraph*{Sauvegarde des préférences utilisateurs\\}
 Afin de ne pas redemander à l'utilisateur de choisir un poste utilisateur à chaque connexion, il lui est permis d'enregistrer ses préférences.\\
@@ -462,10 +460,10 @@ Dans un premier temps, il faut être capable de communiquer avec des scanners de
 TWAIN a été créé en 1992\cite{bib:twain}, et la plupart des constructeurs font aujourd'hui partie du TWAIN groupe (HP, Adobe, Epson, Kodak, Fujitsu, Logitech, etc.).\\
 En python (langage du driver de Topaze Web), le module Pytwain permet d'interagir avec les scanners.\\
 
-Ensuite, la fonction de scan de Topaze Maestro propose différentes options de scan (qualité, résolution, format de sortie, couleurs). Pour réaliser ces différentes options, il est possible d'utiliser la bibliothèque \textit{Pillow} qui permet de réaliser différents traitements de l'image (conversion de couleurs, redimensionnement, encodage, etc.)\cite{bib:pillow}.\\
+Ensuite, la fonction de scan de Topaze Maestro propose différentes options de numérisation (qualité, résolution, format de sortie, couleurs). Pour réaliser ces différentes options, il est possible d'utiliser la bibliothèque \textit{Pillow} qui permet de réaliser différents traitements de l'image (conversion de couleurs, redimensionnement, encodage, etc.)\cite{bib:pillow}.\\
 
 D'autre part, Topaze Maestro propose une interface graphique permettant d'appliquer différents traitements à l'image numérisée (cropping, redimensionnement, rotation). 
-Pour réaliser ces fonctionnalités, il existe de nombreuses possibilités. On peut par exemple le faire entièrement côté navigateur, au moyen d'une bibliothèque JavaScript (il en existe plusieurs). Soit opter pour une solution hybride. Dans ce cas, il est par exemple possible de faire une prévisualisation en JavaScript, et le traitement en Python avec Pillow. 
+Pour réaliser cette fonctionnalité, il existe de nombreuses possibilités. On peut par exemple le faire entièrement côté navigateur, au moyen d'une bibliothèque JavaScript (il en existe plusieurs). Soit opter pour une solution hybride. Dans ce cas, il est par exemple possible de faire une prévisualisation en JavaScript, et le traitement en Python avec Pillow. 
 Enfin, le dernier choix consiste à faire la prévisualisation en JavaScript côté client et le traitement en java, côté serveur. \\
 
 Enfin, il est nécessaire de faire communiquer le driver avec le serveur Sésame. Ce problème a déjà été entièrement résolu avant mon arrivée.
@@ -475,7 +473,7 @@ Enfin, il est nécessaire de faire communiquer le driver avec le serveur Sésame
 % Parler de l'implem avec twain : définition de la taille d'image + params (résolution (dpi), quality, Noir/blanc + acquire, callback, récupération de l'image, conversion dans le format d'image souhaité avec Pillow, respect des dpi avec Pillow, retour à Sésame grâce aux websocket définies précédemment.
 %TODO inclure schéma de séquence
 \subparagraph*{Fonctionnement global}
-La fonctionnalité de numérisation fait intervenir les serveurs Topaze Webapp, TopazeRest et Sésame ainsi que le driver Pyvital qui se trouve sur le poste client.
+La fonctionnalité de numérisation fait intervenir les serveurs Topaze Webapp, Topaze Rest et Sésame ainsi que le driver Pyvital qui se trouve sur le poste client.
 Sur chaque serveur ou client, différents composants interviennent :
 \begin{figure}[H]
   \centering
@@ -491,7 +489,7 @@ Le serveur Sesame Rest est doté du même mécanisme que sur Topaze, mais il dis
 Le composant Sesame-Repository contient un "driver distant" qui traite les actions spécifiques au scanner. Sesame WebSocket permet quant à lui de gérer la communication en websockets avec le driver Pyvital.\\
 Enfin, le driver \textit{Pyvital} utilise TWAIN pour réaliser l'acquisition d'image avec le scanner.\\
 
-Mon travail lors de l'implémentation de la fonctionnalité a été créer les services nécessaires sur Topaze et Sesame et d'ajouter la fonction de numérisation sur Pyvital.
+Mon travail lors de l'implémentation de la fonctionnalité a été de créer les services nécessaires sur Topaze et Sesame et d'ajouter la fonction de numérisation sur Pyvital.
 
 \subparagraph*{Communication entre Sesame et Pyvital}
 Pour que Sesame puisse demander à Pyvital d'effectuer des actions, il nécessaire d'implémenter certaines interfaces. Il faut par exemple implémenter un MessagePreparator et un MessageHandler ainsi que les fabriques associées. Ces classes seront chargées de préparer le message transmis à Pyvital de traiter la réception des messages qui en proviennent. \\
@@ -501,17 +499,17 @@ L'enchainement des actions est résumé sur le diagramme de séquence suivant :
   \centering
   \vspace{-5pt}
   \includegraphics[width=17cm]{./img/diag_seq_sesame}
-  \caption{\label{fig:diag_seq_sesame} Diagrame de séquence illustrant la communication entre Sesame et Pyvital.}
+  \caption{\label{fig:diag_seq_sesame} Diagramme de séquence illustrant la communication entre les composants de Sesame et Pyvital.}
 \end{figure}
 
 \subparagraph*{La numérisation sur Pyvital}
-Sur Pyvital, j'ai utilisé TWAIN afin de réaliser la numérisation des documents. Le scan d'un document se déroule en plusieurs étapes. Dans un premier temps, on demande à Twain de lancer l'acquisition de données. Une fois l'acquisition réalisée, un callback est appelé afin de permettre l'obtention de l'image. Puis, des traitements sont effectués sur l'image (résolution, qualité, couleur, etc.), grâce à Pillow. Enfin, l'image est convertie en Base64 et transmise à Sésame via les websockets.
+Sur Pyvital, j'ai utilisé TWAIN afin de réaliser la numérisation des documents. Le scan d'un document se déroule en plusieurs étapes. Dans un premier temps, Pyvital appelle Twain pour lancer l'acquisition de données. Une fois l'acquisition réalisée, un callback est appelé afin de permettre l'obtention de l'image. Puis, des traitements sont effectués sur l'image (résolution, qualité, couleur, etc.), grâce à Pillow. Enfin, l'image est convertie en Base64 et est transmise à Sésame via les websockets.
  
 \begin{figure}[H]
   \centering
   \vspace{-10pt}
   \includegraphics[width=17cm]{./img/numerisation}
-  \caption{\label{fig:diag_seq_sesame} Diagrame d'activités UML représentant les différentes étapes effectuées par Pyvital, lors d'une demande de numérisation.}
+  \caption{\label{fig:diag_seq_sesame} Diagramme d'activités UML représentant les différentes étapes effectuées par Pyvital, lors d'une demande de numérisation.}
 \end{figure}
 
 %\paragraph*{Traitement d'image (cropping/rotation/zoom)\\}
@@ -530,8 +528,8 @@ Le rôle de l'installateur est double.\\
 La première fois qu'il est exécuté, son but est d'installer Pyvital et de créer un nouveau poste utilisateur (à la fois sur le driver et en base de données). \\
 Toutes les autres fois où l'installateur est appelé, il ne sert qu'à lier de nouvelles clés de licence au poste utilisateur.\\
 Par exemple, si un utilisateur exerce dans deux cabinets, il doit lancer l'installateur une première fois pour installer Pyvital et lier son compte (sur le premier cabinet) au nouveau poste utilisateur.
-S’ il souhaite également lier son compte sur le deuxième cabinet, il doit relancer l'installateur. La deuxième fois, l'installateur ne fera que lier la clé de licence (associée au couple Utilisateur-Cabinet) au poste existant.\\
-Cet enchaînement d'action est décrit dans le schéma ci-dessous : 
+S’il souhaite également lier son compte sur le deuxième cabinet, il doit relancer l'installateur. La deuxième fois, l'installateur ne fera que lier la clé de licence (associée au couple Utilisateur-Cabinet) au poste existant.\\
+Cet enchaînement d'actions est décrit dans le schéma ci-dessous : 
 \begin{figure}[H]
   \vspace{0pt}
   \centering
@@ -539,11 +537,11 @@ Cet enchaînement d'action est décrit dans le schéma ci-dessous :
   \caption{\label{fig:installateur} Diagrame d'activités UML représentant les deux modes de l'installateur..}
 \end{figure}
 
-\paragraph*{Installation de Pyvital}
+\paragraph*{Installation de Pyvital\\}
 Lors de l'installation de Pyvital, l'installateur doit déplacer les fichiers du driver dans le bon dossier sur Windows. Puis, il doit installer les dépendances et les .msi nécessaires.\\ 
 Il doit également compléter le fichier de configuration du driver. \\
 Ensuite, il doit contacter le serveur \textit{Sésame} afin de vérifier la clé de licence et d'enregistrer le nouveau poste utilisateur. \\
-Enfin, il doit installer le logiciel Pyxvital qui est utilisé pour les opérations de facturation liées au lecteur Sésam.
+Enfin, il doit installer le logiciel Pixvital qui est utilisé pour les opérations de facturation liées au lecteur Sésam.
 
 \paragraph*{Choix de la solution technique\\}
 Pour le choix de l'installateur, la solution d'\textit{Inno Setup} m'a été recommandée par le directeur de l'entreprise. En effet, il s'agit de la solution qui est utilisée dans les dernières versions de Topaze Maestro.\\
@@ -571,7 +569,7 @@ Dans ces deux cas, l'installateur réalise une requête HTTP vers le serveur Sé
 %TODO : Hors sujet. ^
 
 Le driver de Topaze Web utilise Pixvital et il est donc nécessaire que celui-ci soit installé en même temps que les autres dépendances. Le problème de Pixvital est qu'il ne peut être installé qu'au moyen d'un \textit{.exe}. Or, nous souhaitons que son installation soit transparente pour l'utilisateur. Il a donc été nécessaire de comprendre les différentes opérations réalisées lors de l'installation, afin de les inclure dans notre installateur.\\
-Pour ce faire, j'ai donc du lancer l'installateur de Pixvital et regarder si des registres étaient modifiés, quels fichiers étaient installés et quels fichiers de configuration étaient complétés. Ensuite, j'ai dû ajouter ces opérations à la phase finale d'installation dans Inno Setup.
+Pour ce faire, j'ai donc d\^u lancer l'installateur de Pixvital et regarder si des registres étaient modifiés, quels fichiers étaient installés et quels fichiers de configuration étaient complétés. Ensuite, j'ai dû ajouter ces opérations à la phase finale d'installation dans Inno Setup.
 
 \subsection{Protocole d'évaluation}
 \subsubsection{Évaluation de la qualité du code}

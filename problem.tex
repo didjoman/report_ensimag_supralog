@@ -1,20 +1,20 @@
 \newpage
-\section{Problématique} % (5 pages) problématique de votre projet 
+\section{Problématique}\label{sec:pb} % (5 pages) problématique de votre projet 
 % (contexte du projet (workflow) + travail à réaliser + objectifs attendus)
 
 \subsection{Contexte du projet}
-Le développement du projet s'effectue en sprints, selon la méthode Scrum. Le contenu de chaque sprint est décidé d'un commun accord entre le chef de projet et le client. Le but est de réaliser en premier lieu les fonctionnalités les plus importantes fonctionnellement. 
+Le développement du projet s'effectue en sprints, selon la méthode Scrum. Le contenu de chaque sprint est décidé d'un commun accord entre le chef de projet et le client. Le but est de réaliser en premier lieu les fonctionnalités les plus importantes fonctionnellement.\\
 Les aspects concernant la méthode de travail sont abordés plus en détail dans la section \ref{sec:projectManagement}.
 
-\paragraph*{État du projet au début du stage\\}
+\paragraph*{État du projet au commencement du stage\\}
 A mon arrivée sur le projet, deux sprints avaient déjà été réalisés : le sprint 0 qui a servi à la mise en place du projet et le sprint 1.\\
 
 Durant le sprint 0, l'architecture du projet a été mise en place, avec notamment les différents serveurs \textit{J2EE/Spring}, la base de données \textit{Postgre Sql}, l'\gls{ORM} Hibernate, la partie webapp avec \textit{JSF} et \textit{primefaces}.
 Cette partie est abordée plus en détail, dans la section \ref{sec:architecture}.\\
 
-Le sprint 1, qui a eu lieu avant mon arrivée, avait pour but la création des fonctionnalités de base permettant la gestion d'un cabinet.\\
-La première fonctionnalité développée durant ce sprint permet la création d'un cabinet médical avec l'ajout de praticiens (kinésithérapeute, infirmiers, etc.) et l'ajout de patients au cabinet.
-La deuxième fonctionnalité porte sur la gestion des ordonnances pour les professions de type kinésithérapeute et infirmiers. Enfin, il y a la gestion des séances, avec la création d'un planning.
+Le sprint 1, qui a eu lieu avant mon arrivée, avait pour but l'apport des fonctionnalités de base permettant la gestion d'un cabinet.\\
+La première fonctionnalité développée durant ce sprint permet la création d'un cabinet médical avec l'ajout de praticiens (kinésithérapeutes, infirmiers, etc.) et l'ajout de patients au cabinet.
+La deuxième fonctionnalité porte sur la gestion des ordonnances pour les professions de kinésithérapeute et infirmier. Enfin, il y a la gestion des séances, avec la création d'un planning.
 
 \paragraph*{Vision du projet\\}
 
@@ -22,7 +22,7 @@ Au commencement du stage, le projet dispose des cabinets, des praticiens, des pa
 
 Le but, ensuite, est de permettre à un praticien de gérer son activité au quotidien. Pour atteindre ce but, 4 grands axes de développement sont définis : la gestion des patients, la facturation (et télétransmission), le dossier médical et la gestion des ordonnances.\\
 
-Il est prévu d'ajouter un dossier médical, pour que le praticien puisse gérer les documents relatifs à ses patients. Ensuite, les informations liées aux patients doivent être enrichies et doivent pouvoir être synchronisées avec la carte vitale. D'autre part, l'application doit permettre aux praticiens de facturer (génération de \glossary{FSE}) et de réaliser des demandes de remboursement (génération de \gls{DRE}). Enfin, concernant les ordonnances, il faut pouvoir réaliser des \gls{SCOR} et les cas spécifiques liés aux métiers des praticiens doivent être traités (émission de \gls{DAP} et création de bilans pour les kinésithérapeutes; ajout de \gls{DSI} pour les infirmiers, etc.). \\
+Il est prévu d'ajouter un dossier médical, pour que le praticien puisse gérer les documents relatifs à ses patients. Ensuite, les informations liées aux patients doivent être enrichies et doivent pouvoir être synchronisées avec la carte vitale. D'autre part, l'application doit permettre aux praticiens de facturer (génération de \gls{FSE}) et de réaliser des demandes de remboursement (génération de \gls{DRE}). Enfin, concernant les ordonnances, il faut pouvoir réaliser des \gls{SCOR} et traiter les cas spécifiques liés aux métiers des praticiens (émission de \gls{DAP} et création de bilans pour les kinésithérapeutes; ajout de \gls{DSI} pour les infirmiers, etc.). \\
 
 A plus grande échéance, il faudra également gérer la transmission des données aux différents organismes.
 
@@ -38,14 +38,14 @@ Le dossier médical est une fonctionnalité composite qui est constituée d'un �
 Ci-dessous, je détaille la liste des fonctionnalités présentes dans Topaze Maestro et qu'il faudra introduire dans Topaze Webapp.
 
 \paragraph*{La liste des documents associés au patient\\}
-La fonctionnalité principale est la liste des documents du patient. Cette liste contient différents types de documents : les ordonnances, factures, paiements, suivis, scans, courriers (textes), images, sons, objets \gls{OLE}. La liste peut être ordonnée selon le type de documents ou selon la date. Elle peut également être filtrée sur le type de documents.
+La fonctionnalité principale est la liste des documents du patient. Cette liste contient différents types de documents : les ordonnances, factures, paiements, suivis, scans, courriers (textes), images, sons, objets \gls{OLE}. La liste peut être ordonnée selon le type de document ou selon la date. Elle peut également être filtrée sur le type de document.
 
 \paragraph*{Le récapitulatif de chaque document\\}
-Un panneau latéral permet à l'utilisateur d'avoir accès rapide aux informations du document qui est sélectionné dans la liste.
+Un panneau latéral permet à l'utilisateur d'avoir accès rapidement aux informations du document qu'il a sélectionné dans la liste.
 
 \paragraph*{La lecture ou la suppression de documents\\}
 Chaque document de la liste doit pouvoir être ouvert ou supprimé.
-L'ouverture d'un document est différente selon le type de celui-ci. Si c'est une ordonnance ou un document issu d'un regroupement d'information, l'ouverture provoquera l'affichage d'un nouvel écran. Si c'est une image, un pdf, ou un objet OLE, c'est un logiciel Windows qui s'ouvre. Enfin, si c'est un document \textit{richtext} (cas des courriers et prescriptions), un éditeur propre à Topaze permet l'édition. 
+L'ouverture d'un document est différente selon son type. Si c'est une ordonnance ou un document issu d'un regroupement d'information, l'ouverture provoquera l'affichage d'un nouvel écran. Si c'est une image, un pdf, ou un objet OLE, c'est un logiciel Windows qui s'ouvre. Enfin, si c'est un document \textit{richtext} (cas des courriers et prescriptions), un éditeur propre à Topaze permet l'édition. 
 
 \paragraph*{Les modèles d'images\\}
 Un onglet du menu latéral permet l'insertion d'une image à partir d'une librairie de modèles prédéfinis.
@@ -60,15 +60,15 @@ L'utilisateur peut insérer dans le document texte une image provenant de son or
 La bibliothèque d'image présente plusieurs onglets thématiques et chaque onglet contient une liste d'images prédéfinies.
 
 \subparagraph*{Les "placeholders"}
-Les emplacements paramétrés (placeholders) sont des balises génériques qui peuvent être introduites dans un document texte et qui seront remplacées à la sauvegarde par leur valeur réelle (valeur en base de données).\\
+Les "placeholders" sont des champs génériques qui peuvent être introduits dans un document texte et qui seront remplacés à la sauvegarde par leur valeur réelle (valeur en base de données).\\
 
 Le mécanisme fonctionne en plusieurs temps : \\
-D'abord, l'utilisateur sélectionne dans une arborescence l'information dont il a besoin (par exemple: la date d'une ordonnance) et le logiciel insère dans le texte la balise correspondante (dans notre cas : \textit{$[$ordonnance.numero$\_$securité$\_$sociale$]$}). \\
+D'abord, l'utilisateur sélectionne dans une arborescence l'information dont il a besoin (par exemple: la date d'une ordonnance) et le logiciel insère dans le texte la balise correspondante (dans notre cas : \textit{$[$ordonnance.date$]$}). \\
 Ensuite, l'utilisateur remplit un contexte. Dans notre cas, le praticien aurait à choisir l'ordonnance ciblée.\\
 Enfin, lorsque l'utilisateur clique sur "pré-visualiser" ou "sauvegarder", l'emplacement est remplacé par sa valeur réelle.
 
 \subparagraph*{Les modèles de texte}
-Les modèles de texte sont des documents RTF contenant des placeholders, qui ont vocation à être réutilisés.\\
+Les modèles de texte sont des documents \gls{RTF} contenant des placeholders, qui ont vocation à être réutilisés.\\
 Ces modèles sont accessibles via une bibliothèque similaire à celle des images. 
 Lorsque l'utilisateur ouvre un modèle, il peut le modifier et l'enregistrer comme un document normal. 
 
