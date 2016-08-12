@@ -13,7 +13,7 @@
 \paragraph*{Architecture 3-tiers\\}
 Topaze web est bâti selon une architecture 3-tiers : 
 \begin{sitemize}
-\item la \textit{couche présentation} qui sert à l'affichage des informations et qui tourne sur le navigateur du client.
+\item la \textit{couche présentation} qui sert à l'affichage des informations.
 \item la \textit{couche métier} qui contient la logique applicative.
 \item la \textit{couche d'accès aux données} qui garantit la persistance des données (base(s) de données). 
 \end{sitemize}
@@ -52,7 +52,7 @@ L'application Topaze a été scindée en deux parties : \textit{Topaze REST} et 
 Opale et Topaze ont une base de données en commun. De cette manière, un administrateur d'Opale peut ajouter un utilisateur qui sera ensuite utilisable dans Topaze. \\
 Les deux applications sont séparées, car elles sont utilisées par des utilisateurs différents, mais également parce qu'elles effectuent des tâches de nature différente. En effet, les tâches réalisées par les administrateurs, dans Opale, se résument à des opérations CRUD \footnote{CRUD: Create, Read, Update, Delete} sur la base de données. Dans Opale, il n'y a donc pas ou peu de logique métier. 
 De ce fait, le code de l'application Opale est presque entièrement généré au moyen du \textit{Skeleton Generator}.\\ \\
-Le \textit{Skeleton Generator} est un projet open-source, développé par le chef de projet, qui permet de faire du M2C \footnote{M2C: Modèle To Code}. Dans opale, on décrit donc les modèles de données via un fichier XML (cf annexe \ref{fig:xml}), puis le générateur est utilisé pour créer les entités en base de données, générer le code des DAO \footnote{DAO: Data Access Object} qui serviront pour Opale et Topaze et générer tout le code d'Opale (les composants-métier, les objets métier, les services, l'api REST, ainsi que l'application web). 
+Le \textit{Skeleton Generator} est un projet open-source, développé par le chef de projet, qui permet de faire du M2C \footnote{M2C: Modèle To Code}. Dans opale, on décrit donc les modèles de données via un fichier XML (cf annexe \ref{fig:xml}), puis le générateur est utilisé pour créer les scripts SQL de base de données, générer le code des DAO \footnote{DAO: Data Access Object} qui serviront pour Opale et Topaze et générer tout le code d'Opale (les composants-métier, les objets métier, les services, l'api REST, ainsi que l'application web). 
 
 \paragraph*{L'application Sesame\\}
 
@@ -61,6 +61,9 @@ par les représentants des organismes d’Assurance Maladie. Cet agrément est o
 nombreux tests vérifiant que le logiciel en question respecte un cahier des charges très précis.\\
 La gestion de la facturation et des \gls{FSE} étant nécessaire à l’application, mais pouvant
 être externalisée, c’est une troisième application qui en a la responsabilité. \\
+
+Il est envisagé que les services de cette application puissent être par la suite commercialisés et proposés en mode \textit{SAAS} aux concurrents ou à de futurs éditeurs.\\
+
 Cette troisième application nommée \textit{Sesame} répond à trois problématiques : 
 \begin{sitemize}
 \item La communication avec le lecteur de cartes vitales.
@@ -74,18 +77,18 @@ Afin de pouvoir communiquer avec la carte vitale, un driver doit être installé
 Voici le schéma d'architecture globale représentant l'architecture 3-Tiers et la communication entre les différentes applications :
 \begin{figure}[H]
   \centering
-  \centerline{\includegraphics[width=20cm]{./img/architecture5}}
+  \centerline{\includegraphics[width=18cm]{./img/architecture5}}
   \caption{\label{fig:mb_va_ast} Schéma d'architecture global (créé par Tom Veniat, utilisé avec son accord)}
 \end{figure}
 
 \subsubsection{Technologies utilisées}
 Les technologies utilisées par le projet sont :
 \begin{sitemize}
-\item Bases de données : PostgreSQL pour les modèles de données, MongoDB et GridFS pour les fichiers.
-\item ORM : Hibernate\cite{bib:hibernate}
-\item Serveur : Tomcat
-\item Backend : Java8\cite{bib:java8} et Spring\cite{bib:spring}
-\item Front-End : JSF\cite{bib:jsf} et Primefaces
+\item Bases de données : \gls{PostgreSQL} pour les modèles de données, \gls{MongoDB} et \gls{GridFS} pour les fichiers.
+\item ORM : \gls{Hibernate}\cite{bib:hibernate}
+\item Serveur : \gls{Tomcat}
+\item Backend : \gls{Java 8}\cite{bib:java8} et \gls{Spring}\cite{bib:spring}
+\item Front-End : \gls{JSF}\cite{bib:jsf} et Primefaces
 \end{sitemize} 
 
 \subsection{Solution envisagée}
@@ -103,7 +106,7 @@ Les technologies utilisées par le projet sont :
 Le dossier médical de Topaze Web doit, si possible, apporter les mêmes fonctionnalités que celui présent dans Topaze Maestro.
 La première étape de conception a donc consisté à faire une analyse de l’existant et à lister les fonctionnalités présentes (il s’agit de la liste décrite dans la section \ref{sec:pb}).
 
-\paragraph{Etude de la faisabilité\\}
+\paragraph{Étude de la faisabilité\\}
 Ensuite, j'ai étudié la faisabilité des différentes fonctionnalités et les ai triées en fonction de leur difficulté à être implémentées en web. La plupart des fonctionnalités peuvent être créées sans difficulté, cependant certaines ont soulevé des questions :\\
 
 \textbf{Le cas des objets OLE} est particulier, car il s'agit là d'un protocole de Microsoft à destination de Windows. 
@@ -166,7 +169,7 @@ Une fois le modèle de données mis en place, il ne reste plus qu'à réaliser l
 
 Comme on peut le voir, l'architecture de la \textit{webapp} suit un modèle MVC. Du côté de \textit{Topaze Rest}, il y a plusieurs packages : 
 \begin{itemize} 
-\item \textit{API} qui définit les services et les modèles (qui correspondent à des vues simplifiées des objets tirés de la base)
+\item \textit{API} qui définit les contrats de services et les \gls{DTO} (qui correspondent à des vues simplifiées des objets tirés de la base)
 \item \textit{REST} qui définit les contrôleurs (qui font le mapping entre une URL et un service)
 \item \textit{REST Client} qui définit des services clients utilisés par la web-app pour contacter les contrôleurs.
 \item \textit{Business components} qui définit les objets tels que les mappers qui permettent de créer des vues ad-hocs à partir des modèles issus de la base de données.
@@ -217,16 +220,16 @@ En ce qui concerne l'API REST, elle contient les opérations de CRUD\footnote{CR
 L'API expose donc les URL suivantes concernant les dossiers : 
 %TODO : à vérifier.
 \begin{itemize}
-\item GET /account/models/directory/{directoryId}
-\item DELETE /account/models/directory/{directoryId}
-\item POST /account/models/directory
+\item GET /account/\{accountId\}/directory/\{directoryId\}
+\item DELETE /account/\{accountId\}/directory/\{directoryId\}
+\item POST /account/\{accountId\}/directory
 \end{itemize}
 
 Concernant les images contenues, on trouve :
 \begin{itemize}
-\item GET /account/models/directory/{directoryId}/picutre/{pictureId}/content
-\item DELETE /account/models/directory/{directoryId}/picutre/{pictureId}
-\item POST /account/models/directory/picutre
+\item GET /account/\{accountId\}/directory/\{directoryId\}/picture/\{pictureId\}/content
+\item DELETE /account/\{accountId\}/directory/\{directoryId\}/picture/\{pictureId\}
+\item POST /account/\{accountId\}/directory/\{directoryId\}/picture
 \end{itemize}
 
 \paragraph*{Modèle de l'API\\}
@@ -478,7 +481,7 @@ Sur chaque serveur ou client, différents composants interviennent :
 \begin{figure}[H]
   \centering
   \includegraphics[width=16cm]{./img/macro_sesame3}
-  \caption{\label{fig:mb_va_ast} Diagrame UML de déploiement représentant les différents composants qui interviennent lors d'une requête au scanner.}
+  \caption{\label{fig:mb_va_ast} Diagramme UML de déploiement représentant les différents composants qui interviennent lors d'une requête au scanner.}
 \end{figure}
 
 \subparagraph*{Déroulement d'une demande de numérisation}
@@ -534,14 +537,14 @@ Cet enchaînement d'actions est décrit dans le schéma ci-dessous :
   \vspace{0pt}
   \centering
   \includegraphics[width=16cm]{./img/installateur}
-  \caption{\label{fig:installateur} Diagrame d'activités UML représentant les deux modes de l'installateur..}
+  \caption{\label{fig:installateur} Diagramme d'activités UML représentant les deux modes de l'installateur..}
 \end{figure}
 
 \paragraph*{Installation de Pyvital\\}
 Lors de l'installation de Pyvital, l'installateur doit déplacer les fichiers du driver dans le bon dossier sur Windows. Puis, il doit installer les dépendances et les .msi nécessaires.\\ 
 Il doit également compléter le fichier de configuration du driver. \\
 Ensuite, il doit contacter le serveur \textit{Sésame} afin de vérifier la clé de licence et d'enregistrer le nouveau poste utilisateur. \\
-Enfin, il doit installer le logiciel Pixvital qui est utilisé pour les opérations de facturation liées au lecteur Sésam.
+Enfin, il doit installer le logiciel Pyxvital qui est utilisé pour les opérations de facturation liées au lecteur Sésam.
 
 \paragraph*{Choix de la solution technique\\}
 Pour le choix de l'installateur, la solution d'\textit{Inno Setup} m'a été recommandée par le directeur de l'entreprise. En effet, il s'agit de la solution qui est utilisée dans les dernières versions de Topaze Maestro.\\
@@ -563,12 +566,12 @@ Inno Setup est un outil qui permet de réaliser simplement des installateurs. L'
 Dans l'installateur, la partie la plus importante est la section \textit{"Code",} car elle permet d'ajouter des écrans à l'installateur et de créer de nouvelles fonctionnalités. Sur le projet, je l'ai utilisé pour créer une page de validation de clé de licence, et une page servant à définir le nom du nouveau poste utilisateur.\\
 Dans ces deux cas, l'installateur réalise une requête HTTP vers le serveur Sésame, puis traite la réponse obtenue. 
 
-\paragraph*{L'intégration de pixvital\\}
+\paragraph*{L'intégration de pyxvital\\}
 
 %Pyxvital est un logiciel qui sert à créer des FSE\footnote{FSE: Feuille de Soins Electroniques} et à assurer la transmission avec le lecteur Sésam-Vitale. Il est utilisé temporairement afin de faciliter la certification de Topaze Web et accélerer ainsi sa mise sur le marché.
 %TODO : Hors sujet. ^
 
-Le driver de Topaze Web utilise Pixvital et il est donc nécessaire que celui-ci soit installé en même temps que les autres dépendances. Le problème de Pixvital est qu'il ne peut être installé qu'au moyen d'un \textit{.exe}. Or, nous souhaitons que son installation soit transparente pour l'utilisateur. Il a donc été nécessaire de comprendre les différentes opérations réalisées lors de l'installation, afin de les inclure dans notre installateur.\\
+Le driver de Topaze Web utilise Pyxvital et il est donc nécessaire que celui-ci soit installé en même temps que les autres dépendances. Le problème de Pyxvital est qu'il ne peut être installé qu'au moyen d'un \textit{.exe}. Or, nous souhaitons que son installation soit transparente pour l'utilisateur. Il a donc été nécessaire de comprendre les différentes opérations réalisées lors de l'installation, afin de les inclure dans notre installateur.\\
 Pour ce faire, j'ai donc d\^u lancer l'installateur de Pixvital et regarder si des registres étaient modifiés, quels fichiers étaient installés et quels fichiers de configuration étaient complétés. Ensuite, j'ai dû ajouter ces opérations à la phase finale d'installation dans Inno Setup.
 
 \subsection{Protocole d'évaluation}

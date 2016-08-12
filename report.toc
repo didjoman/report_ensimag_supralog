@@ -23,7 +23,7 @@
 \contentsline {subsection}{\numberline {4.2}Solution envisag\IeC {\'e}e}{18}{subsection.4.2}
 \contentsline {subsubsection}{\numberline {4.2.1}Conception et impl\IeC {\'e}mentation du dossier m\IeC {\'e}dical}{18}{subsubsection.4.2.1}
 \contentsline {paragraph}{Analyse de l'existant\\}{18}{subsubsection.4.2.1}
-\contentsline {paragraph}{Etude de la faisabilit\IeC {\'e}\\}{18}{subsubsection.4.2.1}
+\contentsline {paragraph}{\IeC {\'E}tude de la faisabilit\IeC {\'e}\\}{18}{subsubsection.4.2.1}
 \contentsline {paragraph}{\IeC {\'E}laboration d'une solution\\}{19}{subsubsection.4.2.1}
 \contentsline {paragraph}{Phase d'impl\IeC {\'e}mentation\\}{21}{figure.7}
 \contentsline {subsubsection}{\numberline {4.2.2}Choix et int\IeC {\'e}gration de l'\IeC {\'e}diteur de texte}{22}{subsubsection.4.2.2}
